@@ -3,10 +3,10 @@
 
 // ====== EDITA AQUÍ TUS DATOS ======
 
-export const NAME = "Tu Nombre";
+export const NAME = "Alejandro Sanchez";
 
 export const METADATA = {
-  title: "Portafolio | Tu Nombre",
+  title: "Portafolio | Alejandro Sanchez",
   description:
     "Desarrollador frontend que une diseño y código para crear experiencias web rápidas, cuidadas y con animaciones fluidas.",
   siteUrl: "https://tu-dominio.com/",
@@ -48,6 +48,14 @@ export interface IProject {
 }
 
 export const PROJECTS: IProject[] = [
+  {
+    name: "Mimi Café 🇧🇷",
+    image: "/projects/mimicafe.svg",
+    description: "Proyecto de marca para una cafetería en Brasil ☕",
+    gradient: ["#6F4E37", "#2B1B12"],
+    url: "https://www.instagram.com/mimicafe.br/",
+    tech: ["figma", "illustrator"],
+  },
   {
     name: "Proyecto Uno",
     image: "/projects/proyecto-1.svg",
