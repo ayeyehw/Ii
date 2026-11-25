@@ -1,205 +1,159 @@
-// Basado en "folio" de Ayush Singh (https://github.com/ayush013/folio), licencia MIT.
-// Ver LICENSE. Contenido adaptado: reemplaza los datos de ejemplo por los tuyos.
-
-// ====== EDITA AQUÍ TUS DATOS ======
+// ====== EDITA AQUÍ TODO EL CONTENIDO DEL PORTAFOLIO ======
+// Las imágenes van en /public/work (proyectos), /public/me (tu foto).
 
 export const NAME = "Alejandro Sanchez";
+export const FIRST_NAME = "Alejandro";
+export const ROLE = "Diseño & Branding";
+export const EMAIL = "tu-correo@ejemplo.com";
+export const AVAILABILITY = "Aceptando proyectos para 2027";
 
 export const METADATA = {
-  title: "Portafolio | Alejandro Sanchez",
+  title: "Alejandro Sanchez — Diseño & Branding",
   description:
-    "Desarrollador frontend que une diseño y código para crear experiencias web rápidas, cuidadas y con animaciones fluidas.",
+    "Portafolio de Alejandro Sanchez: identidad de marca, diseño gráfico y contenido para marcas con personalidad.",
   siteUrl: "https://tu-dominio.com/",
 };
 
-export const MENULINKS = [
-  { name: "Inicio", ref: "home" },
-  { name: "Proyectos", ref: "works" },
-  { name: "Habilidades", ref: "skills" },
-  { name: "Trayectoria", ref: "timeline" },
-  { name: "Contacto", ref: "contact" },
+export const NAV = [
+  { label: "Inicio", href: "#inicio" },
+  { label: "Rubros", href: "#rubros" },
+  { label: "Proyectos", href: "#proyectos" },
+  { label: "Sobre mí", href: "#sobre-mi" },
 ];
 
-export const TYPED_STRINGS = [
-  "Diseño y desarrollo experiencias web",
-  "Construyo apps frontend modernas",
-  "Creo interfaces con animaciones fluidas",
+export const SOCIAL = [
+  { label: "Instagram", href: "https://www.instagram.com/tu-usuario/" },
+  { label: "TikTok", href: "https://www.tiktok.com/@tu-usuario" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/tu-usuario/" },
+  { label: "Behance", href: "https://www.behance.net/tu-usuario" },
 ];
 
-export const EMAIL = "tu-correo@ejemplo.com";
-
-// Deja vacío ("") para ocultar el botón de CV. Coloca tu PDF en /public.
-export const RESUME_URL = "";
-
-export const SOCIAL_LINKS = {
-  github: "https://github.com/ayeyehw",
-  linkedin: "https://www.linkedin.com/in/tu-usuario/",
-  instagram: "https://www.instagram.com/tu-usuario/",
-};
-
-export interface IProject {
-  name: string;
-  image: string;
-  blurImage?: string;
-  description: string;
-  gradient: [string, string];
-  url: string;
-  tech: string[];
-}
-
-export const PROJECTS: IProject[] = [
-  {
-    name: "Mimi Café 🇧🇷",
-    image: "/projects/mimicafe.svg",
-    description: "Proyecto de marca para una cafetería en Brasil ☕",
-    gradient: ["#6F4E37", "#2B1B12"],
-    url: "https://www.instagram.com/mimicafe.br/",
-    tech: ["figma", "illustrator"],
-  },
-  {
-    name: "Proyecto Uno",
-    image: "/projects/proyecto-1.svg",
-    description: "Landing page con animaciones al hacer scroll ✨",
-    gradient: ["#1F6582", "#1ABCFE"],
-    url: "https://github.com/ayeyehw",
-    tech: ["react", "next", "gsap", "tailwind"],
-  },
-  {
-    name: "Proyecto Dos",
-    image: "/projects/proyecto-2.svg",
-    description: "Dashboard web construido de cero a producción 🚀",
-    gradient: ["#153BB9", "#0E2C8B"],
-    url: "https://github.com/ayeyehw",
-    tech: ["typescript", "react", "sass"],
-  },
-  {
-    name: "Proyecto Tres",
-    image: "/projects/proyecto-3.svg",
-    description: "Diseño UI en Figma y desarrollo frontend",
-    gradient: ["#245B57", "#004741"],
-    url: "https://github.com/ayeyehw",
-    tech: ["figma", "javascript", "css"],
-  },
-  {
-    name: "Proyecto Cuatro",
-    image: "/projects/proyecto-4.svg",
-    description: "Paquete open source publicado en npm 📦",
-    gradient: ["#3A0000", "#771E1E"],
-    url: "https://github.com/ayeyehw",
-    tech: ["npm", "typescript"],
-  },
-];
-
-export const SKILLS = {
-  frontend: [
-    "javascript",
-    "react",
-    "next",
-    "gsap",
-    "tailwind",
-    "sass",
-    "html",
-    "css",
-  ],
-  userInterface: ["figma", "photoshop", "illustrator"],
-  other: ["git", "webpack"],
-};
-
-export enum Branch {
-  LEFT = "leftSide",
-  RIGHT = "rightSide",
-}
-
-export enum NodeTypes {
-  CONVERGE = "converge",
-  DIVERGE = "diverge",
-  CHECKPOINT = "checkpoint",
-}
-
-export enum ItemSize {
-  SMALL = "small",
-  LARGE = "large",
-}
-
-export const TIMELINE: Array<TimelineNodeV2> = [
-  {
-    type: NodeTypes.CHECKPOINT,
-    title: "2026",
-    size: ItemSize.LARGE,
-    shouldDrawLine: false,
-    alignment: Branch.LEFT,
-  },
-  {
-    type: NodeTypes.CHECKPOINT,
-    title: "Desarrollador Frontend (Actual)",
-    size: ItemSize.SMALL,
-    subtitle: "Empresa / proyecto actual. Describe en una línea lo que haces.",
-    slideImage: "/timeline/slide-1.svg",
-    shouldDrawLine: true,
-    alignment: Branch.LEFT,
-  },
-  {
-    type: NodeTypes.CHECKPOINT,
-    title: "2025",
-    size: ItemSize.LARGE,
-    shouldDrawLine: false,
-    alignment: Branch.LEFT,
-  },
-  {
-    type: NodeTypes.DIVERGE,
-  },
-  {
-    type: NodeTypes.CHECKPOINT,
-    title: "Freelance",
-    size: ItemSize.SMALL,
-    subtitle: "Sitios web y landing pages para clientes 🎯",
-    slideImage: "/timeline/slide-2.svg",
-    shouldDrawLine: true,
-    alignment: Branch.RIGHT,
-  },
-  {
-    type: NodeTypes.CHECKPOINT,
-    title: "Proyecto personal",
-    size: ItemSize.SMALL,
-    subtitle: "Algo de lo que estés orgulloso 🚀",
-    slideImage: "/timeline/slide-3.svg",
-    shouldDrawLine: true,
-    alignment: Branch.LEFT,
-  },
-  {
-    type: NodeTypes.CONVERGE,
-  },
-  {
-    type: NodeTypes.CHECKPOINT,
-    title: "2024",
-    size: ItemSize.LARGE,
-    shouldDrawLine: false,
-    alignment: Branch.LEFT,
-  },
-  {
-    type: NodeTypes.CHECKPOINT,
-    title: "Estudios 🎓",
-    size: ItemSize.SMALL,
-    subtitle: "Universidad, bootcamp o cursos que te formaron.",
-    slideImage: "/timeline/slide-4.svg",
-    shouldDrawLine: true,
-    alignment: Branch.LEFT,
-  },
-];
-
-export type TimelineNodeV2 = CheckpointNode | BranchNode;
-
-export interface CheckpointNode {
-  type: NodeTypes.CHECKPOINT;
+export interface Service {
   title: string;
-  subtitle?: string;
-  size: ItemSize;
-  image?: string;
-  slideImage?: string;
-  shouldDrawLine: boolean;
-  alignment: Branch;
+  script: string;
+  description: string;
+  category: Category;
 }
 
-export interface BranchNode {
-  type: NodeTypes.CONVERGE | NodeTypes.DIVERGE;
+export type Category = "branding" | "grafico" | "redes";
+
+export const CATEGORY_LABELS: Record<Category, string> = {
+  branding: "Branding",
+  grafico: "Diseño gráfico",
+  redes: "Redes sociales",
+};
+
+export const SERVICES: Service[] = [
+  {
+    title: "Identidad",
+    script: "de marca",
+    description:
+      "Logo, paleta, tipografías y todo el sistema visual para que tu marca se reconozca a primera vista.",
+    category: "branding",
+  },
+  {
+    title: "Diseño",
+    script: "gráfico",
+    description:
+      "Menús, packaging, señalética, flyers y piezas impresas con una dirección de arte coherente.",
+    category: "grafico",
+  },
+  {
+    title: "Redes",
+    script: "sociales",
+    description:
+      "Feed, plantillas y contenido pensado para que tu marca se vea profesional en Instagram y TikTok.",
+    category: "redes",
+  },
+  {
+    title: "Contenido",
+    script: "visual",
+    description:
+      "Fotos de producto, reels y piezas en movimiento que cuentan la historia de tu marca.",
+    category: "redes",
+  },
+];
+
+export const TICKER = [
+  "Identidad de marca",
+  "Branding",
+  "Diseño gráfico",
+  "Redes sociales",
+  "Packaging",
+  "Creación de contenido",
+  "Dirección de arte",
+];
+
+export interface WorkPiece {
+  title: string;
+  client: string;
+  image: string;
+  category: Category;
+  tall?: boolean;
 }
+
+// Proyecto destacado
+export const FEATURED = {
+  name: "Mimi",
+  script: "Café",
+  tag: "01 · Branding · Brasil 🇧🇷",
+  description:
+    "Identidad visual y contenido para Mimi Café, una cafetería en Brasil. Una marca cálida, cercana y con mucho cariño en cada detalle.",
+  link: "https://www.instagram.com/mimicafe.br/",
+  linkLabel: "Ver @mimicafe.br",
+  pieces: [
+    "/work/mimi-logo.svg",
+    "/work/mimi-cup.svg",
+    "/work/mimi-feed.svg",
+    "/work/mimi-menu.svg",
+  ],
+};
+
+export const WORK: WorkPiece[] = [
+  { title: "Logo & sistema", client: "Mimi Café", image: "/work/mimi-logo.svg", category: "branding" },
+  { title: "Vaso para llevar", client: "Mimi Café", image: "/work/mimi-cup.svg", category: "branding", tall: true },
+  { title: "Feed de Instagram", client: "Mimi Café", image: "/work/mimi-feed.svg", category: "redes", tall: true },
+  { title: "Menú", client: "Mimi Café", image: "/work/mimi-menu.svg", category: "grafico" },
+  { title: "Póster de evento", client: "Proyecto ejemplo", image: "/work/poster-1.svg", category: "grafico", tall: true },
+  { title: "Identidad", client: "Proyecto ejemplo", image: "/work/brand-1.svg", category: "branding" },
+  { title: "Campaña", client: "Proyecto ejemplo", image: "/work/post-1.svg", category: "redes" },
+  { title: "Póster tipográfico", client: "Proyecto ejemplo", image: "/work/poster-2.svg", category: "grafico", tall: true },
+  { title: "Packaging", client: "Proyecto ejemplo", image: "/work/brand-2.svg", category: "branding" },
+];
+
+export const CONTENT_VIDEOS = [
+  { title: "Proceso de un logo", caption: "Del boceto a la marca", image: "/work/reel-1.svg" },
+  { title: "Detrás de cámara", caption: "Sesión de producto", image: "/work/reel-2.svg" },
+  { title: "Tips de diseño", caption: "Para emprendedores", image: "/work/reel-3.svg" },
+  { title: "Antes y después", caption: "Rediseño de marca", image: "/work/reel-4.svg" },
+];
+export const CONTENT_LINK = { label: "Ver más en mi Instagram", href: SOCIAL[0].href };
+
+export const ABOUT = {
+  photo: "/me/foto.svg",
+  paragraphs: [
+    "Soy Alejandro, diseñador enfocado en branding y contenido para marcas con personalidad.",
+    "Me encanta acompañar a emprendedores desde la idea hasta una marca que se ve, se siente y se recuerda. Trabajo con clientes en Latinoamérica y Brasil.",
+  ],
+};
+
+export const EXPERIENCE = [
+  {
+    period: "2025 — presente",
+    title: "Branding para Mimi Café (Brasil)",
+    description: "Identidad visual, piezas gráficas y contenido para redes de la cafetería.",
+    image: "/work/mimi-cup.svg",
+  },
+  {
+    period: "2024 — presente",
+    title: "Diseñador freelance",
+    description: "Identidades, piezas gráficas y redes para marcas y emprendimientos.",
+    image: "/work/brand-1.svg",
+  },
+  {
+    period: "20XX — 20XX",
+    title: "Tu formación",
+    description: "Universidad, carrera o cursos que te formaron como diseñador.",
+    image: "/work/poster-2.svg",
+  },
+];

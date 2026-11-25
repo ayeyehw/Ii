@@ -1,93 +1,89 @@
-// Copyright Ayush Singh 2021,2022. All Rights Reserved.
-// Project: folio
-// Author contact: https://www.linkedin.com/in/alphaayush/
-// This file is licensed under the MIT License.
-// License text available at https://opensource.org/licenses/MIT
-
-import { METADATA } from "../constants";
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
-
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-
-import Layout from "@/components/common/layout";
-import Header from "@/components/common/header";
-import ProgressIndicator from "@/components/common/progress-indicator";
-import Cursor from "@/components/common/cursor";
-import HeroSection from "@/components/home/hero";
-import ProjectsSection from "@/components/home/projects";
-import QuoteSection from "@/components/home/quote";
-import SkillsSection from "@/components/home/skills";
-import CollaborationSection from "@/components/home/collaboration";
-import Footer from "@/components/common/footer";
-import TimelineSection from "@/components/home/timeline";
-import AboutSection from "@/components/home/about";
-
-const DEBOUNCE_TIME = 100;
-
-export const isSmallScreen = (): boolean => document.body.clientWidth < 767;
-export const NO_MOTION_PREFERENCE_QUERY =
-  "(prefers-reduced-motion: no-preference)";
-
-export interface IDesktop {
-  isDesktop: boolean;
-}
+import Lenis from "lenis";
+import { Category, METADATA, TICKER } from "../constants";
+import { gsap, prefersReducedMotion, ScrollTrigger } from "../lib/motion";
+import Header from "../components/header";
+import Ticker from "../components/ticker";
+import Hero from "../components/hero";
+import Services from "../components/services";
+import BigMarquee from "../components/big-marquee";
+import Featured from "../components/featured";
+import Gallery from "../components/gallery";
+import Content from "../components/content";
+import Ribbons from "../components/ribbons";
+import About from "../components/about";
+import Experience from "../components/experience";
+import Contact from "../components/contact";
+import Footer from "../components/footer";
 
 export default function Home() {
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.config({ nullTargetWarn: false });
+  const [filter, setFilter] = useState<Category | "todos">("todos");
 
-  const [isDesktop, setisDesktop] = useState(true);
-
-  let timer: NodeJS.Timeout = null;
-
-  const debouncedDimensionCalculator = () => {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      const isDesktopResult =
-        typeof window.orientation === "undefined" &&
-        navigator.userAgent.indexOf("IEMobile") === -1;
-
-      window.history.scrollRestoration = "manual";
-
-      setisDesktop(isDesktopResult);
-    }, DEBOUNCE_TIME);
-  };
-
+  // Scroll suave (Lenis) sincronizado con GSAP ScrollTrigger
   useEffect(() => {
-    debouncedDimensionCalculator();
+    if (prefersReducedMotion()) return;
+    const lenis = new Lenis({ lerp: 0.09 });
+    (window as any).__lenis = lenis;
+    lenis.on("scroll", ScrollTrigger.update);
+    const tick = (time: number) => lenis.raf(time * 1000);
+    gsap.ticker.add(tick);
+    gsap.ticker.lagSmoothing(0);
+    return () => {
+      gsap.ticker.remove(tick);
+      lenis.destroy();
+      delete (window as any).__lenis;
+    };
+  }, []);
 
-    window.addEventListener("resize", debouncedDimensionCalculator);
-    return () =>
-      window.removeEventListener("resize", debouncedDimensionCalculator);
-  }, [timer]);
-
-  const renderBackdrop = (): React.ReactNode => (
-    <div className="fixed top-0 left-0 h-screen w-screen bg-gray-900 -z-1"></div>
-  );
+  // Aparición suave de los elementos con [data-reveal]
+  useEffect(() => {
+    if (prefersReducedMotion()) return;
+    const els = gsap.utils.toArray<HTMLElement>("[data-reveal]");
+    gsap.set(els, { opacity: 0, y: 40 });
+    const triggers = ScrollTrigger.batch(els, {
+      start: "top 88%",
+      once: true,
+      onEnter: (batch) =>
+        gsap.to(batch, { opacity: 1, y: 0, duration: 0.9, stagger: 0.08, ease: "power3.out", overwrite: true }),
+    });
+    return () => triggers.forEach((t) => t.kill());
+  }, []);
 
   return (
     <>
       <Head>
         <title>{METADATA.title}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content={METADATA.description} />
+        <meta property="og:title" content={METADATA.title} />
+        <meta property="og:description" content={METADATA.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="es_ES" />
+        <meta name="theme-color" content="#FBF6F1" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       </Head>
-      <Layout>
-        <Header />
-        <ProgressIndicator />
-        <Cursor isDesktop={isDesktop} />
-        <main className="flex-col flex">
-          {renderBackdrop()}
-          <HeroSection />
-          <AboutSection />
-          <ProjectsSection isDesktop={isDesktop} />
-          <QuoteSection />
-          <SkillsSection />
-          <TimelineSection isDesktop={isDesktop} />
-          <CollaborationSection />
-          <Footer />
-        </main>
-      </Layout>
+      <Header />
+      <Ticker
+        items={TICKER}
+        className="border-y-2 border-ink bg-lime py-2.5"
+        itemClassName="text-xs font-bold uppercase tracking-[0.2em]"
+        speed="40s"
+      />
+      <main>
+        <Hero />
+        <Services onPick={setFilter} />
+        <BigMarquee word="Proyectos" />
+        <Featured />
+        <div className="checker border-y-2 border-ink" />
+        <Gallery filter={filter} setFilter={setFilter} />
+        <Content />
+        <Ribbons />
+        <About />
+        <Experience />
+        <Contact />
+      </main>
+      <Footer />
     </>
   );
 }

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+<rect width="800" height="800" fill="#F3E6D3"/><circle cx="400" cy="380" r="230" fill="#6F4E37"/>
+<text x="400" y="420" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="150" fill="#F3E6D3">mimi</text>
+<text x="400" y="490" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" letter-spacing="14" fill="#F3E6D3">CAFÉ</text>
+<g fill="#C8875A"><circle cx="160" cy="680" r="34"/><circle cx="250" cy="680" r="34" fill="#6F4E37"/><circle cx="340" cy="680" r="34" fill="#2B1B12"/><circle cx="430" cy="680" r="34" fill="#FFF8EF" stroke="#6F4E37" stroke-width="3"/></g>
+<text x="500" y="690" font-family="Arial, sans-serif" font-size="22" fill="#6F4E37">paleta · tipografía · logo</text>
+</svg>

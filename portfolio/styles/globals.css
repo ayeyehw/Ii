@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+body {
+  @apply bg-cream text-ink font-sans antialiased;
+  overflow-x: hidden;
+}
+
+::selection { background: #f2e86d; color: #16121a; }
+
+.script { font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; text-transform: none; }
+
+.pink-wash {
+  background:
+    radial-gradient(60% 50% at 85% 10%, rgba(233,168,214,.65) 0%, rgba(233,168,214,0) 70%),
+    radial-gradient(50% 45% at 5% 90%, rgba(246,217,236,.9) 0%, rgba(246,217,236,0) 70%),
+    #fbf6f1;
+}
+.pink-band { background: linear-gradient(180deg, #fbf6f1 0%, #f6d9ec 18%, #efc0e0 60%, #f6d9ec 100%); }
+
+.outline-text { color: transparent; -webkit-text-stroke: 2px #fbf6f1; }
+@media (min-width: 768px) { .outline-text { -webkit-text-stroke-width: 3px; } }
+
+.checker {
+  height: 42px;
+  background-color: #fbf6f1;
+  background-image: conic-gradient(#16121a 25%, transparent 0 50%, #16121a 0 75%, transparent 0);
+  background-size: 42px 42px;
+  animation: checker 6s linear infinite;
+}
+@keyframes checker { to { background-position: 84px 0; } }
+
+.marquee { display: flex; width: max-content; animation: marquee var(--speed, 30s) linear infinite; }
+.marquee.reverse { animation-direction: reverse; }
+.marquee:hover { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+.spin-slow { animation: spin 14s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.chip { @apply rounded-full border-2 border-ink px-4 py-1.5 text-sm font-semibold transition-colors duration-300; }
+.chip[aria-pressed="true"] { @apply bg-ink text-cream; }
+.chip:not([aria-pressed="true"]):hover { @apply bg-lime; }
+
+.btn { @apply inline-flex items-center gap-2 rounded-full border-2 border-ink px-6 py-3 font-bold uppercase tracking-wide text-sm transition-transform duration-300; }
+.btn:hover { transform: translateY(-3px) rotate(-1.5deg); }
+.btn-lime { @apply bg-lime; box-shadow: 4px 4px 0 #16121a; }
+.btn-dark { @apply bg-ink text-cream; }
+
+.field { @apply w-full rounded-2xl border-2 border-ink bg-cream px-4 py-3 outline-none transition-shadow; }
+.field:focus { box-shadow: 4px 4px 0 #b8327a; }
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee, .spin-slow, .checker { animation: none !important; }
+}

@@ -1,8 +1,8 @@
-# Portafolio
+# Portafolio — Alejandro Sanchez
 
-Portafolio personal con animaciones suaves: Next.js, GSAP (ScrollTrigger), Tailwind CSS y efecto tilt en las tarjetas.
+Portafolio de diseño y branding con estilo editorial (rosa, crema y collage) y animaciones suaves.
 
-Basado en [folio](https://github.com/ayush013/folio) de Ayush Singh (licencia MIT, ver `LICENSE`).
+**Stack:** Next.js · Tailwind CSS · GSAP + ScrollTrigger · Lenis (scroll suave)
 
 ## Empezar
 
@@ -12,28 +12,29 @@ yarn install
 yarn dev        # http://localhost:3000
 ```
 
-> Con Node 17 o superior, si `yarn build` falla con un error de OpenSSL, usa:
-> `NODE_OPTIONS=--openssl-legacy-provider yarn build`
+> Con Node 17 o superior, compila con: `NODE_OPTIONS=--openssl-legacy-provider yarn build`
 
-## Personalizar
+## Editar el contenido
 
-Casi todo se edita en **`constants.ts`**:
+Todo el texto está en **`constants.ts`**: nombre, correo, redes, rubros, proyectos, contenido, "sobre mí" y experiencia.
 
 | Qué | Dónde |
 |---|---|
-| Nombre, título, descripción, dominio | `NAME`, `METADATA` |
-| Frases que se escriben solas en el inicio | `TYPED_STRINGS` |
-| Correo (botón "Hablemos") | `EMAIL` |
-| CV en PDF | pon el archivo en `public/` y ajusta `RESUME_URL` (ej. `"/cv.pdf"`) |
-| Redes sociales | `SOCIAL_LINKS` (cada clave usa el icono `public/social/<clave>.svg`) |
-| Proyectos | `PROJECTS` (imagen en `public/projects/`, iconos en `public/projects/tech/`) |
-| Habilidades | `SKILLS` (iconos en `public/skills/`) |
-| Trayectoria | `TIMELINE` (imágenes en `public/timeline/`) |
+| Imágenes de proyectos | `public/work/` (reemplaza los `.svg` de ejemplo por tus `.jpg`/`.png` y actualiza la ruta en `constants.ts`) |
+| Tu foto | `public/me/` → `ABOUT.photo` |
+| Stickers del collage | `public/stickers/` |
+| Colores y fuentes | `tailwind.config.js` y `styles/globals.css` |
 
-Las imágenes de `public/projects/proyecto-*.svg` y `public/timeline/slide-*.svg` son de ejemplo: reemplázalas por capturas de tus proyectos (vertical, aprox. 540×1200) y fotos (aprox. 644×360).
+## Secciones
 
-Los textos de las secciones "Sobre mí", la frase destacada y "¿Te interesa colaborar?" están en `components/home/about.tsx`, `quote.tsx` y `collaboration.tsx`.
+Barra de anuncio · menú con botón "Contáctame" · cinta de rubros · hero con collage y stickers ·
+rubros (lista interactiva) · "PROYECTOS" gigante con scroll · proyecto destacado (Mimi Café) ·
+galería con filtros y vista ampliada · mi propio contenido · cintas "Trabajemos juntos" ·
+conoce a tu diseñador · experiencia & formación · formulario de contacto · footer con nombre gigante.
 
 ## Publicar
 
-La forma más fácil es [Vercel](https://vercel.com): importa el repo y elige `portfolio` como *Root Directory*.
+En [Vercel](https://vercel.com): importa el repo y elige `portfolio` como *Root Directory*.
+
+---
+Proyecto iniciado a partir de [folio](https://github.com/ayush013/folio) (MIT, ver `LICENSE`) y rediseñado por completo.
