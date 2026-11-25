@@ -3,9 +3,9 @@ import { FIRST_NAME, ROLE } from "../constants";
 import { gsap, prefersReducedMotion, scrollToId } from "../lib/motion";
 
 const CARDS = [
-  { src: "/work/mimi-logo.svg", cls: "left-[4%] top-[14%] w-[46%] -rotate-6", depth: 20 },
-  { src: "/work/poster-1.svg", cls: "right-[2%] top-[2%] w-[40%] rotate-6", depth: 35 },
-  { src: "/work/mimi-cup.svg", cls: "left-[34%] top-[40%] w-[38%] rotate-3", depth: 50 },
+  { src: "/work/mimi/logo.webp", cls: "left-[4%] top-[14%] w-[46%] -rotate-6", depth: 20 },
+  { src: "/work/mimi/cheesecake-2.webp", cls: "right-[2%] top-[2%] w-[40%] rotate-6", depth: 35 },
+  { src: "/work/mimi/cappuccino.webp", cls: "left-[34%] top-[40%] w-[38%] rotate-3", depth: 50 },
 ];
 
 const STICKERS = [

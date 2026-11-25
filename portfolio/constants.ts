@@ -96,29 +96,26 @@ export interface WorkPiece {
 export const FEATURED = {
   name: "Mimi",
   script: "Café",
-  tag: "01 · Branding · Brasil 🇧🇷",
+  tag: "01 · Branding · Itajubá, Brasil 🇧🇷",
   description:
-    "Identidad visual y contenido para Mimi Café, una cafetería en Brasil. Una marca cálida, cercana y con mucho cariño en cada detalle.",
+    "Identidad visual para Mimi Café, “seu cantinho de café e carinho”: un personaje que es la cara de la marca, logotipo y piezas para redes y promociones con una paleta rosa y café.",
+  tags: ["Logo", "Personaje", "Redes sociales", "Promociones"],
   link: "https://www.instagram.com/mimicafe.br/",
   linkLabel: "Ver @mimicafe.br",
   pieces: [
-    "/work/mimi-logo.svg",
-    "/work/mimi-cup.svg",
-    "/work/mimi-feed.svg",
-    "/work/mimi-menu.svg",
+    "/work/mimi/logo.webp",
+    "/work/mimi/cheesecake-1.webp",
+    "/work/mimi/cappuccino.webp",
+    "/work/mimi/bubble-waffle.webp",
   ],
 };
 
 export const WORK: WorkPiece[] = [
-  { title: "Logo & sistema", client: "Mimi Café", image: "/work/mimi-logo.svg", category: "branding" },
-  { title: "Vaso para llevar", client: "Mimi Café", image: "/work/mimi-cup.svg", category: "branding", tall: true },
-  { title: "Feed de Instagram", client: "Mimi Café", image: "/work/mimi-feed.svg", category: "redes", tall: true },
-  { title: "Menú", client: "Mimi Café", image: "/work/mimi-menu.svg", category: "grafico" },
-  { title: "Póster de evento", client: "Proyecto ejemplo", image: "/work/poster-1.svg", category: "grafico", tall: true },
-  { title: "Identidad", client: "Proyecto ejemplo", image: "/work/brand-1.svg", category: "branding" },
-  { title: "Campaña", client: "Proyecto ejemplo", image: "/work/post-1.svg", category: "redes" },
-  { title: "Póster tipográfico", client: "Proyecto ejemplo", image: "/work/poster-2.svg", category: "grafico", tall: true },
-  { title: "Packaging", client: "Proyecto ejemplo", image: "/work/brand-2.svg", category: "branding" },
+  { title: "Logo & personaje", client: "Mimi Café", image: "/work/mimi/logo.webp", category: "branding" },
+  { title: "Cheesecake de frutos vermelhos", client: "Mimi Café", image: "/work/mimi/cheesecake-1.webp", category: "redes", tall: true },
+  { title: "Cappuccino Canela", client: "Mimi Café", image: "/work/mimi/cappuccino.webp", category: "grafico", tall: true },
+  { title: "Bubble Waffle", client: "Mimi Café", image: "/work/mimi/bubble-waffle.webp", category: "redes" },
+  { title: "Cheesecake — versión 2", client: "Mimi Café", image: "/work/mimi/cheesecake-2.webp", category: "redes", tall: true },
 ];
 
 export const CONTENT_VIDEOS = [
@@ -141,19 +138,19 @@ export const EXPERIENCE = [
   {
     period: "2025 — presente",
     title: "Branding para Mimi Café (Brasil)",
-    description: "Identidad visual, piezas gráficas y contenido para redes de la cafetería.",
-    image: "/work/mimi-cup.svg",
+    description: "Personaje, logotipo y piezas para redes y promociones de la cafetería en Itajubá.",
+    image: "/work/mimi/cheesecake-1.webp",
   },
   {
     period: "2024 — presente",
     title: "Diseñador freelance",
     description: "Identidades, piezas gráficas y redes para marcas y emprendimientos.",
-    image: "/work/brand-1.svg",
+    image: "/work/mimi/bubble-waffle.webp",
   },
   {
     period: "20XX — 20XX",
     title: "Tu formación",
     description: "Universidad, carrera o cursos que te formaron como diseñador.",
-    image: "/work/poster-2.svg",
+    image: "/me/foto.svg",
   },
 ];

@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
-<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C8875A"/><stop offset="1" stop-color="#6F4E37"/></linearGradient></defs>
-<rect width="800" height="1000" fill="url(#g)"/><ellipse cx="400" cy="860" rx="210" ry="30" fill="#2B1B12" opacity=".3"/>
-<path d="M250 300h300l-30 520a30 30 0 0 1-30 28H310a30 30 0 0 1-30-28z" fill="#F3E6D3"/>
-<rect x="225" y="250" width="350" height="60" rx="18" fill="#2B1B12"/>
-<circle cx="400" cy="560" r="105" fill="#6F4E37"/><text x="400" y="580" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="64" fill="#F3E6D3">mimi</text>
-<text x="400" y="130" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="56" fill="#F3E6D3">um cafezinho?</text>
-</svg>

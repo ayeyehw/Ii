@@ -39,7 +39,7 @@ const Featured = () => {
             {FEATURED.description}
           </p>
           <div data-reveal className="mt-8 flex flex-wrap gap-3">
-            {["Logo", "Paleta", "Packaging", "Redes"].map((t) => (
+            {FEATURED.tags.map((t) => (
               <span key={t} className="rounded-full border-2 border-ink bg-cream px-4 py-1.5 text-sm font-semibold">
                 {t}
               </span>
@@ -49,7 +49,7 @@ const Featured = () => {
             {FEATURED.linkLabel} ↗
           </a>
         </div>
-        <div className="grid grid-cols-2 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 items-start gap-4 md:gap-6">
           {FEATURED.pieces.map((src, i) => (
             <div
               key={src}
