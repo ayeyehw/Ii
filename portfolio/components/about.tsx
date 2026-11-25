@@ -1,35 +1,38 @@
 import React from "react";
-import { ABOUT, NAME } from "../constants";
-import CropMarks from "./crop-marks";
-import HalftoneImage from "./halftone-image";
-import SectionHead from "./section-head";
+import { COPY, NAME, PHOTO } from "../constants";
+import { useLang, useT } from "../lib/lang";
 
-const About = () => (
-  <section id="perfil" className="gutter py-24 md:py-36">
-    <SectionHead plate="C" label="Perfil" meta="Quién firma el trabajo" title="Perfil" />
-    <div className="mt-12 grid gap-12 md:grid-cols-12 md:gap-6">
-      <figure className="relative md:col-span-4">
-        <HalftoneImage src={ABOUT.photo} alt={`Retrato de ${NAME}`} w={800} h={1000} ink="#0F0F0E" step={7} loupe={false} />
-        <CropMarks />
-        <figcaption className="slug mt-4">Retrato · reemplazar por foto real</figcaption>
-      </figure>
-      <div className="md:col-span-7 md:col-start-6">
-        {ABOUT.text.map((t, i) => (
-          <p key={i} className={`${i === 0 ? "text-3xl md:text-[2.6rem] font-medium leading-[1.08] tracking-tight" : "mt-6 max-w-xl text-lg text-mute"}`}>
-            {t}
-          </p>
-        ))}
-        <div className="mt-12 border-t border-ink">
-          {ABOUT.timeline.map(([when, what]) => (
-            <div key={when} className="grid grid-cols-[8.5rem_1fr] gap-4 border-b border-rule py-3 md:grid-cols-[11rem_1fr]">
-              <span className="font-mono text-xs tabular-nums pt-1" style={{ fontStretch: "85%" }}>{when}</span>
-              <span className="text-lg">{what}</span>
-            </div>
+const A = COPY.about;
+
+const About = () => {
+  const t = useT();
+  const { lang } = useLang();
+  return (
+    <section id="sobre-mi" className="border-t border-line bg-panel py-24 lg:py-36">
+      <div className="wrap grid items-center gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+        <div data-clip className="overflow-hidden rounded-3xl bg-raise" style={{ aspectRatio: "4/5" }}>
+          <img data-parallax src={PHOTO} alt={NAME} className="h-full w-full scale-[1.06] object-cover" />
+        </div>
+        <div>
+          <p data-reveal className="kicker mb-4">{t(A.kicker)}</p>
+          <h2 data-reveal className="h-section">{t(A.title)}</h2>
+          {A.text[lang].map((p, i) => (
+            <p key={i} data-reveal className={`mt-6 max-w-xl leading-relaxed ${i === 0 ? "text-[21px]" : "text-[17px] text-mute"}`}>
+              {p}
+            </p>
           ))}
+          <dl className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-3">
+            {A.facts.map((f) => (
+              <div key={f.k.es} data-reveal className="bg-panel p-5">
+                <dt className="text-[13px] text-mute">{t(f.k)}</dt>
+                <dd className="mt-1 text-[16px] font-medium leading-snug">{t(f.v)}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default About;

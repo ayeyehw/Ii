@@ -6,38 +6,34 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-stopped { overflow: hidden; }
 
-body {
-  @apply bg-paper text-ink font-sans antialiased;
-  font-size: 17px;
-  overflow-x: clip;
-}
-@media (hover: hover) and (pointer: fine) {
-  body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none; }
-}
-::selection { background: #1430e6; color: #f8f7f4; }
+:root { color-scheme: dark; }
+body { @apply bg-bg text-fg font-sans antialiased; font-size: 17px; overflow-x: clip; }
+::selection { background: #f3f1ec; color: #0d0d0c; }
 
-/* Paper grain */
-body::after {
-  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 70; opacity: .07; mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
+.wrap { @apply mx-auto w-full max-w-site; padding-left: max(5vw, 16px, env(safe-area-inset-left, 0px)); padding-right: max(5vw, 16px, env(safe-area-inset-right, 0px)); }
+.h-display { font-weight: 600; letter-spacing: -0.04em; line-height: 0.98; }
+.h-section { font-weight: 600; letter-spacing: -0.035em; line-height: 1.02; font-size: clamp(2.4rem, 5.2vw, 4.6rem); }
+.kicker { @apply text-[15px] text-mute; }
 
-.display { font-family: "Anybody Variable", Impact, sans-serif; font-stretch: var(--w, 100%); font-weight: var(--wg, 800); line-height: .86; letter-spacing: -.02em; }
-.slug { @apply font-mono text-[11px] leading-snug text-mute; font-stretch: 85%; }
+.btn { @apply inline-flex items-center justify-center gap-2.5 rounded-full px-6 py-3.5 text-[16px] font-medium transition-all duration-300; }
+.btn-light { @apply bg-fg text-bg; }
+.btn-light:hover { background: #fff; transform: translateY(-2px); }
+.btn-ghost { @apply border border-line text-fg; }
+.btn-ghost:hover { border-color: rgba(243,241,236,.5); }
 
-.gutter { padding-left: max(4vw, 16px, env(safe-area-inset-left, 0px)); padding-right: max(4vw, 16px, env(safe-area-inset-right, 0px)); }
+.marquee-y { animation: my var(--d, 40s) linear infinite; }
+.marquee-y.rev { animation-direction: reverse; }
+@keyframes my { to { transform: translateY(-50%); } }
+.marquee-x { animation: mx var(--d, 50s) linear infinite; }
+@keyframes mx { to { transform: translateX(-50%); } }
+.fade-y { -webkit-mask-image: linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent); }
+.fade-x { -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
 
-/* Specimen rows: the variable axes are the hover state */
-.spec-word { font-stretch: 62%; font-weight: 300; transition: font-stretch .7s cubic-bezier(.2,.8,.2,1), font-weight .7s cubic-bezier(.2,.8,.2,1), color .4s; }
-.spec-row:hover .spec-word, .spec-row:focus-visible .spec-word { font-stretch: 150%; font-weight: 900; color: #1430e6; }
-
-.link-draw { background: linear-gradient(currentColor, currentColor) 0 100% / 0 2px no-repeat; transition: background-size .5s cubic-bezier(.2,.8,.2,1); }
-.link-draw:hover { background-size: 100% 2px; }
-
-.field { @apply w-full border-0 border-b-2 border-ink bg-transparent px-0 py-3 text-lg outline-none transition-colors; border-radius: 0; }
-.field:focus { border-color: #1430e6; }
-.field::placeholder { color: #77756f; }
+.acc { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .5s cubic-bezier(.2,.8,.2,1); }
+.acc[data-open="true"] { grid-template-rows: 1fr; }
+.acc > div { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+  .marquee-y, .marquee-x { animation: none; }
+  *, *::before, *::after { transition-duration: .01ms !important; }
 }

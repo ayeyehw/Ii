@@ -1,63 +1,51 @@
-import React, { useState } from "react";
-import { EMAIL, SOCIAL } from "../constants";
-import SectionHead from "./section-head";
+import React from "react";
+import { COPY, EMAIL, NAME, SOCIAL, whatsappHref } from "../constants";
+import { useLang, useT } from "../lib/lang";
+import { scrollToId } from "../lib/motion";
+import { WaIcon } from "./icons";
+
+const C = COPY.contact;
 
 const Contact = () => {
-  const [form, setForm] = useState({ nombre: "", email: "", mensaje: "" });
-  const [ready, setReady] = useState(false);
-  const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setForm({ ...form, [k]: e.target.value });
-
-  const submit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const subject = `Proyecto de marca: ${form.nombre}`;
-    const body = `${form.mensaje}\n\n${form.nombre}\n${form.email}`;
-    setReady(true);
-    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  };
-
+  const t = useT();
+  const { lang } = useLang();
   return (
-    <section id="contacto" className="gutter bg-ink py-24 text-sheet md:py-36">
-      <div className="[&_.slug]:!text-sheet/60 [&_.sh-rule]:!bg-sheet [&_.slug>span]:!border-sheet">
-        <SectionHead plate="D" label="Contacto" meta="Respuesta en menos de 48 h" title="Hablemos" />
-      </div>
-      <div className="mt-12 grid gap-14 md:grid-cols-12 md:gap-6">
-        <div className="md:col-span-6">
-          <p className="max-w-md text-2xl font-medium leading-tight">
-            Cuéntame qué vende tu negocio, a quién le habla y qué no te gusta de cómo se ve hoy.
+    <>
+      <section id="contacto" className="border-t border-line py-28 lg:py-44">
+        <div className="wrap text-center">
+          <h2 data-reveal className="h-display mx-auto max-w-5xl text-[clamp(2.8rem,8vw,7.5rem)]">{t(C.title)}</h2>
+          <p data-reveal className="mx-auto mt-7 max-w-xl text-[19px] leading-relaxed text-mute">{t(C.sub)}</p>
+          <div data-reveal className="mt-10 flex flex-wrap justify-center gap-3">
+            <a href={whatsappHref(lang)} target="_blank" rel="noreferrer" className="btn btn-light !px-8 !py-4 text-[17px]">
+              <WaIcon /> {t(COPY.whatsapp)}
+            </a>
+          </div>
+          <p data-reveal className="mt-8 text-[16px] text-mute">
+            {t(C.email)}{" "}
+            <a href={`mailto:${EMAIL}`} className="text-fg underline decoration-line underline-offset-4 transition-colors hover:decoration-fg">
+              {EMAIL}
+            </a>
           </p>
-          <a href={`mailto:${EMAIL}`} className="link-draw mt-8 inline-block break-all font-display text-[clamp(1.6rem,3.6vw,3rem)] font-bold" style={{ fontStretch: "80%" }}>
-            {EMAIL}
-          </a>
-          <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2">
+        </div>
+      </section>
+      <footer className="border-t border-line py-10">
+        <div className="wrap flex flex-col gap-6 text-[15px] text-mute md:flex-row md:items-center md:justify-between">
+          <p>
+            © {new Date().getFullYear()} {NAME}. {t(COPY.footer.rights)}
+          </p>
+          <ul className="flex flex-wrap gap-6">
             {SOCIAL.map((s) => (
               <li key={s.label}>
-                <a href={s.href} target="_blank" rel="noreferrer" className="link-draw text-sheet/80 hover:text-sheet">
-                  {s.label} ↗
-                </a>
+                <a href={s.href} target="_blank" rel="noreferrer" className="transition-colors hover:text-fg">{s.label}</a>
               </li>
             ))}
           </ul>
+          <a href="#inicio" onClick={(e) => { e.preventDefault(); scrollToId("#inicio"); }} className="transition-colors hover:text-fg">
+            {t(COPY.footer.top)} ↑
+          </a>
         </div>
-        <form onSubmit={submit} className="grid gap-6 md:col-span-5 md:col-start-8 [&_.field]:border-sheet [&_.field:focus]:border-flame">
-          <label className="grid gap-1">
-            <span className="slug !text-sheet/60">Nombre</span>
-            <input id="c-nombre" required className="field" value={form.nombre} onChange={set("nombre")} placeholder="Tu nombre y el de tu negocio" />
-          </label>
-          <label className="grid gap-1">
-            <span className="slug !text-sheet/60">Correo</span>
-            <input id="c-email" required type="email" className="field" value={form.email} onChange={set("email")} placeholder="nombre@negocio.com" />
-          </label>
-          <label className="grid gap-1">
-            <span className="slug !text-sheet/60">Proyecto</span>
-            <textarea id="c-msg" required rows={4} className="field resize-none" value={form.mensaje} onChange={set("mensaje")} placeholder="Marca nueva, rediseño, campaña…" />
-          </label>
-          <button type="submit" className="mt-2 flex items-center justify-between bg-flame px-6 py-4 text-lg font-semibold text-ink transition-colors hover:bg-sheet">
-            Enviar a imprenta <span>→</span>
-          </button>
-          {ready && <p className="text-[15px] text-sheet/70">Se abrió tu correo con el mensaje listo. Si no se abrió, escríbeme a {EMAIL}.</p>}
-        </form>
-      </div>
-    </section>
+      </footer>
+    </>
   );
 };
 

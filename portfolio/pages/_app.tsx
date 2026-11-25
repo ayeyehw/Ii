@@ -1,6 +1,5 @@
-import "@fontsource-variable/anybody/wdth";
-import "@fontsource-variable/schibsted-grotesk/wght";
-import "@fontsource-variable/martian-mono/wdth";
+import "@fontsource-variable/onest/wght";
+import "@fontsource/gloock/400";
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 
