@@ -7,54 +7,37 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-stopped { overflow: hidden; }
 
 body {
-  @apply bg-cream text-ink font-sans antialiased;
-  overflow-x: hidden;
+  @apply bg-paper text-ink font-sans antialiased;
+  font-size: 17px;
+  overflow-x: clip;
+}
+@media (hover: hover) and (pointer: fine) {
+  body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none; }
+}
+::selection { background: #1430e6; color: #f8f7f4; }
+
+/* Paper grain */
+body::after {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 70; opacity: .07; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-::selection { background: #f2e86d; color: #16121a; }
+.display { font-family: "Anybody Variable", Impact, sans-serif; font-stretch: var(--w, 100%); font-weight: var(--wg, 800); line-height: .86; letter-spacing: -.02em; }
+.slug { @apply font-mono text-[11px] leading-snug text-mute; font-stretch: 85%; }
 
-.script { font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; text-transform: none; }
+.gutter { padding-left: max(4vw, 16px, env(safe-area-inset-left, 0px)); padding-right: max(4vw, 16px, env(safe-area-inset-right, 0px)); }
 
-.pink-wash {
-  background:
-    radial-gradient(60% 50% at 85% 10%, rgba(233,168,214,.65) 0%, rgba(233,168,214,0) 70%),
-    radial-gradient(50% 45% at 5% 90%, rgba(246,217,236,.9) 0%, rgba(246,217,236,0) 70%),
-    #fbf6f1;
-}
-.pink-band { background: linear-gradient(180deg, #fbf6f1 0%, #f6d9ec 18%, #efc0e0 60%, #f6d9ec 100%); }
+/* Specimen rows: the variable axes are the hover state */
+.spec-word { font-stretch: 62%; font-weight: 300; transition: font-stretch .7s cubic-bezier(.2,.8,.2,1), font-weight .7s cubic-bezier(.2,.8,.2,1), color .4s; }
+.spec-row:hover .spec-word, .spec-row:focus-visible .spec-word { font-stretch: 150%; font-weight: 900; color: #1430e6; }
 
-.outline-text { color: transparent; -webkit-text-stroke: 2px #fbf6f1; }
-@media (min-width: 768px) { .outline-text { -webkit-text-stroke-width: 3px; } }
+.link-draw { background: linear-gradient(currentColor, currentColor) 0 100% / 0 2px no-repeat; transition: background-size .5s cubic-bezier(.2,.8,.2,1); }
+.link-draw:hover { background-size: 100% 2px; }
 
-.checker {
-  height: 42px;
-  background-color: #fbf6f1;
-  background-image: conic-gradient(#16121a 25%, transparent 0 50%, #16121a 0 75%, transparent 0);
-  background-size: 42px 42px;
-  animation: checker 6s linear infinite;
-}
-@keyframes checker { to { background-position: 84px 0; } }
-
-.marquee { display: flex; width: max-content; animation: marquee var(--speed, 30s) linear infinite; }
-.marquee.reverse { animation-direction: reverse; }
-.marquee:hover { animation-play-state: paused; }
-@keyframes marquee { to { transform: translateX(-50%); } }
-
-.spin-slow { animation: spin 14s linear infinite; }
-@keyframes spin { to { transform: rotate(360deg); } }
-
-.chip { @apply rounded-full border-2 border-ink px-4 py-1.5 text-sm font-semibold transition-colors duration-300; }
-.chip[aria-pressed="true"] { @apply bg-ink text-cream; }
-.chip:not([aria-pressed="true"]):hover { @apply bg-lime; }
-
-.btn { @apply inline-flex items-center gap-2 rounded-full border-2 border-ink px-6 py-3 font-bold uppercase tracking-wide text-sm transition-transform duration-300; }
-.btn:hover { transform: translateY(-3px) rotate(-1.5deg); }
-.btn-lime { @apply bg-lime; box-shadow: 4px 4px 0 #16121a; }
-.btn-dark { @apply bg-ink text-cream; }
-
-.field { @apply w-full rounded-2xl border-2 border-ink bg-cream px-4 py-3 outline-none transition-shadow; }
-.field:focus { box-shadow: 4px 4px 0 #b8327a; }
+.field { @apply w-full border-0 border-b-2 border-ink bg-transparent px-0 py-3 text-lg outline-none transition-colors; border-radius: 0; }
+.field:focus { border-color: #1430e6; }
+.field::placeholder { color: #77756f; }
 
 @media (prefers-reduced-motion: reduce) {
-  .marquee, .spin-slow, .checker { animation: none !important; }
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }

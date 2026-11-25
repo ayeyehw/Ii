@@ -1,70 +1,35 @@
-import React, { useEffect, useRef } from "react";
-import { ABOUT, EMAIL } from "../constants";
-import { gsap, prefersReducedMotion, scrollToId } from "../lib/motion";
-import Title from "./title";
+import React from "react";
+import { ABOUT, NAME } from "../constants";
+import CropMarks from "./crop-marks";
+import HalftoneImage from "./halftone-image";
+import SectionHead from "./section-head";
 
-const About = () => {
-  const root = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      if (prefersReducedMotion()) return;
-      // Las palabras se van "encendiendo" con el scroll.
-      gsap.fromTo(
-        ".ab-word",
-        { opacity: 0.15 },
-        {
-          opacity: 1,
-          stagger: 0.05,
-          ease: "none",
-          scrollTrigger: { trigger: ".ab-text", start: "top 80%", end: "bottom 45%", scrub: true },
-        }
-      );
-      gsap.fromTo(
-        ".ab-photo",
-        { rotate: -8, y: 60 },
-        { rotate: 3, y: -30, ease: "none", scrollTrigger: { trigger: root.current, start: "top bottom", end: "bottom top", scrub: 1 } }
-      );
-    }, root);
-    return () => ctx.revert();
-  }, []);
-
-  return (
-    <section id="sobre-mi" ref={root} className="pink-wash overflow-hidden px-5 py-24 md:px-10 md:py-32">
-      <div className="mx-auto max-w-7xl">
-        <Title kicker="Quién hace el trabajo" big="Conoce a tu" script="diseñador" align="center" />
-        <div className="mt-16 grid items-center gap-14 md:grid-cols-[0.8fr_1.2fr]">
-          <div className="relative mx-auto w-64 md:w-80">
-            <div className="ab-photo relative rounded-2xl border-[3px] border-ink bg-cream p-3 pb-14 shadow-[8px_8px_0_#16121a]">
-              <img src={ABOUT.photo} alt="Foto de Alejandro" className="block w-full rounded-lg" />
-              <span className="script absolute bottom-3 left-0 right-0 text-center text-3xl">hola, soy yo ✦</span>
-              <span className="absolute -top-4 left-1/2 h-8 w-28 -translate-x-1/2 rotate-[-4deg] bg-lime/80 border border-ink/20" />
+const About = () => (
+  <section id="perfil" className="gutter py-24 md:py-36">
+    <SectionHead plate="C" label="Perfil" meta="Quién firma el trabajo" title="Perfil" />
+    <div className="mt-12 grid gap-12 md:grid-cols-12 md:gap-6">
+      <figure className="relative md:col-span-4">
+        <HalftoneImage src={ABOUT.photo} alt={`Retrato de ${NAME}`} w={800} h={1000} ink="#0F0F0E" step={7} loupe={false} />
+        <CropMarks />
+        <figcaption className="slug mt-4">Retrato · reemplazar por foto real</figcaption>
+      </figure>
+      <div className="md:col-span-7 md:col-start-6">
+        {ABOUT.text.map((t, i) => (
+          <p key={i} className={`${i === 0 ? "text-3xl md:text-[2.6rem] font-medium leading-[1.08] tracking-tight" : "mt-6 max-w-xl text-lg text-mute"}`}>
+            {t}
+          </p>
+        ))}
+        <div className="mt-12 border-t border-ink">
+          {ABOUT.timeline.map(([when, what]) => (
+            <div key={when} className="grid grid-cols-[8.5rem_1fr] gap-4 border-b border-rule py-3 md:grid-cols-[11rem_1fr]">
+              <span className="font-mono text-xs tabular-nums pt-1" style={{ fontStretch: "85%" }}>{when}</span>
+              <span className="text-lg">{what}</span>
             </div>
-            <img src="/stickers/flower.svg" alt="" className="spin-slow absolute -right-8 -top-8 w-20" />
-          </div>
-          <div>
-            <div className="ab-text space-y-5 text-2xl font-medium leading-snug md:text-3xl">
-              {ABOUT.paragraphs.map((p, i) => (
-                <p key={i}>
-                  {p.split(" ").map((w, j) => (
-                    <span key={j} className="ab-word">
-                      {w}{" "}
-                    </span>
-                  ))}
-                </p>
-              ))}
-            </div>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <a href={`mailto:${EMAIL}`} className="btn btn-dark">Escríbeme ✉</a>
-              <a href="#contacto" onClick={(e) => { e.preventDefault(); scrollToId("#contacto"); }} className="btn btn-lime">
-                Cuéntame tu proyecto
-              </a>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default About;

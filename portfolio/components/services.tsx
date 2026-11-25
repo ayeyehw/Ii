@@ -1,40 +1,24 @@
 import React from "react";
-import { Category, SERVICES } from "../constants";
-import { scrollToId } from "../lib/motion";
-import Title from "./title";
+import { SERVICES } from "../constants";
+import SectionHead from "./section-head";
 
-const Services = ({ onPick }: { onPick: (c: Category) => void }) => (
-  <section id="rubros" className="bg-cream px-5 py-24 md:px-10 md:py-32">
-    <div className="mx-auto max-w-7xl">
-      <Title kicker="Explorá por rubro" big="¿Qué" script="hago?" />
-      <ul className="mt-14 border-t-2 border-ink">
-        {SERVICES.map((s, i) => (
-          <li key={s.title} data-reveal className="border-b-2 border-ink">
-            <button
-              onClick={() => {
-                onPick(s.category);
-                scrollToId("#galeria");
-              }}
-              className="group relative grid w-full grid-cols-[auto_1fr_auto] items-center gap-4 overflow-hidden py-6 text-left md:gap-10 md:py-8"
-            >
-              <span className="absolute inset-0 origin-bottom scale-y-0 bg-blush transition-transform duration-500 ease-out group-hover:scale-y-100" />
-              <span className="relative text-sm font-bold text-ink/40 md:text-base">0{i + 1}</span>
-              <span className="relative">
-                <span className="font-display text-3xl uppercase transition-transform duration-500 group-hover:translate-x-3 md:text-6xl inline-block">
-                  {s.title} <span className="script text-berry normal-case">{s.script}</span>
-                </span>
-                <span className="mt-1 block max-w-xl overflow-hidden text-sm text-ink/70 transition-all duration-500 md:mt-0 md:max-h-0 md:text-lg md:opacity-0 md:group-hover:mt-2 md:group-hover:max-h-24 md:group-hover:opacity-100">
-                  {s.description}
-                </span>
-              </span>
-              <span className="relative flex h-11 w-11 items-center justify-center rounded-full border-2 border-ink text-xl transition-all duration-500 group-hover:rotate-[-45deg] group-hover:bg-lime md:h-14 md:w-14">
-                →
-              </span>
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
+/** Services as a type specimen: hovering a row drives the font's width and weight axes. */
+const Services = () => (
+  <section id="servicios" className="gutter py-24 md:py-36">
+    <SectionHead plate="A" label="Servicios" meta="Cuatro placas, una sola marca" title="Qué hago" />
+    <ul className="mt-10 border-t border-ink md:mt-14">
+      {SERVICES.map((s) => (
+        <li key={s.plate} className="spec-row group grid cursor-default grid-cols-[2.25rem_1fr] items-center gap-x-4 gap-y-2 border-b border-ink py-5 md:grid-cols-[3rem_1fr_minmax(0,22rem)] md:gap-8 md:py-6" tabIndex={0}>
+          <span className="font-mono text-xs" style={{ fontStretch: "85%" }}>{s.plate}</span>
+          <span className="spec-word display block overflow-hidden whitespace-nowrap text-[clamp(2.8rem,9vw,8rem)] uppercase leading-[0.95]">
+            {s.name}
+          </span>
+          <p className="col-start-2 max-w-md text-[15px] leading-snug text-mute transition-colors duration-500 group-hover:text-ink md:col-start-3">
+            {s.detail}
+          </p>
+        </li>
+      ))}
+    </ul>
   </section>
 );
 

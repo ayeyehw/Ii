@@ -58,20 +58,20 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fontsource/archivo-black@5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@fontsource/archivo-black/-/archivo-black-5.1.0.tgz#f84efec05bb6ef49c057fa602cfe517927f8350a"
-  integrity sha512-t/Ks/4w/HJyhOkGnMpf+m/ZEY1iAblM/ZANcXVludfJJITKvhjTsvZkvM0Qx4T+q5EeYldtzGhV7wlk9iA4jFw==
+"@fontsource-variable/anybody@5.3.0":
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/@fontsource-variable/anybody/-/anybody-5.3.0.tgz#92bc797f8bd2ad0bd0a2c15cfe7a9005f61235c2"
+  integrity sha512-3u/FSV3mGv9xW3x+CdK9lAZYT1Y3NaRA1bexeoIuk9s5QE8sD8OOTcofvpPx0Z6M0Fq1WAJ06ZAw8hivdRQWHQ==
 
-"@fontsource/instrument-serif@5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@fontsource/instrument-serif/-/instrument-serif-5.1.0.tgz#32730f75324c76664534c67ea1a75ffd09899d13"
-  integrity sha512-UFWtq2thItB7iVbJJC0aVaZZ4Y4AZNvKegaHQpPts9ZiBsQ2HvJA4EFDSvxu88CiRJv3yuLZUH7LSoJ+Ab6bcw==
+"@fontsource-variable/martian-mono@5.3.0":
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/@fontsource-variable/martian-mono/-/martian-mono-5.3.0.tgz#48e6587bc294cb24b78484f763ed8264b7604790"
+  integrity sha512-0wVODx9ILwNnaYC4XCuSaFRYtj1Prd89MRVaSuv2ng6zLiQkS4SepaWEPefs7vqCZS8sbEOA8jb/4F5KNMnGdg==
 
-"@fontsource/plus-jakarta-sans@5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@fontsource/plus-jakarta-sans/-/plus-jakarta-sans-5.1.0.tgz#bf4e15503d9dddcb28d808b8ba7593686f3f1f3f"
-  integrity sha512-o6qReKG0r7+YyNzMe0CbIC4u8nsLwUHRe3btQU+cYI/UH8+Cbvv278WICqEuj7zsBRu1eiuBgvBG17+cU+PJIw==
+"@fontsource-variable/schibsted-grotesk@5.3.0":
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/@fontsource-variable/schibsted-grotesk/-/schibsted-grotesk-5.3.0.tgz#0d2e4f8af8b7c95583f6377f57e0a1b922b8aa54"
+  integrity sha512-ndS6H/KICWANchlHF3q4UdZD+xrZ3Ji0rUobIuXlgvDUzDfqZDsVuXPXZb636nJZMHE9zZ9Fmwgqazm8hMB50Q==
 
 "@humanwhocodes/config-array@^0.5.0":
   version "0.5.0"

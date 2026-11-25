@@ -4,13 +4,14 @@ import { scrollToId } from "../lib/motion";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [time, setTime] = useState("");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const tick = () =>
+      setTime(new Date().toLocaleTimeString("es", { hour: "2-digit", minute: "2-digit", timeZone: "America/Sao_Paulo" }));
+    tick();
+    const id = setInterval(tick, 30000);
+    return () => clearInterval(id);
   }, []);
 
   const go = (e: React.MouseEvent, href: string) => {
@@ -19,71 +20,46 @@ const Header = () => {
     scrollToId(href);
   };
 
-  const [first, ...rest] = NAME.split(" ");
-
   return (
-    <>
-      <div className="relative z-50 bg-ink py-2 text-center text-[11px] font-bold uppercase tracking-[0.2em] text-lime">
-        <span className="inline-block h-2 w-2 rounded-full bg-lime mr-2 animate-pulse align-middle" />
-        {AVAILABILITY}
-      </div>
-      <header
-        className={`sticky top-0 z-40 transition-all duration-500 ${
-          scrolled ? "bg-cream/80 backdrop-blur-md shadow-[0_1px_0_#16121a1a]" : "bg-transparent"
-        }`}
-      >
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-10">
-          <a href="#inicio" onClick={(e) => go(e, "#inicio")} className="leading-none">
-            <span className="script text-3xl">{first.toLowerCase()}</span>
-            <span className="font-display text-xl uppercase ml-1">{rest.join(" ")}</span>
-          </a>
-          <div className="hidden items-center gap-8 lg:flex">
-            {NAV.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={(e) => go(e, l.href)}
-                className="group relative text-xs font-bold uppercase tracking-[0.18em]"
-              >
-                {l.label}
-                <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-berry transition-all duration-300 group-hover:w-full" />
-              </a>
-            ))}
-            <a href="#contacto" onClick={(e) => go(e, "#contacto")} className="btn btn-lime !py-2 !px-5">
-              Contáctame
-            </a>
-          </div>
-          <button
-            aria-label="Abrir menú"
-            aria-expanded={open}
-            onClick={() => setOpen(!open)}
-            className="relative z-50 flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-full border-2 border-ink bg-lime lg:hidden"
-          >
-            <span className={`h-0.5 w-5 bg-ink transition-transform ${open ? "translate-y-1 rotate-45" : ""}`} />
-            <span className={`h-0.5 w-5 bg-ink transition-transform ${open ? "-translate-y-1 -rotate-45" : ""}`} />
-          </button>
-        </nav>
-        <div
-          className={`fixed inset-0 z-40 flex flex-col items-center justify-center gap-6 bg-blush transition-all duration-500 lg:hidden ${
-            open ? "opacity-100" : "pointer-events-none opacity-0"
-          }`}
-        >
-          {[...NAV, { label: "Contáctame", href: "#contacto" }].map((l, i) => (
-            <a
-              key={l.href}
-              href={l.href}
-              onClick={(e) => go(e, l.href)}
-              className={`font-display text-4xl uppercase transition-all duration-500 ${
-                open ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
-              }`}
-              style={{ transitionDelay: open ? `${i * 70}ms` : "0ms" }}
-            >
+    <header className="gutter sticky top-0 z-40 border-b border-ink bg-paper/90 backdrop-blur-sm" style={{ paddingTop: "env(safe-area-inset-top,0px)" }}>
+      <div className="grid grid-cols-[1fr_auto] items-center gap-4 py-3 md:grid-cols-[1fr_auto_1fr]">
+        <a href="#inicio" onClick={(e) => go(e, "#inicio")} className="font-display text-lg font-extrabold uppercase" style={{ fontStretch: "72%" }}>
+          {NAME}
+        </a>
+        <nav className="hidden gap-7 md:flex">
+          {NAV.map((l) => (
+            <a key={l.href} href={l.href} onClick={(e) => go(e, l.href)} className="link-draw text-[15px] font-medium">
               {l.label}
             </a>
           ))}
+        </nav>
+        <div className="hidden items-center justify-end gap-3 md:flex">
+          <span className="slug !text-ink">
+            <span className="mr-2 inline-block h-2 w-2 animate-pulse rounded-full bg-flame align-middle" />
+            {AVAILABILITY}
+          </span>
+          <span className="slug tabular-nums">BRT {time}</span>
         </div>
-      </header>
-    </>
+        <button
+          onClick={() => setOpen(!open)}
+          aria-expanded={open}
+          aria-label="Menú"
+          className="font-mono text-xs md:hidden"
+          style={{ fontStretch: "85%" }}
+        >
+          {open ? "Cerrar ×" : "Menú +"}
+        </button>
+      </div>
+      {open && (
+        <nav className="grid gap-1 border-t border-ink py-4 md:hidden">
+          {NAV.map((l) => (
+            <a key={l.href} href={l.href} onClick={(e) => go(e, l.href)} className="display py-1 text-5xl uppercase" style={{ ["--w" as any]: "70%" }}>
+              {l.label}
+            </a>
+          ))}
+        </nav>
+      )}
+    </header>
   );
 };
 

@@ -1,56 +1,60 @@
 import React, { useState } from "react";
-import { CATEGORY_LABELS, EMAIL } from "../constants";
-import Title from "./title";
+import { EMAIL, SOCIAL } from "../constants";
+import SectionHead from "./section-head";
 
-/** Formulario sin backend: arma un correo listo para enviar con los datos. */
 const Contact = () => {
-  const [form, setForm] = useState({ nombre: "", email: "", rubro: "", mensaje: "" });
-  const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
-    setForm({ ...form, [k]: e.target.value });
+  const [form, setForm] = useState({ nombre: "", email: "", mensaje: "" });
+  const [ready, setReady] = useState(false);
+  const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setForm({ ...form, [k]: e.target.value });
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = `Nuevo proyecto${form.rubro ? ` — ${form.rubro}` : ""} (${form.nombre})`;
-    const body = `Hola Alejandro!\n\n${form.mensaje}\n\n— ${form.nombre}\n${form.email}`;
+    const subject = `Proyecto de marca: ${form.nombre}`;
+    const body = `${form.mensaje}\n\n${form.nombre}\n${form.email}`;
+    setReady(true);
     window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
   return (
-    <section id="contacto" className="pink-band px-5 py-24 md:px-10 md:py-32">
-      <div className="mx-auto grid max-w-6xl items-start gap-12 rounded-[2.5rem] border-[3px] border-ink bg-cream p-6 shadow-[10px_10px_0_#16121a] md:grid-cols-2 md:p-14">
-        <div>
-          <Title kicker="Trabajemos juntos" big="Cuéntame tu" script="proyecto" />
-          <p data-reveal className="mt-6 max-w-sm text-lg text-ink/70">
-            ¿Tienes una marca, un emprendimiento o una idea? Escríbeme y te respondo en menos de 48 h.
+    <section id="contacto" className="gutter bg-ink py-24 text-sheet md:py-36">
+      <div className="[&_.slug]:!text-sheet/60 [&_.sh-rule]:!bg-sheet [&_.slug>span]:!border-sheet">
+        <SectionHead plate="D" label="Contacto" meta="Respuesta en menos de 48 h" title="Hablemos" />
+      </div>
+      <div className="mt-12 grid gap-14 md:grid-cols-12 md:gap-6">
+        <div className="md:col-span-6">
+          <p className="max-w-md text-2xl font-medium leading-tight">
+            Cuéntame qué vende tu negocio, a quién le habla y qué no te gusta de cómo se ve hoy.
           </p>
-          <img src="/stickers/burst.svg" alt="" className="spin-slow mt-10 hidden w-36 md:block" />
+          <a href={`mailto:${EMAIL}`} className="link-draw mt-8 inline-block break-all font-display text-[clamp(1.6rem,3.6vw,3rem)] font-bold" style={{ fontStretch: "80%" }}>
+            {EMAIL}
+          </a>
+          <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2">
+            {SOCIAL.map((s) => (
+              <li key={s.label}>
+                <a href={s.href} target="_blank" rel="noreferrer" className="link-draw text-sheet/80 hover:text-sheet">
+                  {s.label} ↗
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
-        <form onSubmit={submit} className="space-y-4">
-          <label className="block">
-            <span className="mb-1 block text-sm font-bold uppercase tracking-wider">Nombre</span>
-            <input required className="field" value={form.nombre} onChange={set("nombre")} placeholder="¿Cómo te llamas?" />
+        <form onSubmit={submit} className="grid gap-6 md:col-span-5 md:col-start-8 [&_.field]:border-sheet [&_.field:focus]:border-flame">
+          <label className="grid gap-1">
+            <span className="slug !text-sheet/60">Nombre</span>
+            <input id="c-nombre" required className="field" value={form.nombre} onChange={set("nombre")} placeholder="Tu nombre y el de tu negocio" />
           </label>
-          <label className="block">
-            <span className="mb-1 block text-sm font-bold uppercase tracking-wider">Email</span>
-            <input required type="email" className="field" value={form.email} onChange={set("email")} placeholder="tu@correo.com" />
+          <label className="grid gap-1">
+            <span className="slug !text-sheet/60">Correo</span>
+            <input id="c-email" required type="email" className="field" value={form.email} onChange={set("email")} placeholder="nombre@negocio.com" />
           </label>
-          <label className="block">
-            <span className="mb-1 block text-sm font-bold uppercase tracking-wider">¿Qué necesitas?</span>
-            <select className="field" value={form.rubro} onChange={set("rubro")}>
-              <option value="">Elige un rubro</option>
-              {Object.values(CATEGORY_LABELS).map((l) => (
-                <option key={l}>{l}</option>
-              ))}
-              <option>Otro</option>
-            </select>
+          <label className="grid gap-1">
+            <span className="slug !text-sheet/60">Proyecto</span>
+            <textarea id="c-msg" required rows={4} className="field resize-none" value={form.mensaje} onChange={set("mensaje")} placeholder="Marca nueva, rediseño, campaña…" />
           </label>
-          <label className="block">
-            <span className="mb-1 block text-sm font-bold uppercase tracking-wider">Mensaje</span>
-            <textarea required rows={4} className="field resize-none" value={form.mensaje} onChange={set("mensaje")} placeholder="Cuéntame sobre tu marca y lo que tienes en mente…" />
-          </label>
-          <button type="submit" className="btn btn-lime w-full justify-center !py-4">
-            Enviar mensaje ✦
+          <button type="submit" className="mt-2 flex items-center justify-between bg-flame px-6 py-4 text-lg font-semibold text-ink transition-colors hover:bg-sheet">
+            Enviar a imprenta <span>→</span>
           </button>
+          {ready && <p className="text-[15px] text-sheet/70">Se abrió tu correo con el mensaje listo. Si no se abrió, escríbeme a {EMAIL}.</p>}
         </form>
       </div>
     </section>

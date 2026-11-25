@@ -1,156 +1,96 @@
-// ====== EDITA AQUÍ TODO EL CONTENIDO DEL PORTAFOLIO ======
-// Las imágenes van en /public/work (proyectos), /public/me (tu foto).
+// ====== EDITA AQUÍ TODO EL CONTENIDO ======
 
 export const NAME = "Alejandro Sanchez";
-export const FIRST_NAME = "Alejandro";
-export const ROLE = "Diseño & Branding";
+export const FIRST = "Alejandro";
+export const LAST = "Sanchez";
 export const EMAIL = "tu-correo@ejemplo.com";
-export const AVAILABILITY = "Aceptando proyectos para 2027";
+export const AVAILABILITY = "Agenda abierta para 2027";
 
 export const METADATA = {
-  title: "Alejandro Sanchez — Diseño & Branding",
+  title: "Alejandro Sanchez — Diseño de marca",
   description:
-    "Portafolio de Alejandro Sanchez: identidad de marca, diseño gráfico y contenido para marcas con personalidad.",
-  siteUrl: "https://tu-dominio.com/",
+    "Alejandro Sanchez diseña identidades visuales para negocios con carácter: logotipo, personaje, sistema gráfico y piezas para redes.",
 };
 
 export const NAV = [
-  { label: "Inicio", href: "#inicio" },
-  { label: "Rubros", href: "#rubros" },
-  { label: "Proyectos", href: "#proyectos" },
-  { label: "Sobre mí", href: "#sobre-mi" },
+  { label: "Servicios", href: "#servicios" },
+  { label: "Caso", href: "#caso" },
+  { label: "Perfil", href: "#perfil" },
+  { label: "Contacto", href: "#contacto" },
 ];
 
 export const SOCIAL = [
   { label: "Instagram", href: "https://www.instagram.com/tu-usuario/" },
-  { label: "TikTok", href: "https://www.tiktok.com/@tu-usuario" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/tu-usuario/" },
   { label: "Behance", href: "https://www.behance.net/tu-usuario" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/tu-usuario/" },
 ];
 
-export interface Service {
+export const INTRO =
+  "Diseño identidades visuales para negocios con carácter. Del primer boceto al último post, cada pieza sale del mismo sistema.";
+
+export const SPECS = [
+  ["Disciplina", "Identidad visual, dirección de arte, piezas para redes"],
+  ["Idiomas", "Español, portugués"],
+  ["Modalidad", "Remoto, clientes en Latinoamérica y Brasil"],
+];
+
+export const SERVICES = [
+  {
+    plate: "A",
+    name: "Identidad",
+    detail: "Logotipo, personaje de marca, paleta, tipografías y manual de uso.",
+  },
+  {
+    plate: "B",
+    name: "Sistema",
+    detail: "Plantillas y reglas para que la marca se vea igual en el local, el menú y el feed.",
+  },
+  {
+    plate: "C",
+    name: "Campañas",
+    detail: "Piezas de lanzamiento, promociones y productos nuevos listas para publicar.",
+  },
+  {
+    plate: "D",
+    name: "Dirección",
+    detail: "Fotografía de producto, composición y criterio visual para todo lo que publica la marca.",
+  },
+];
+
+export interface Piece {
+  src: string;
   title: string;
-  script: string;
-  description: string;
-  category: Category;
+  note: string;
+  w: number;
+  h: number;
 }
 
-export type Category = "branding" | "grafico" | "redes";
-
-export const CATEGORY_LABELS: Record<Category, string> = {
-  branding: "Branding",
-  grafico: "Diseño gráfico",
-  redes: "Redes sociales",
-};
-
-export const SERVICES: Service[] = [
-  {
-    title: "Identidad",
-    script: "de marca",
-    description:
-      "Logo, paleta, tipografías y todo el sistema visual para que tu marca se reconozca a primera vista.",
-    category: "branding",
-  },
-  {
-    title: "Diseño",
-    script: "gráfico",
-    description:
-      "Menús, packaging, señalética, flyers y piezas impresas con una dirección de arte coherente.",
-    category: "grafico",
-  },
-  {
-    title: "Redes",
-    script: "sociales",
-    description:
-      "Feed, plantillas y contenido pensado para que tu marca se vea profesional en Instagram y TikTok.",
-    category: "redes",
-  },
-  {
-    title: "Contenido",
-    script: "visual",
-    description:
-      "Fotos de producto, reels y piezas en movimiento que cuentan la historia de tu marca.",
-    category: "redes",
-  },
-];
-
-export const TICKER = [
-  "Identidad de marca",
-  "Branding",
-  "Diseño gráfico",
-  "Redes sociales",
-  "Packaging",
-  "Creación de contenido",
-  "Dirección de arte",
-];
-
-export interface WorkPiece {
-  title: string;
-  client: string;
-  image: string;
-  category: Category;
-  tall?: boolean;
-}
-
-// Proyecto destacado
-export const FEATURED = {
-  name: "Mimi",
-  script: "Café",
-  tag: "01 · Branding · Itajubá, Brasil 🇧🇷",
-  description:
-    "Identidad visual para Mimi Café, “seu cantinho de café e carinho”: un personaje que es la cara de la marca, logotipo y piezas para redes y promociones con una paleta rosa y café.",
-  tags: ["Logo", "Personaje", "Redes sociales", "Promociones"],
+export const CASE = {
+  client: "Mimi Café",
+  place: "Itajubá, Brasil",
+  year: "2025",
+  scope: "Personaje, logotipo, sistema de color y piezas para redes",
   link: "https://www.instagram.com/mimicafe.br/",
-  linkLabel: "Ver @mimicafe.br",
+  linkLabel: "@mimicafe.br",
+  summary:
+    "Una cafetería de barrio que quería sentirse como “seu cantinho de café e carinho”. La identidad gira en torno a Mimi, un personaje que saluda desde el vaso, el menú y cada promoción, con una paleta de café tostado y frutos rojos.",
   pieces: [
-    "/work/mimi/logo.webp",
-    "/work/mimi/cheesecake-1.webp",
-    "/work/mimi/cappuccino.webp",
-    "/work/mimi/bubble-waffle.webp",
-  ],
+    { src: "/work/mimi/logo.webp", title: "Logotipo y personaje", note: "Sello circular, lettering script y la ilustración de Mimi.", w: 1000, h: 1000 },
+    { src: "/work/mimi/cappuccino.webp", title: "Cappuccino Canela", note: "Pieza de producto con precio, horario y dirección.", w: 998, h: 1400 },
+    { src: "/work/mimi/cheesecake-1.webp", title: "Nova sobremesa", note: "Lanzamiento del cheesecake de frutos rojos.", w: 1000, h: 1392 },
+    { src: "/work/mimi/bubble-waffle.webp", title: "Bubble Waffle", note: "Fotografía de producto con el lettering de la marca.", w: 828, h: 1031 },
+    { src: "/work/mimi/cheesecake-2.webp", title: "Variante de campaña", note: "La misma sobremesa en clave más gráfica para el feed.", w: 1000, h: 1333 },
+  ] as Piece[],
 };
-
-export const WORK: WorkPiece[] = [
-  { title: "Logo & personaje", client: "Mimi Café", image: "/work/mimi/logo.webp", category: "branding" },
-  { title: "Cheesecake de frutos vermelhos", client: "Mimi Café", image: "/work/mimi/cheesecake-1.webp", category: "redes", tall: true },
-  { title: "Cappuccino Canela", client: "Mimi Café", image: "/work/mimi/cappuccino.webp", category: "grafico", tall: true },
-  { title: "Bubble Waffle", client: "Mimi Café", image: "/work/mimi/bubble-waffle.webp", category: "redes" },
-  { title: "Cheesecake — versión 2", client: "Mimi Café", image: "/work/mimi/cheesecake-2.webp", category: "redes", tall: true },
-];
-
-export const CONTENT_VIDEOS = [
-  { title: "Proceso de un logo", caption: "Del boceto a la marca", image: "/work/reel-1.svg" },
-  { title: "Detrás de cámara", caption: "Sesión de producto", image: "/work/reel-2.svg" },
-  { title: "Tips de diseño", caption: "Para emprendedores", image: "/work/reel-3.svg" },
-  { title: "Antes y después", caption: "Rediseño de marca", image: "/work/reel-4.svg" },
-];
-export const CONTENT_LINK = { label: "Ver más en mi Instagram", href: SOCIAL[0].href };
 
 export const ABOUT = {
   photo: "/me/foto.svg",
-  paragraphs: [
-    "Soy Alejandro, diseñador enfocado en branding y contenido para marcas con personalidad.",
-    "Me encanta acompañar a emprendedores desde la idea hasta una marca que se ve, se siente y se recuerda. Trabajo con clientes en Latinoamérica y Brasil.",
+  text: [
+    "Soy Alejandro. Me gusta que una marca tenga una idea clara y que esa idea se note en todo, desde el logotipo hasta el post del viernes.",
+    "Trabajo con dueños de negocios que quieren verse profesionales sin perder la calidez con la que empezaron.",
+  ],
+  timeline: [
+    ["2025 — hoy", "Identidad y redes para Mimi Café, Itajubá"],
+    ["2024 — hoy", "Diseñador independiente de marca"],
   ],
 };
-
-export const EXPERIENCE = [
-  {
-    period: "2025 — presente",
-    title: "Branding para Mimi Café (Brasil)",
-    description: "Personaje, logotipo y piezas para redes y promociones de la cafetería en Itajubá.",
-    image: "/work/mimi/cheesecake-1.webp",
-  },
-  {
-    period: "2024 — presente",
-    title: "Diseñador freelance",
-    description: "Identidades, piezas gráficas y redes para marcas y emprendimientos.",
-    image: "/work/mimi/bubble-waffle.webp",
-  },
-  {
-    period: "20XX — 20XX",
-    title: "Tu formación",
-    description: "Universidad, carrera o cursos que te formaron como diseñador.",
-    image: "/me/foto.svg",
-  },
-];
