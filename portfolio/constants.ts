@@ -47,20 +47,42 @@ export const COPY = {
 
   hero: {
     status: { es: "Disponible para proyectos en 2027", pt: "Disponível para projetos em 2027" } as T,
-    title: {
-      es: "Marcas con personalidad para negocios que quieren crecer.",
-      pt: "Marcas com personalidade para negócios que querem crescer.",
-    } as T,
+    // Cada línea del titular; "{img:...}" inserta una pieza y "{sticker:...}" un sticker.
+    lines: {
+      es: ["Diseño {img:logo} marcas", "que se quedan", "en la {sticker:cup} cabeza."],
+      pt: ["Desenho {img:logo} marcas", "que ficam na", "{sticker:cup} cabeça."],
+    } as Record<Lang, string[]>,
     sub: {
-      es: "Soy Alejandro, diseñador de marca. Creo identidades visuales y contenido para redes que hacen que tu negocio se vea tan bien como lo que vendes.",
-      pt: "Sou Alejandro, designer de marca. Crio identidades visuais e conteúdo para redes que fazem o seu negócio parecer tão bom quanto o que você vende.",
+      es: "Soy Alejandro. Creo identidades visuales y contenido para negocios con personalidad, en Brasil y Latinoamérica.",
+      pt: "Sou o Alejandro. Crio identidades visuais e conteúdo para negócios com personalidade, no Brasil e na América Latina.",
     } as T,
     secondary: { es: "Ver proyectos", pt: "Ver projetos" } as T,
-    langs: { es: "Atiendo en español y portugués", pt: "Atendo em português e espanhol" } as T,
+    note: { es: "¡psst! puedes lanzar los stickers", pt: "psiu! dá pra jogar os adesivos" } as T,
   },
+
+  big: { es: "Diseño con cariño", pt: "Design com carinho" } as T,
+
+  marquee: {
+    top: {
+      es: ["Logotipos", "Personajes", "Menús", "Packaging", "Feed de Instagram", "Promociones", "Señalética"],
+      pt: ["Logotipos", "Personagens", "Cardápios", "Embalagens", "Feed do Instagram", "Promoções", "Sinalização"],
+    } as Record<Lang, string[]>,
+    bottom: {
+      es: ["Cafeterías", "Pastelerías", "Tiendas", "Restaurantes", "Emprendimientos", "Marcas personales"],
+      pt: ["Cafeterias", "Confeitarias", "Lojas", "Restaurantes", "Empreendimentos", "Marcas pessoais"],
+    } as Record<Lang, string[]>,
+  },
+
+  cursor: {
+    view: { es: "ver", pt: "ver" } as T,
+    drag: { es: "¡lánzame!", pt: "me joga!" } as T,
+    talk: { es: "hablemos", pt: "bora" } as T,
+  },
+  away: { es: "¡Vuelve! ☕", pt: "Volta! ☕" } as T,
 
   work: {
     kicker: { es: "Proyecto destacado", pt: "Projeto em destaque" } as T,
+    note: { es: "mi cliente favorito ♥", pt: "meu cliente favorito ♥" } as T,
     client: "Mimi Café",
     place: { es: "Cafetería · Itajubá, Brasil · 2025", pt: "Cafeteria · Itajubá, Brasil · 2025" } as T,
     link: "https://www.instagram.com/mimicafe.br/",
@@ -233,3 +255,18 @@ export const whatsappHref = (lang: Lang) =>
   WHATSAPP
     ? `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(COPY.whatsappMsg[lang])}`
     : `mailto:${EMAIL}?subject=${encodeURIComponent(COPY.meta.title[lang])}&body=${encodeURIComponent(COPY.whatsappMsg[lang])}`;
+
+// Paleta: colores de café con personalidad
+export const PALETTE = {
+  bg: "#EFE8DE",
+  ink: "#1B1411",
+  caramel: "#C8763A",
+  berry: "#B3263E",
+  mint: "#2F7A5F",
+  sky: "#7FB2E5",
+  butter: "#F3D36B",
+  cocoa: "#5B3A29",
+  foam: "#FFF6EA",
+};
+export const CARD_COLORS = ["caramel", "mint", "berry", "sky", "butter", "cocoa"] as const;
+export const STICKERS = ["cup", "star", "hand", "heart", "smile", "bean", "pencil"] as const;
