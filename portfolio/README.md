@@ -1,6 +1,6 @@
 # Portafolio — Alejandro Sanchez
 
-Portafolio de diseño y branding con estilo editorial (rosa, crema y collage) y animaciones suaves.
+Portafolio de diseño de marca con estilo de consola: negro, azul y verde oscuro, con animaciones suaves.
 
 **Stack:** Next.js · Tailwind CSS · GSAP + ScrollTrigger · Lenis (scroll suave)
 
@@ -27,10 +27,14 @@ Todo el texto está en **`constants.ts`**: nombre, correo, redes, rubros, proyec
 
 ## Secciones
 
-Barra de anuncio · menú con botón "Contáctame" · cinta de rubros · hero con collage y stickers ·
-rubros (lista interactiva) · "PROYECTOS" gigante con scroll · proyecto destacado (Mimi Café) ·
-galería con filtros y vista ampliada · mi propio contenido · cintas "Trabajemos juntos" ·
-conoce a tu diseñador · experiencia & formación · formulario de contacto · footer con nombre gigante.
+Intro tipo consola · fondo vivo (luces azul y verde + partículas) · hero · biblioteca de marcas
+(mosaicos que se iluminan, el fondo cambia a la marca elegida, flechas ← →, ventana de detalle) ·
+paquetes · proceso · sobre mí · preguntas frecuentes · contacto con WhatsApp. Español y portugués.
+
+## Tus 3 marcas
+
+Edita `BRANDS` en `constants.ts`: nombre, rubro, año, resumen, alcance, portada y 3 imágenes.
+Pon las imágenes en `public/work/<marca>/` y cambia `example` a `false` para quitar la etiqueta "Ejemplo".
 
 ## Publicar
 

@@ -1,27 +1,51 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { COPY } from "../constants";
 import { useT } from "../lib/lang";
+import { gsap, prefersReducedMotion } from "../lib/motion";
 
 const P = COPY.process;
-const BG = ["bg-butter", "bg-sky", "bg-caramel", "bg-mint text-foam"];
-const ROT = ["-rotate-2", "rotate-1", "-rotate-1", "rotate-2"];
 
 const Process = () => {
   const t = useT();
+  const root = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (prefersReducedMotion()) return;
+    const ctx = gsap.context(() => {
+      const nodes = gsap.utils.toArray<HTMLElement>(".pr-node");
+      gsap.fromTo(".pr-fill", { scaleX: 0 }, {
+        scaleX: 1, ease: "none",
+        scrollTrigger: {
+          trigger: ".pr-steps", start: "top 75%", end: "bottom 60%", scrub: 0.6,
+          onUpdate: (self) => nodes.forEach((n, i) => n.classList.toggle("pr-on", self.progress >= i / Math.max(1, nodes.length - 1) - 0.001)),
+        },
+      });
+    }, root);
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="proceso" className="py-24 lg:py-32">
+    <section id="proceso" ref={root} data-tint="blue" className="py-28 lg:py-40">
+      <style>{`.pr-node{transition:background .5s,box-shadow .5s,border-color .5s}.pr-on{background:#EDEFEA;border-color:#EDEFEA;box-shadow:0 0 24px rgba(141,174,255,.7)}`}</style>
       <div className="wrap">
-        <p data-reveal className="mb-3 text-[15px] font-semibold uppercase tracking-wide text-cocoa">{t(P.kicker)}</p>
-        <h2 data-reveal className="display max-w-4xl text-[clamp(2.4rem,6vw,5.2rem)]">{t(P.title)}</h2>
-        <ol className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {P.steps.map((s, i) => (
-            <li key={s.name.es} data-reveal className={`rounded-[28px] border-[3px] border-ink p-7 shadow-[6px_8px_0_#1B1411] transition-transform duration-500 hover:rotate-0 hover:-translate-y-2 ${BG[i]} ${ROT[i]}`}>
-              <span className="display flex h-14 w-14 items-center justify-center rounded-full border-[3px] border-ink bg-foam text-[24px] text-ink">{i + 1}</span>
-              <h3 className="display mt-6 text-[24px] lowercase">{t(s.name)}</h3>
-              <p className="mt-3 text-[16px] leading-relaxed">{t(s.text)}</p>
-            </li>
-          ))}
-        </ol>
+        <p data-reveal className="kicker">{t(P.kicker)}</p>
+        <h2 data-reveal className="display max-w-3xl text-[clamp(2.2rem,5vw,4.4rem)]">{t(P.title)}</h2>
+        <div className="pr-steps relative mt-16">
+          <div className="absolute left-2 right-2 top-2 hidden h-px bg-line lg:block" />
+          <div className="pr-fill absolute left-2 right-2 top-2 hidden h-px origin-left bg-gradient-to-r from-blue to-green-lt lg:block" />
+          <ol className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {P.steps.map((s, i) => (
+              <li key={s.name.es} data-reveal>
+                <span className="pr-node relative z-10 mb-8 hidden h-4 w-4 rounded-full border border-fg/40 bg-bg lg:block" />
+                <div tabIndex={0} className="focusable glass rounded-[24px] p-7">
+                  <span className="text-[14px] tabular-nums text-fg/50">0{i + 1}</span>
+                  <h3 className="mt-3 text-[22px] font-semibold tracking-tight">{t(s.name)}</h3>
+                  <p className="mt-3 text-[16px] leading-relaxed text-fg/70">{t(s.text)}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
     </section>
   );

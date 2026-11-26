@@ -22,11 +22,10 @@ const FloatWa = () => {
       target="_blank"
       rel="noreferrer"
       aria-label={t(COPY.whatsapp)}
-      data-cursor="talk"
-      className={`pill fixed z-40 bg-wa !px-5 transition-all duration-500 ${show ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-8 opacity-0"}`}
+      className={`pill glass fixed z-40 !px-5 transition-all duration-700 ${show ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-8 opacity-0"}`}
       style={{ right: "max(16px, env(safe-area-inset-right,0px))", bottom: "calc(16px + env(safe-area-inset-bottom,0px))" }}
     >
-      WhatsApp ↗
+      <span className="h-2 w-2 rounded-full bg-wa" /> WhatsApp
     </a>
   );
 };

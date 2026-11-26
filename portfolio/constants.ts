@@ -16,14 +16,6 @@ export const SOCIAL = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/tu-usuario/" },
 ];
 
-export const WORK_IMAGES = {
-  logo: { src: "/work/mimi/logo.webp", w: 1000, h: 1000 },
-  cappuccino: { src: "/work/mimi/cappuccino.webp", w: 998, h: 1400 },
-  cheesecake1: { src: "/work/mimi/cheesecake-1.webp", w: 1000, h: 1392 },
-  cheesecake2: { src: "/work/mimi/cheesecake-2.webp", w: 1000, h: 1333 },
-  waffle: { src: "/work/mimi/bubble-waffle.webp", w: 828, h: 1031 },
-};
-
 export const COPY = {
   meta: {
     title: { es: "Alejandro Sanchez · Diseño de marca", pt: "Alejandro Sanchez · Design de marca" } as T,
@@ -47,20 +39,17 @@ export const COPY = {
 
   hero: {
     status: { es: "Disponible para proyectos en 2027", pt: "Disponível para projetos em 2027" } as T,
-    // Cada línea del titular; "{img:...}" inserta una pieza y "{sticker:...}" un sticker.
     lines: {
-      es: ["Diseño {img:logo} marcas", "que se quedan", "en la {sticker:cup} cabeza."],
-      pt: ["Desenho {img:logo} marcas", "que ficam na", "{sticker:cup} cabeça."],
+      es: ["Diseño marcas", "que se quedan", "en la cabeza."],
+      pt: ["Desenho marcas", "que ficam", "na cabeça."],
     } as Record<Lang, string[]>,
     sub: {
       es: "Soy Alejandro. Creo identidades visuales y contenido para negocios con personalidad, en Brasil y Latinoamérica.",
       pt: "Sou o Alejandro. Crio identidades visuais e conteúdo para negócios com personalidade, no Brasil e na América Latina.",
     } as T,
     secondary: { es: "Ver proyectos", pt: "Ver projetos" } as T,
-    note: { es: "¡psst! puedes lanzar los stickers", pt: "psiu! dá pra jogar os adesivos" } as T,
+    scroll: { es: "Desliza para explorar", pt: "Role para explorar" } as T,
   },
-
-  big: { es: "Diseño con cariño", pt: "Design com carinho" } as T,
 
   marquee: {
     top: {
@@ -73,48 +62,17 @@ export const COPY = {
     } as Record<Lang, string[]>,
   },
 
-  cursor: {
-    view: { es: "ver", pt: "ver" } as T,
-    drag: { es: "¡lánzame!", pt: "me joga!" } as T,
-    talk: { es: "hablemos", pt: "bora" } as T,
-  },
   away: { es: "¡Vuelve! ☕", pt: "Volta! ☕" } as T,
 
   work: {
-    kicker: { es: "Proyecto destacado", pt: "Projeto em destaque" } as T,
-    note: { es: "mi cliente favorito ♥", pt: "meu cliente favorito ♥" } as T,
-    client: "Mimi Café",
-    place: { es: "Cafetería · Itajubá, Brasil · 2025", pt: "Cafeteria · Itajubá, Brasil · 2025" } as T,
-    link: "https://www.instagram.com/mimicafe.br/",
-    linkLabel: { es: "Ver @mimicafe.br en Instagram", pt: "Ver @mimicafe.br no Instagram" } as T,
-    blocks: [
-      {
-        title: { es: "El reto", pt: "O desafio" } as T,
-        text: {
-          es: "Una cafetería de barrio que quería transmitir lo que la hace especial: un lugar cercano, con cariño en cada detalle, que se reconozca a primera vista en la calle y en Instagram.",
-          pt: "Uma cafeteria de bairro que queria transmitir o que a torna especial: um lugar próximo, com carinho em cada detalhe, reconhecível de cara na rua e no Instagram.",
-        } as T,
-      },
-      {
-        title: { es: "La solución", pt: "A solução" } as T,
-        text: {
-          es: "Creé a Mimi, un personaje que es la cara de la marca, un sello circular con lettering propio y una paleta de café y frutos rojos. Con ese sistema diseñé las piezas de productos y promociones.",
-          pt: "Criei a Mimi, uma personagem que é o rosto da marca, um selo circular com lettering próprio e uma paleta de café e frutas vermelhas. Com esse sistema desenhei as peças de produtos e promoções.",
-        } as T,
-      },
-    ],
-    deliverablesTitle: { es: "Entregables", pt: "Entregas" } as T,
-    deliverables: {
-      es: ["Personaje de marca", "Logotipo y sello", "Paleta y tipografías", "Piezas de producto", "Promociones para redes"],
-      pt: ["Personagem da marca", "Logotipo e selo", "Paleta e tipografias", "Peças de produto", "Promoções para redes"],
-    } as Record<Lang, string[]>,
-    captions: {
-      logo: { es: "Logotipo y personaje", pt: "Logotipo e personagem" } as T,
-      cappuccino: { es: "Pieza de producto: Cappuccino Canela", pt: "Peça de produto: Cappuccino Canela" } as T,
-      cheesecake1: { es: "Lanzamiento: nueva sobremesa", pt: "Lançamento: nova sobremesa" } as T,
-      waffle: { es: "Fotografía de producto con lettering", pt: "Fotografia de produto com lettering" } as T,
-      cheesecake2: { es: "Variante para el feed", pt: "Variação para o feed" } as T,
-    },
+    kicker: { es: "Proyectos", pt: "Projetos" } as T,
+    title: { es: "Marcas que he diseñado", pt: "Marcas que desenhei" } as T,
+    hint: { es: "Usa el mouse o las flechas ← → para elegir", pt: "Use o mouse ou as setas ← → para escolher" } as T,
+    example: { es: "Ejemplo", pt: "Exemplo" } as T,
+    view: { es: "Ver proyecto", pt: "Ver projeto" } as T,
+    close: { es: "Cerrar", pt: "Fechar" } as T,
+    visit: { es: "Visitar la marca", pt: "Visitar a marca" } as T,
+    scope: { es: "Alcance", pt: "Escopo" } as T,
   },
 
   services: {
@@ -256,17 +214,63 @@ export const whatsappHref = (lang: Lang) =>
     ? `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(COPY.whatsappMsg[lang])}`
     : `mailto:${EMAIL}?subject=${encodeURIComponent(COPY.meta.title[lang])}&body=${encodeURIComponent(COPY.whatsappMsg[lang])}`;
 
-// Paleta: colores de café con personalidad
-export const PALETTE = {
-  bg: "#EFE8DE",
-  ink: "#1B1411",
-  caramel: "#C8763A",
-  berry: "#B3263E",
-  mint: "#2F7A5F",
-  sky: "#7FB2E5",
-  butter: "#F3D36B",
-  cocoa: "#5B3A29",
-  foam: "#FFF6EA",
-};
-export const CARD_COLORS = ["caramel", "mint", "berry", "sky", "butter", "cocoa"] as const;
-export const STICKERS = ["cup", "star", "hand", "heart", "smile", "bean", "pencil"] as const;
+// ====== TUS 3 MARCAS ======
+// Reemplaza estas marcas de ejemplo por las tuyas. Pon las imágenes en /public/work/<marca>/
+// y cambia "example" a false para quitar la etiqueta "Ejemplo".
+export interface Brand {
+  name: string;
+  example: boolean;
+  year: string;
+  category: T;
+  summary: T;
+  scope: Record<Lang, string[]>;
+  cover: string;
+  gallery: string[];
+  link?: string;
+  accent: "blue" | "green" | "steel";
+}
+
+export const BRANDS: Brand[] = [
+  {
+    name: "Norte Café",
+    example: true,
+    year: "2025",
+    category: { es: "Cafetería de especialidad", pt: "Cafeteria especial" },
+    summary: {
+      es: "Identidad para una cafetería de barrio: un símbolo de brújula que guía hacia el buen café, paleta sobria y piezas para el local y las redes.",
+      pt: "Identidade para uma cafeteria de bairro: um símbolo de bússola que guia até o bom café, paleta sóbria e peças para a loja e as redes.",
+    },
+    scope: { es: ["Logotipo", "Paleta", "Packaging", "Redes"], pt: ["Logotipo", "Paleta", "Embalagem", "Redes"] },
+    cover: "/work/norte/cover.svg",
+    gallery: ["/work/norte/card.svg", "/work/norte/post.svg", "/work/norte/cup.svg"],
+    accent: "green",
+  },
+  {
+    name: "Lumen Studio",
+    example: true,
+    year: "2025",
+    category: { es: "Estudio de fotografía", pt: "Estúdio de fotografia" },
+    summary: {
+      es: "Marca para un estudio de fotografía: un símbolo de luz que se abre como un diafragma y un sistema limpio para portafolio y redes.",
+      pt: "Marca para um estúdio de fotografia: um símbolo de luz que abre como um diafragma e um sistema limpo para portfólio e redes.",
+    },
+    scope: { es: ["Logotipo", "Tipografía", "Plantillas", "Web"], pt: ["Logotipo", "Tipografia", "Templates", "Web"] },
+    cover: "/work/lumen/cover.svg",
+    gallery: ["/work/lumen/card.svg", "/work/lumen/post.svg", "/work/lumen/web.svg"],
+    accent: "blue",
+  },
+  {
+    name: "Raíz",
+    example: true,
+    year: "2024",
+    category: { es: "Tienda de plantas", pt: "Loja de plantas" },
+    summary: {
+      es: "Identidad para una tienda de plantas: una hoja que nace de una raíz, etiquetas para macetas y un feed que se siente vivo.",
+      pt: "Identidade para uma loja de plantas: uma folha que nasce de uma raiz, etiquetas para vasos e um feed que parece vivo.",
+    },
+    scope: { es: ["Logotipo", "Etiquetas", "Señalética", "Redes"], pt: ["Logotipo", "Etiquetas", "Sinalização", "Redes"] },
+    cover: "/work/raiz/cover.svg",
+    gallery: ["/work/raiz/tag.svg", "/work/raiz/post.svg", "/work/raiz/bag.svg"],
+    accent: "steel",
+  },
+];

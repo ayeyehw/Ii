@@ -63,16 +63,6 @@
   resolved "https://registry.yarnpkg.com/@fontsource-variable/figtree/-/figtree-5.3.0.tgz#df8e3e467d3cceb1eb982ae2ed04a4accb284f65"
   integrity sha512-VRVodD7OiG7apQwE8/2fMjaqpY/a0qRJqL5HtYj8CKIVps+9amaFcdfKmDIf7iqYQx6iPLlArVXAfKeIZmVcNQ==
 
-"@fontsource-variable/unbounded@5.3.0":
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/@fontsource-variable/unbounded/-/unbounded-5.3.0.tgz#23f6c61b8d28d969631b38914e0d9ee1bde1daa0"
-  integrity sha512-ea565Ncn4r7gPdBEHcmaF31V11hDfkL7b/JCklLobQbMfbu2ZZQrVWNgdeEFWFLqNh36yhieZWOgxdAnMTzrLg==
-
-"@fontsource/caveat@5.3.0":
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/@fontsource/caveat/-/caveat-5.3.0.tgz#b44c8fe760f6a1af6979e1b8e323d8e788253a31"
-  integrity sha512-eHTfzQxFSW9ABERRLNruHoNJmKed2J7pqTUc5lp4a4POMgXGKpxmWj3d9Hz10kmAg6iuTTLe6UagbA4bnsmfQw==
-
 "@humanwhocodes/config-array@^0.5.0":
   version "0.5.0"
   resolved "https://registry.npmjs.org/@humanwhocodes/config-array/-/config-array-0.5.0.tgz"
