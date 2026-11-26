@@ -357,23 +357,4 @@ export const BRANDS: Brand[] = [
     gallery: ["/work/akiba/logo.webp"],
     accent: "blue",
   },
-  {
-    name: "Raíz",
-    example: true,
-    year: "2024",
-    category: { es: "Tienda de plantas", pt: "Loja de plantas", en: "Plant shop" },
-    summary: {
-      es: "Identidad para una tienda de plantas: una hoja que nace de una raíz, etiquetas para macetas y un feed que se siente vivo.",
-      pt: "Identidade para uma loja de plantas: uma folha que nasce de uma raiz, etiquetas para vasos e um feed que parece vivo.",
-      en: "Identity for a plant shop: a leaf growing from a root, pot labels and a feed that feels alive.",
-    },
-    scope: {
-      es: ["Logotipo", "Etiquetas", "Señalética", "Redes"],
-      pt: ["Logotipo", "Etiquetas", "Sinalização", "Redes"],
-      en: ["Logo", "Labels", "Signage", "Social"],
-    },
-    cover: "/work/raiz/cover.svg",
-    gallery: ["/work/raiz/tag.svg", "/work/raiz/post.svg", "/work/raiz/bag.svg"],
-    accent: "green",
-  },
 ];
