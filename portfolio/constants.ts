@@ -290,7 +290,7 @@ export const whatsappHref = (lang: Lang, text = COPY.whatsappMsg[lang]) =>
 export interface Brand {
   name: string;
   example: boolean;
-  year: string;
+  year?: string;
   category: T;
   summary: T;
   scope: L;
@@ -340,22 +340,21 @@ export const BRANDS: Brand[] = [
     accent: "steel",
   },
   {
-    name: "Lumen Studio",
-    example: true,
-    year: "2025",
-    category: { es: "Estudio de fotografía", pt: "Estúdio de fotografia", en: "Photography studio" },
+    name: "Akiba Cookies",
+    example: false,
+    category: { es: "Marca de cookies", pt: "Marca de cookies", en: "Cookie brand" },
     summary: {
-      es: "Marca para un estudio de fotografía: un símbolo de luz que se abre como un diafragma y un sistema limpio para portafolio y redes.",
-      pt: "Marca para um estúdio de fotografia: um símbolo de luz que abre como um diafragma e um sistema limpo para portfólio e redes.",
-      en: "Brand for a photography studio: a light mark that opens like an aperture and a clean system for portfolio and social.",
+      es: "Identidad para una marca de cookies: un gato pastelero abrazando su galleta como personaje, lettering redondeado y un rojo intenso que se reconoce de lejos.",
+      pt: "Identidade para uma marca de cookies: um gato confeiteiro abraçando seu cookie como personagem, lettering arredondado e um vermelho intenso que se reconhece de longe.",
+      en: "Identity for a cookie brand: a baker cat hugging its cookie as the character, rounded lettering and a bold red you can spot from afar.",
     },
     scope: {
-      es: ["Logotipo", "Tipografía", "Plantillas", "Web"],
-      pt: ["Logotipo", "Tipografia", "Templates", "Web"],
-      en: ["Logo", "Typography", "Templates", "Web"],
+      es: ["Personaje", "Logotipo", "Paleta"],
+      pt: ["Personagem", "Logotipo", "Paleta"],
+      en: ["Character", "Logo", "Palette"],
     },
-    cover: "/work/lumen/cover.svg",
-    gallery: ["/work/lumen/card.svg", "/work/lumen/post.svg", "/work/lumen/web.svg"],
+    cover: "/work/akiba/cover.webp",
+    gallery: ["/work/akiba/logo.webp"],
     accent: "blue",
   },
   {

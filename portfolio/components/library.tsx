@@ -116,8 +116,12 @@ const Library = () => {
         <div ref={info} className="max-w-xl" aria-live="polite">
           <p className="flex flex-wrap items-center gap-3 text-[15px] text-fg/70">
             <span>{t(brand.category)}</span>
-            <span className="h-1 w-1 rounded-full bg-fg/40" />
-            <span>{brand.year}</span>
+            {brand.year && (
+              <>
+                <span className="h-1 w-1 rounded-full bg-fg/40" />
+                <span>{brand.year}</span>
+              </>
+            )}
             {brand.example ? (
               <span className="rounded-full border border-line px-2.5 py-0.5 text-[12px] uppercase tracking-wider text-mute">{t(W.example)}</span>
             ) : (
@@ -177,7 +181,7 @@ const Detail = ({ i, onClose }: { i: number; onClose: () => void }) => {
         <button onClick={onClose} className="pill glass absolute right-5 top-5 !px-4 !py-2 text-[14px]" autoFocus>
           {t(COPY.work.close)} ✕
         </button>
-        <p className="text-[15px] text-fg/60">{t(b.category)} · {b.year}</p>
+        <p className="text-[15px] text-fg/60">{t(b.category)}{b.year ? ` · ${b.year}` : ""}</p>
         <h3 className="mt-2 text-[clamp(2.2rem,5vw,4rem)] font-light leading-none tracking-[-0.04em]">{b.name}</h3>
         <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-fg/75">{t(b.summary)}</p>
         {b.results && (
@@ -191,7 +195,7 @@ const Detail = ({ i, onClose }: { i: number; onClose: () => void }) => {
           </dl>
         )}
         {/* Every piece shown whole, at its own proportions */}
-        <div className="mt-8 columns-1 gap-4 sm:columns-2 lg:columns-3">
+        <div className={`mt-8 gap-4 ${b.gallery.length > 1 ? "columns-1 sm:columns-2 lg:columns-3" : "max-w-3xl"}`}>
           {(b.gallery.length ? b.gallery : [b.cover]).map((g, k) => (
             <img key={g} src={g} alt={`${b.name}: ${k + 1}`} loading="lazy" className="dt-img mb-4 w-full break-inside-avoid rounded-2xl" />
           ))}
