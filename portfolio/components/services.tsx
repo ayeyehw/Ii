@@ -1,5 +1,5 @@
 import React from "react";
-import { COPY, EMAIL, WHATSAPP } from "../constants";
+import { COPY, whatsappHref } from "../constants";
 import { useLang, useT } from "../lib/lang";
 
 const S = COPY.services;
@@ -7,10 +7,7 @@ const S = COPY.services;
 const Services = () => {
   const t = useT();
   const { lang } = useLang();
-  const ask = (name: string) => {
-    const msg = lang === "pt" ? `Oi Alejandro! Tenho interesse no pacote "${name}".` : `¡Hola Alejandro! Me interesa el paquete "${name}".`;
-    return WHATSAPP ? `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}` : `mailto:${EMAIL}?subject=${encodeURIComponent(name)}&body=${encodeURIComponent(msg)}`;
-  };
+  const ask = (name: string) => whatsappHref(lang, `${t(COPY.packageMsg)} "${name}".`);
 
   return (
     <section id="servicios" data-tint="green" className="py-28 lg:py-40">

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { COPY, whatsappHref } from "../constants";
+import { COPY, LANGS, whatsappHref } from "../constants";
 import { useLang, useT } from "../lib/lang";
 import { scrollToId } from "../lib/motion";
 
@@ -7,7 +7,7 @@ export const LangSwitch = () => {
   const { lang, setLang } = useLang();
   return (
     <div className="flex rounded-full border border-line p-1 text-[13px] font-semibold" role="group" aria-label="Idioma">
-      {(["es", "pt"] as const).map((l) => (
+      {LANGS.map((l) => (
         <button key={l} onClick={() => setLang(l)} aria-pressed={lang === l} className={`rounded-full px-3 py-1 uppercase transition-colors duration-300 ${lang === l ? "bg-fg text-bg" : "text-mute hover:text-fg"}`}>
           {l}
         </button>
@@ -25,7 +25,7 @@ const Header = () => {
   const [time, setTime] = useState("");
 
   useEffect(() => {
-    const tick = () => setTime(new Date().toLocaleTimeString(lang === "pt" ? "pt-BR" : "es", { hour: "2-digit", minute: "2-digit" }));
+    const tick = () => setTime(new Date().toLocaleTimeString(lang === "pt" ? "pt-BR" : lang === "en" ? "en-US" : "es", { hour: "2-digit", minute: "2-digit" }));
     tick();
     const id = setInterval(tick, 20000);
     return () => clearInterval(id);

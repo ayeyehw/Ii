@@ -1,7 +1,9 @@
-// ====== EDITA AQUÍ TODO EL CONTENIDO (español y portugués) ======
+// ====== EDITA AQUÍ TODO EL CONTENIDO (español, portugués e inglés) ======
 
-export type Lang = "es" | "pt";
+export type Lang = "es" | "pt" | "en";
+export const LANGS: Lang[] = ["es", "pt", "en"];
 type T = Record<Lang, string>;
+type L = Record<Lang, string[]>;
 
 export const NAME = "Alejandro Sanchez";
 export const EMAIL = "tu-correo@ejemplo.com";
@@ -18,201 +20,267 @@ export const SOCIAL = [
 
 export const COPY = {
   meta: {
-    title: { es: "Alejandro Sanchez · Diseño de marca", pt: "Alejandro Sanchez · Design de marca" } as T,
+    title: {
+      es: "Alejandro Sanchez · Diseño de marca",
+      pt: "Alejandro Sanchez · Design de marca",
+      en: "Alejandro Sanchez · Brand design",
+    } as T,
     description: {
-      es: "Identidad visual y contenido para negocios en Latinoamérica y Brasil.",
-      pt: "Identidade visual e conteúdo para negócios no Brasil e na América Latina.",
+      es: "Identidad visual y contenido para negocios en Brasil, Latinoamérica y Estados Unidos.",
+      pt: "Identidade visual e conteúdo para negócios no Brasil, na América Latina e nos Estados Unidos.",
+      en: "Brand identity and content for businesses in Brazil, Latin America and the United States.",
     } as T,
   },
   nav: [
-    { href: "#trabajo", label: { es: "Trabajo", pt: "Trabalho" } as T },
-    { href: "#servicios", label: { es: "Servicios", pt: "Serviços" } as T },
-    { href: "#proceso", label: { es: "Proceso", pt: "Processo" } as T },
-    { href: "#sobre-mi", label: { es: "Sobre mí", pt: "Sobre mim" } as T },
+    { href: "#trabajo", label: { es: "Trabajo", pt: "Trabalho", en: "Work" } as T },
+    { href: "#servicios", label: { es: "Servicios", pt: "Serviços", en: "Services" } as T },
+    { href: "#proceso", label: { es: "Proceso", pt: "Processo", en: "Process" } as T },
+    { href: "#sobre-mi", label: { es: "Sobre mí", pt: "Sobre mim", en: "About" } as T },
   ],
-  cta: { es: "Hablemos", pt: "Vamos conversar" } as T,
-  whatsapp: { es: "Escríbeme por WhatsApp", pt: "Me chama no WhatsApp" } as T,
+  cta: { es: "Hablemos", pt: "Vamos conversar", en: "Let's talk" } as T,
+  whatsapp: { es: "Escríbeme por WhatsApp", pt: "Me chama no WhatsApp", en: "Message me on WhatsApp" } as T,
   whatsappMsg: {
     es: "Hola Alejandro, vi tu portafolio y quiero hablar sobre mi marca.",
     pt: "Oi Alejandro, vi seu portfólio e quero conversar sobre a minha marca.",
+    en: "Hi Alejandro, I saw your portfolio and I'd like to talk about my brand.",
+  } as T,
+  packageMsg: {
+    es: "¡Hola Alejandro! Me interesa el paquete",
+    pt: "Oi Alejandro! Tenho interesse no pacote",
+    en: "Hi Alejandro! I'm interested in the package",
   } as T,
 
   hero: {
-    status: { es: "Disponible para proyectos en 2027", pt: "Disponível para projetos em 2027" } as T,
+    status: { es: "Disponible para proyectos en 2027", pt: "Disponível para projetos em 2027", en: "Booking projects for 2027" } as T,
     lines: {
       es: ["Diseño marcas", "que se quedan", "en la cabeza."],
       pt: ["Desenho marcas", "que ficam", "na cabeça."],
-    } as Record<Lang, string[]>,
+      en: ["I design brands", "people", "remember."],
+    } as L,
     sub: {
-      es: "Soy Alejandro. Creo identidades visuales y contenido para negocios con personalidad, en Brasil y Latinoamérica.",
-      pt: "Sou o Alejandro. Crio identidades visuais e conteúdo para negócios com personalidade, no Brasil e na América Latina.",
+      es: "Soy Alejandro. Creo identidades visuales y contenido para negocios con personalidad en Brasil, Latinoamérica y Estados Unidos.",
+      pt: "Sou o Alejandro. Crio identidades visuais e conteúdo para negócios com personalidade no Brasil, na América Latina e nos Estados Unidos.",
+      en: "I'm Alejandro. I create brand identities and content for businesses with personality across Brazil, Latin America and the United States.",
     } as T,
-    secondary: { es: "Ver proyectos", pt: "Ver projetos" } as T,
-    scroll: { es: "Desliza para explorar", pt: "Role para explorar" } as T,
+    secondary: { es: "Ver proyectos", pt: "Ver projetos", en: "See work" } as T,
+    scroll: { es: "Desliza para explorar", pt: "Role para explorar", en: "Scroll to explore" } as T,
+    markets: {
+      es: ["Brasil", "Latinoamérica", "Estados Unidos"],
+      pt: ["Brasil", "América Latina", "Estados Unidos"],
+      en: ["Brazil", "Latin America", "United States"],
+    } as L,
+    languages: { es: "Español · Português · English", pt: "Español · Português · English", en: "Español · Português · English" } as T,
   },
 
-  marquee: {
-    top: {
-      es: ["Logotipos", "Personajes", "Menús", "Packaging", "Feed de Instagram", "Promociones", "Señalética"],
-      pt: ["Logotipos", "Personagens", "Cardápios", "Embalagens", "Feed do Instagram", "Promoções", "Sinalização"],
-    } as Record<Lang, string[]>,
-    bottom: {
-      es: ["Cafeterías", "Pastelerías", "Tiendas", "Restaurantes", "Emprendimientos", "Marcas personales"],
-      pt: ["Cafeterias", "Confeitarias", "Lojas", "Restaurantes", "Empreendimentos", "Marcas pessoais"],
-    } as Record<Lang, string[]>,
-  },
-
-  away: { es: "¡Vuelve! ☕", pt: "Volta! ☕" } as T,
+  away: { es: "¡Vuelve! ☕", pt: "Volta! ☕", en: "Come back! ☕" } as T,
 
   work: {
-    kicker: { es: "Proyectos", pt: "Projetos" } as T,
-    title: { es: "Marcas que he diseñado", pt: "Marcas que desenhei" } as T,
-    hint: { es: "Usa el mouse o las flechas ← → para elegir", pt: "Use o mouse ou as setas ← → para escolher" } as T,
-    example: { es: "Ejemplo", pt: "Exemplo" } as T,
-    view: { es: "Ver proyecto", pt: "Ver projeto" } as T,
-    close: { es: "Cerrar", pt: "Fechar" } as T,
-    visit: { es: "Visitar la marca", pt: "Visitar a marca" } as T,
-    scope: { es: "Alcance", pt: "Escopo" } as T,
+    kicker: { es: "Proyectos", pt: "Projetos", en: "Work" } as T,
+    title: { es: "Marcas que he diseñado", pt: "Marcas que desenhei", en: "Brands I've designed" } as T,
+    hint: {
+      es: "Usa el mouse o las flechas ← → para elegir",
+      pt: "Use o mouse ou as setas ← → para escolher",
+      en: "Use your mouse or the ← → keys to browse",
+    } as T,
+    example: { es: "Ejemplo", pt: "Exemplo", en: "Sample" } as T,
+    view: { es: "Ver proyecto", pt: "Ver projeto", en: "View project" } as T,
+    close: { es: "Cerrar", pt: "Fechar", en: "Close" } as T,
+    visit: { es: "Visitar la marca", pt: "Visitar a marca", en: "Visit the brand" } as T,
+    scope: { es: "Alcance", pt: "Escopo", en: "Scope" } as T,
+    yours: { es: "Tu marca aquí", pt: "A sua marca aqui", en: "Your brand here" } as T,
   },
 
   services: {
-    kicker: { es: "Servicios", pt: "Serviços" } as T,
-    title: { es: "Elige cómo empezamos", pt: "Escolha como começamos" } as T,
-    from: { es: "Desde", pt: "A partir de" } as T,
-    custom: { es: "Cotización a medida", pt: "Orçamento sob medida" } as T,
-    choose: { es: "Quiero este", pt: "Quero este" } as T,
-    popular: { es: "Más elegido", pt: "Mais escolhido" } as T,
-    // price: deja "" para mostrar "Cotización a medida". Ej. "US$ 450" o "R$ 1.800".
+    kicker: { es: "Servicios", pt: "Serviços", en: "Services" } as T,
+    title: { es: "Elige cómo empezamos", pt: "Escolha como começamos", en: "Choose how we start" } as T,
+    from: { es: "Desde", pt: "A partir de", en: "From" } as T,
+    custom: { es: "Cotización a medida", pt: "Orçamento sob medida", en: "Custom quote" } as T,
+    choose: { es: "Quiero este", pt: "Quero este", en: "I want this one" } as T,
+    popular: { es: "Más elegido", pt: "Mais escolhido", en: "Most popular" } as T,
+    // price: deja "" para mostrar "Cotización a medida". Ej. "US$ 450".
     packages: [
       {
-        name: { es: "Identidad esencial", pt: "Identidade essencial" } as T,
-        for: { es: "Para negocios que están empezando", pt: "Para negócios que estão começando" } as T,
-        time: { es: "2 a 3 semanas", pt: "2 a 3 semanas" } as T,
+        name: { es: "Identidad esencial", pt: "Identidade essencial", en: "Essential identity" } as T,
+        for: { es: "Para negocios que están empezando", pt: "Para negócios que estão começando", en: "For businesses just getting started" } as T,
+        time: { es: "2 a 3 semanas", pt: "2 a 3 semanas", en: "2 to 3 weeks" } as T,
         price: "",
         items: {
           es: ["Logotipo y variantes", "Paleta de color y tipografías", "Mini guía de uso", "Perfil y portadas para redes"],
           pt: ["Logotipo e variações", "Paleta de cores e tipografias", "Mini guia de uso", "Perfil e capas para redes"],
-        } as Record<Lang, string[]>,
+          en: ["Logo and variations", "Color palette and typography", "Mini brand guide", "Social profile and covers"],
+        } as L,
       },
       {
-        name: { es: "Marca completa", pt: "Marca completa" } as T,
-        for: { es: "Para lanzar o renovar con todo", pt: "Para lançar ou renovar com tudo" } as T,
-        time: { es: "4 a 6 semanas", pt: "4 a 6 semanas" } as T,
+        name: { es: "Marca completa", pt: "Marca completa", en: "Full brand" } as T,
+        for: { es: "Para lanzar o renovar con todo", pt: "Para lançar ou renovar com tudo", en: "To launch or rebrand all the way" } as T,
+        time: { es: "4 a 6 semanas", pt: "4 a 6 semanas", en: "4 to 6 weeks" } as T,
         price: "",
         featured: true,
         items: {
           es: ["Todo lo de Identidad esencial", "Personaje o ilustración de marca", "Manual de marca", "Menú, packaging o señalética", "10 plantillas para redes"],
           pt: ["Tudo da Identidade essencial", "Personagem ou ilustração da marca", "Manual da marca", "Cardápio, embalagem ou sinalização", "10 templates para redes"],
-        } as Record<Lang, string[]>,
+          en: ["Everything in Essential identity", "Brand character or illustration", "Brand guidelines", "Menu, packaging or signage", "10 social media templates"],
+        } as L,
       },
       {
-        name: { es: "Redes mensual", pt: "Redes mensal" } as T,
-        for: { es: "Para marcas que ya tienen identidad", pt: "Para marcas que já têm identidade" } as T,
-        time: { es: "Mes a mes", pt: "Mês a mês" } as T,
+        name: { es: "Redes mensual", pt: "Redes mensal", en: "Monthly social" } as T,
+        for: { es: "Para marcas que ya tienen identidad", pt: "Para marcas que já têm identidade", en: "For brands that already have an identity" } as T,
+        time: { es: "Mes a mes", pt: "Mês a mês", en: "Month to month" } as T,
         price: "",
         items: {
           es: ["12 piezas al mes", "Promociones y lanzamientos", "Calendario de publicaciones", "Ajustes ilimitados en la semana"],
           pt: ["12 peças por mês", "Promoções e lançamentos", "Calendário de publicações", "Ajustes ilimitados na semana"],
-        } as Record<Lang, string[]>,
+          en: ["12 pieces a month", "Promotions and launches", "Posting calendar", "Unlimited tweaks during the week"],
+        } as L,
       },
     ],
   },
 
   process: {
-    kicker: { es: "Proceso", pt: "Processo" } as T,
-    title: { es: "Cómo trabajamos juntos", pt: "Como trabalhamos juntos" } as T,
+    kicker: { es: "Proceso", pt: "Processo", en: "Process" } as T,
+    title: { es: "Cómo trabajamos juntos", pt: "Como trabalhamos juntos", en: "How we work together" } as T,
     steps: [
       {
-        name: { es: "Llamada", pt: "Conversa" } as T,
-        text: { es: "30 minutos para entender tu negocio, tu cliente y lo que necesitas.", pt: "30 minutos para entender o seu negócio, o seu cliente e o que você precisa." } as T,
+        name: { es: "Llamada", pt: "Conversa", en: "Call" } as T,
+        text: {
+          es: "30 minutos para entender tu negocio, tu cliente y lo que necesitas.",
+          pt: "30 minutos para entender o seu negócio, o seu cliente e o que você precisa.",
+          en: "30 minutes to understand your business, your customer and what you need.",
+        } as T,
       },
       {
-        name: { es: "Propuesta", pt: "Proposta" } as T,
-        text: { es: "Te envío alcance, tiempos y precio cerrado. Sin sorpresas.", pt: "Envio escopo, prazos e preço fechado. Sem surpresas." } as T,
+        name: { es: "Propuesta", pt: "Proposta", en: "Proposal" } as T,
+        text: {
+          es: "Te envío alcance, tiempos y precio cerrado. Sin sorpresas.",
+          pt: "Envio escopo, prazos e preço fechado. Sem surpresas.",
+          en: "You get scope, timeline and a fixed price. No surprises.",
+        } as T,
       },
       {
-        name: { es: "Diseño", pt: "Design" } as T,
-        text: { es: "Te muestro caminos creativos, elegimos uno y lo afinamos juntos.", pt: "Apresento caminhos criativos, escolhemos um e refinamos juntos." } as T,
+        name: { es: "Diseño", pt: "Design", en: "Design" } as T,
+        text: {
+          es: "Te muestro caminos creativos, elegimos uno y lo afinamos juntos.",
+          pt: "Apresento caminhos criativos, escolhemos um e refinamos juntos.",
+          en: "I show you creative routes, we pick one and refine it together.",
+        } as T,
       },
       {
-        name: { es: "Entrega", pt: "Entrega" } as T,
-        text: { es: "Recibes todos los archivos listos para imprimir y publicar.", pt: "Você recebe todos os arquivos prontos para imprimir e publicar." } as T,
+        name: { es: "Entrega", pt: "Entrega", en: "Delivery" } as T,
+        text: {
+          es: "Recibes todos los archivos listos para imprimir y publicar.",
+          pt: "Você recebe todos os arquivos prontos para imprimir e publicar.",
+          en: "You receive every file ready to print and publish.",
+        } as T,
       },
     ],
   },
 
   // Cuando tengas una cita real de un cliente, complétala aquí y aparecerá en la página.
   testimonial: {
-    quote: { es: "", pt: "" } as T,
+    quote: { es: "", pt: "", en: "" } as T,
     author: "",
-    role: { es: "", pt: "" } as T,
+    role: { es: "", pt: "", en: "" } as T,
   },
 
   about: {
-    kicker: { es: "Sobre mí", pt: "Sobre mim" } as T,
-    title: { es: "Hola, soy Alejandro", pt: "Oi, sou o Alejandro" } as T,
+    kicker: { es: "Sobre mí", pt: "Sobre mim", en: "About" } as T,
+    title: { es: "Hola, soy Alejandro", pt: "Oi, sou o Alejandro", en: "Hi, I'm Alejandro" } as T,
     text: {
       es: [
         "Diseño marcas para negocios reales: cafeterías, tiendas y emprendimientos que quieren verse profesionales sin perder su calidez.",
-        "Me gusta que cada marca tenga una idea clara y que esa idea se note en todo, desde el logotipo hasta el post del viernes.",
+        "Trabajo en español, portugués e inglés con clientes de Brasil, Latinoamérica y Estados Unidos, así que entiendo cómo habla tu cliente.",
       ],
       pt: [
         "Desenho marcas para negócios reais: cafeterias, lojas e empreendimentos que querem parecer profissionais sem perder o seu jeito.",
-        "Gosto que cada marca tenha uma ideia clara e que essa ideia apareça em tudo, do logotipo ao post de sexta-feira.",
+        "Trabalho em português, espanhol e inglês com clientes do Brasil, da América Latina e dos Estados Unidos, então entendo como o seu cliente fala.",
       ],
-    } as Record<Lang, string[]>,
+      en: [
+        "I design brands for real businesses: cafés, shops and startups that want to look professional without losing their warmth.",
+        "I work in English, Spanish and Portuguese with clients in Brazil, Latin America and the United States, so I get how your customers talk.",
+      ],
+    } as L,
     facts: [
-      { k: { es: "Especialidad", pt: "Especialidade" } as T, v: { es: "Identidad visual y redes", pt: "Identidade visual e redes" } as T },
-      { k: { es: "Idiomas", pt: "Idiomas" } as T, v: { es: "Español y portugués", pt: "Português e espanhol" } as T },
-      { k: { es: "Clientes", pt: "Clientes" } as T, v: { es: "Brasil y Latinoamérica, en remoto", pt: "Brasil e América Latina, remoto" } as T },
+      {
+        k: { es: "Especialidad", pt: "Especialidade", en: "Focus" } as T,
+        v: { es: "Identidad visual y redes", pt: "Identidade visual e redes", en: "Brand identity and social" } as T,
+      },
+      {
+        k: { es: "Idiomas", pt: "Idiomas", en: "Languages" } as T,
+        v: { es: "Español, portugués e inglés", pt: "Português, espanhol e inglês", en: "English, Spanish, Portuguese" } as T,
+      },
+      {
+        k: { es: "Mercados", pt: "Mercados", en: "Markets" } as T,
+        v: { es: "Brasil, Latam y EE. UU.", pt: "Brasil, América Latina e EUA", en: "Brazil, LatAm and the US" } as T,
+      },
     ],
   },
 
   faq: {
-    kicker: { es: "Preguntas frecuentes", pt: "Perguntas frequentes" } as T,
+    kicker: { es: "Preguntas frecuentes", pt: "Perguntas frequentes", en: "FAQ" } as T,
     items: [
       {
-        q: { es: "¿Cuánto tarda un proyecto?", pt: "Quanto tempo leva um projeto?" } as T,
-        a: { es: "Una identidad esencial toma de 2 a 3 semanas y una marca completa de 4 a 6. Te doy fechas exactas en la propuesta.", pt: "Uma identidade essencial leva de 2 a 3 semanas e uma marca completa de 4 a 6. Passo as datas exatas na proposta." } as T,
+        q: { es: "¿Cuánto tarda un proyecto?", pt: "Quanto tempo leva um projeto?", en: "How long does a project take?" } as T,
+        a: {
+          es: "Una identidad esencial toma de 2 a 3 semanas y una marca completa de 4 a 6. Te doy fechas exactas en la propuesta.",
+          pt: "Uma identidade essencial leva de 2 a 3 semanas e uma marca completa de 4 a 6. Passo as datas exatas na proposta.",
+          en: "An essential identity takes 2 to 3 weeks and a full brand 4 to 6. You get exact dates in the proposal.",
+        } as T,
       },
       {
-        q: { es: "¿Cuántas revisiones incluye?", pt: "Quantas revisões estão incluídas?" } as T,
-        a: { es: "Dos rondas de cambios en cada etapa. Si necesitas más, lo conversamos.", pt: "Duas rodadas de ajustes em cada etapa. Se precisar de mais, a gente conversa." } as T,
+        q: { es: "¿Cuántas revisiones incluye?", pt: "Quantas revisões estão incluídas?", en: "How many revisions are included?" } as T,
+        a: {
+          es: "Dos rondas de cambios en cada etapa. Si necesitas más, lo conversamos.",
+          pt: "Duas rodadas de ajustes em cada etapa. Se precisar de mais, a gente conversa.",
+          en: "Two rounds of changes at each stage. If you need more, we'll talk it through.",
+        } as T,
       },
       {
-        q: { es: "¿Cómo se paga?", pt: "Como funciona o pagamento?" } as T,
-        a: { es: "50 % para empezar y 50 % al entregar. Acepto transferencia, Pix y PayPal.", pt: "50 % para começar e 50 % na entrega. Aceito transferência, Pix e PayPal." } as T,
+        q: { es: "¿Cómo se paga?", pt: "Como funciona o pagamento?", en: "How does payment work?" } as T,
+        a: {
+          es: "50 % para empezar y 50 % al entregar. Acepto transferencia, Pix y PayPal, en dólares o en moneda local.",
+          pt: "50 % para começar e 50 % na entrega. Aceito transferência, Pix e PayPal, em dólar ou em reais.",
+          en: "50% to start and 50% on delivery. I accept bank transfer, PayPal and Pix, in USD or local currency.",
+        } as T,
       },
       {
-        q: { es: "¿Trabajas con negocios fuera de Brasil?", pt: "Você trabalha com negócios fora do Brasil?" } as T,
-        a: { es: "Sí. Trabajo en remoto con clientes de Brasil y de toda Latinoamérica, en español o portugués.", pt: "Sim. Trabalho remoto com clientes do Brasil e de toda a América Latina, em português ou espanhol." } as T,
+        q: { es: "¿Con qué países trabajas?", pt: "Com quais países você trabalha?", en: "Where are your clients?" } as T,
+        a: {
+          es: "Trabajo en remoto con clientes de Brasil, Latinoamérica y Estados Unidos, en español, portugués o inglés.",
+          pt: "Trabalho remoto com clientes do Brasil, da América Latina e dos Estados Unidos, em português, espanhol ou inglês.",
+          en: "I work remotely with clients in Brazil, Latin America and the United States, in English, Spanish or Portuguese.",
+        } as T,
       },
       {
-        q: { es: "¿Qué archivos recibo?", pt: "Quais arquivos eu recebo?" } as T,
-        a: { es: "Todos los archivos editables y finales (AI, PDF, PNG, SVG) y una guía para usar tu marca.", pt: "Todos os arquivos editáveis e finais (AI, PDF, PNG, SVG) e um guia para usar a sua marca." } as T,
+        q: { es: "¿Qué archivos recibo?", pt: "Quais arquivos eu recebo?", en: "What files do I get?" } as T,
+        a: {
+          es: "Todos los archivos editables y finales (AI, PDF, PNG, SVG) y una guía para usar tu marca.",
+          pt: "Todos os arquivos editáveis e finais (AI, PDF, PNG, SVG) e um guia para usar a sua marca.",
+          en: "All editable and final files (AI, PDF, PNG, SVG) plus a guide to using your brand.",
+        } as T,
       },
     ],
   },
 
   contact: {
-    title: { es: "¿Tu marca es la próxima?", pt: "A sua marca é a próxima?" } as T,
+    kicker: { es: "Empecemos", pt: "Vamos começar", en: "Let's begin" } as T,
+    title: { es: "¿Tu marca es la próxima?", pt: "A sua marca é a próxima?", en: "Is your brand next?" } as T,
     sub: {
       es: "Cuéntame de tu negocio y te respondo en menos de 24 horas con los siguientes pasos.",
       pt: "Me conta sobre o seu negócio e respondo em menos de 24 horas com os próximos passos.",
+      en: "Tell me about your business and I'll get back to you within 24 hours with next steps.",
     } as T,
-    email: { es: "O escríbeme a", pt: "Ou escreva para" } as T,
   },
 
   footer: {
-    rights: { es: "Todos los derechos reservados.", pt: "Todos os direitos reservados." } as T,
-    top: { es: "Volver arriba", pt: "Voltar ao topo" } as T,
+    rights: { es: "Todos los derechos reservados.", pt: "Todos os direitos reservados.", en: "All rights reserved." } as T,
+    top: { es: "Volver arriba", pt: "Voltar ao topo", en: "Back to top" } as T,
   },
 };
 
-export const whatsappHref = (lang: Lang) =>
+export const whatsappHref = (lang: Lang, text = COPY.whatsappMsg[lang]) =>
   WHATSAPP
-    ? `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(COPY.whatsappMsg[lang])}`
-    : `mailto:${EMAIL}?subject=${encodeURIComponent(COPY.meta.title[lang])}&body=${encodeURIComponent(COPY.whatsappMsg[lang])}`;
+    ? `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`
+    : `mailto:${EMAIL}?subject=${encodeURIComponent(COPY.meta.title[lang])}&body=${encodeURIComponent(text)}`;
 
 // ====== TUS 3 MARCAS ======
 // Reemplaza estas marcas de ejemplo por las tuyas. Pon las imágenes en /public/work/<marca>/
@@ -223,7 +291,7 @@ export interface Brand {
   year: string;
   category: T;
   summary: T;
-  scope: Record<Lang, string[]>;
+  scope: L;
   cover: string;
   gallery: string[];
   link?: string;
@@ -235,12 +303,17 @@ export const BRANDS: Brand[] = [
     name: "Norte Café",
     example: true,
     year: "2025",
-    category: { es: "Cafetería de especialidad", pt: "Cafeteria especial" },
+    category: { es: "Cafetería de especialidad", pt: "Cafeteria especial", en: "Specialty coffee shop" },
     summary: {
       es: "Identidad para una cafetería de barrio: un símbolo de brújula que guía hacia el buen café, paleta sobria y piezas para el local y las redes.",
       pt: "Identidade para uma cafeteria de bairro: um símbolo de bússola que guia até o bom café, paleta sóbria e peças para a loja e as redes.",
+      en: "Identity for a neighborhood coffee shop: a compass mark that points to good coffee, a calm palette and pieces for the store and social.",
     },
-    scope: { es: ["Logotipo", "Paleta", "Packaging", "Redes"], pt: ["Logotipo", "Paleta", "Embalagem", "Redes"] },
+    scope: {
+      es: ["Logotipo", "Paleta", "Packaging", "Redes"],
+      pt: ["Logotipo", "Paleta", "Embalagem", "Redes"],
+      en: ["Logo", "Palette", "Packaging", "Social"],
+    },
     cover: "/work/norte/cover.svg",
     gallery: ["/work/norte/card.svg", "/work/norte/post.svg", "/work/norte/cup.svg"],
     accent: "green",
@@ -249,12 +322,17 @@ export const BRANDS: Brand[] = [
     name: "Lumen Studio",
     example: true,
     year: "2025",
-    category: { es: "Estudio de fotografía", pt: "Estúdio de fotografia" },
+    category: { es: "Estudio de fotografía", pt: "Estúdio de fotografia", en: "Photography studio" },
     summary: {
       es: "Marca para un estudio de fotografía: un símbolo de luz que se abre como un diafragma y un sistema limpio para portafolio y redes.",
       pt: "Marca para um estúdio de fotografia: um símbolo de luz que abre como um diafragma e um sistema limpo para portfólio e redes.",
+      en: "Brand for a photography studio: a light mark that opens like an aperture and a clean system for portfolio and social.",
     },
-    scope: { es: ["Logotipo", "Tipografía", "Plantillas", "Web"], pt: ["Logotipo", "Tipografia", "Templates", "Web"] },
+    scope: {
+      es: ["Logotipo", "Tipografía", "Plantillas", "Web"],
+      pt: ["Logotipo", "Tipografia", "Templates", "Web"],
+      en: ["Logo", "Typography", "Templates", "Web"],
+    },
     cover: "/work/lumen/cover.svg",
     gallery: ["/work/lumen/card.svg", "/work/lumen/post.svg", "/work/lumen/web.svg"],
     accent: "blue",
@@ -263,12 +341,17 @@ export const BRANDS: Brand[] = [
     name: "Raíz",
     example: true,
     year: "2024",
-    category: { es: "Tienda de plantas", pt: "Loja de plantas" },
+    category: { es: "Tienda de plantas", pt: "Loja de plantas", en: "Plant shop" },
     summary: {
       es: "Identidad para una tienda de plantas: una hoja que nace de una raíz, etiquetas para macetas y un feed que se siente vivo.",
       pt: "Identidade para uma loja de plantas: uma folha que nasce de uma raiz, etiquetas para vasos e um feed que parece vivo.",
+      en: "Identity for a plant shop: a leaf growing from a root, pot labels and a feed that feels alive.",
     },
-    scope: { es: ["Logotipo", "Etiquetas", "Señalética", "Redes"], pt: ["Logotipo", "Etiquetas", "Sinalização", "Redes"] },
+    scope: {
+      es: ["Logotipo", "Etiquetas", "Señalética", "Redes"],
+      pt: ["Logotipo", "Etiquetas", "Sinalização", "Redes"],
+      en: ["Logo", "Labels", "Signage", "Social"],
+    },
     cover: "/work/raiz/cover.svg",
     gallery: ["/work/raiz/tag.svg", "/work/raiz/post.svg", "/work/raiz/bag.svg"],
     accent: "steel",

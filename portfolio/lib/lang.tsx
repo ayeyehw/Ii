@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import type { Lang } from "../constants";
+import { LANGS, Lang } from "../constants";
 
 const Ctx = createContext<{ lang: Lang; setLang: (l: Lang) => void }>({ lang: "es", setLang: () => {} });
 
@@ -11,12 +11,14 @@ export const LangProvider = ({ children }: { children: React.ReactNode }) => {
     try {
       saved = localStorage.getItem("lang");
     } catch {}
-    if (saved === "es" || saved === "pt") setLangState(saved);
-    else if (navigator.language?.toLowerCase().startsWith("pt")) setLangState("pt");
+    const nav = navigator.language?.toLowerCase() || "";
+    if (LANGS.includes(saved as Lang)) setLangState(saved as Lang);
+    else if (nav.startsWith("pt")) setLangState("pt");
+    else if (nav.startsWith("en")) setLangState("en");
   }, []);
 
   useEffect(() => {
-    document.documentElement.lang = lang === "pt" ? "pt-BR" : "es";
+    document.documentElement.lang = lang === "pt" ? "pt-BR" : lang === "en" ? "en" : "es";
   }, [lang]);
 
   const setLang = (l: Lang) => {

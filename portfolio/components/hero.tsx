@@ -46,7 +46,16 @@ const Hero = () => {
             </a>
           </div>
         </div>
-        <p className="hx-fade mt-16 hidden items-center gap-3 text-[13px] uppercase tracking-[0.18em] text-mute md:flex">
+        <div className="hx-fade mt-12 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-line pt-6 text-[15px] text-fg/70">
+          {COPY.hero.markets[lang].map((m) => (
+            <span key={m} className="inline-flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-blue" />
+              {m}
+            </span>
+          ))}
+          <span className="text-fg/40 md:ml-auto">{t(COPY.hero.languages)}</span>
+        </div>
+        <p className="hx-fade mt-10 hidden items-center gap-3 text-[13px] uppercase tracking-[0.18em] text-mute md:flex">
           <span className="relative h-9 w-5 rounded-full border border-line">
             <span className="absolute left-1/2 top-1.5 h-2 w-0.5 -translate-x-1/2 animate-bounce rounded-full bg-fg/70" />
           </span>

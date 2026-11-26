@@ -108,7 +108,7 @@ const Library = () => {
               className="focusable glass flex aspect-[4/5] w-[28%] max-w-[170px] flex-col items-center justify-center gap-2 rounded-2xl p-3 text-center text-[14px] text-fg/80 max-sm:hidden"
             >
               <span className="text-3xl font-light">+</span>
-              {lang === "pt" ? "A sua marca aqui" : "Tu marca aquí"}
+              {t(W.yours)}
             </a>
           </div>
           <p className="mt-5 hidden text-[14px] text-mute md:block">{t(W.hint)}</p>

@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <footer id="contacto" data-tint="blue" className="pt-28 lg:pt-40">
       <div className="wrap text-center">
-        <p data-reveal className="kicker justify-center">{lang === "pt" ? "Vamos começar" : "Empecemos"}</p>
+        <p data-reveal className="kicker justify-center">{t(COPY.contact.kicker)}</p>
         <h2 data-reveal className="display mx-auto max-w-5xl text-[clamp(2.8rem,8vw,7.4rem)]">{t(COPY.contact.title)}</h2>
         <p data-reveal className="mx-auto mt-7 max-w-xl text-[19px] leading-relaxed text-fg/70">{t(COPY.contact.sub)}</p>
         <div data-reveal className="mt-10 flex flex-wrap justify-center gap-3">
