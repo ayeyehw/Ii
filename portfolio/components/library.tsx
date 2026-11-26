@@ -118,10 +118,27 @@ const Library = () => {
             <span>{t(brand.category)}</span>
             <span className="h-1 w-1 rounded-full bg-fg/40" />
             <span>{brand.year}</span>
-            {brand.example && <span className="rounded-full border border-line px-2.5 py-0.5 text-[12px] uppercase tracking-wider text-mute">{t(W.example)}</span>}
+            {brand.example ? (
+              <span className="rounded-full border border-line px-2.5 py-0.5 text-[12px] uppercase tracking-wider text-mute">{t(W.example)}</span>
+            ) : (
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-green/60 px-2.5 py-0.5 text-[12px] uppercase tracking-wider text-fg">
+                <span className="h-1.5 w-1.5 rounded-full bg-green-lt" />
+                {t(W.real)}
+              </span>
+            )}
           </p>
           <h3 className="mt-2 text-[clamp(2.2rem,4.4vw,3.8rem)] font-light leading-none tracking-[-0.04em]">{brand.name}</h3>
           <p className="mt-4 text-[17px] leading-relaxed text-fg/75">{t(brand.summary)}</p>
+          {brand.results && (
+            <dl className="mt-6 grid gap-2 lg:grid-cols-3 lg:gap-3">
+              {brand.results.map((res) => (
+                <div key={res.label.es} className="glass flex items-baseline gap-3 rounded-2xl px-4 py-3 lg:block">
+                  <dt className="text-[clamp(1.1rem,2vw,1.6rem)] font-semibold tracking-tight">{t(res.value)}</dt>
+                  <dd className="mt-0.5 text-[13px] leading-snug text-fg/60">{t(res.label)}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
           <ul className="mt-6 flex flex-wrap gap-2">
             {brand.scope[lang].map((s) => (
               <li key={s} className="glass rounded-full px-3.5 py-1.5 text-[14px]">{s}</li>
@@ -130,7 +147,7 @@ const Library = () => {
           <div className="mt-8 flex flex-wrap gap-3">
             <button data-open-detail onClick={() => setOpen(focus)} className="pill pill-light">{t(W.view)}</button>
             {brand.link && (
-              <a href={brand.link} target="_blank" rel="noreferrer" className="pill glass">{t(W.visit)} ↗</a>
+              <a href={brand.link} target="_blank" rel="noreferrer" className="pill glass">{brand.linkLabel || t(W.visit)} ↗</a>
             )}
           </div>
         </div>
@@ -163,12 +180,25 @@ const Detail = ({ i, onClose }: { i: number; onClose: () => void }) => {
         <p className="text-[15px] text-fg/60">{t(b.category)} · {b.year}</p>
         <h3 className="mt-2 text-[clamp(2.2rem,5vw,4rem)] font-light leading-none tracking-[-0.04em]">{b.name}</h3>
         <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-fg/75">{t(b.summary)}</p>
-        <div className="mt-8 grid gap-4 md:grid-cols-[1.1fr_1fr_1fr]">
-          <img src={b.cover} alt={`${b.name}: portada`} className="dt-img w-full rounded-2xl md:row-span-2" />
-          {b.gallery.map((g, k) => (
-            <img key={g} src={g} alt={`${b.name}: pieza ${k + 1}`} className={`dt-img w-full rounded-2xl ${k === 2 ? "md:col-span-2 md:aspect-[2/1] md:object-cover" : ""}`} />
+        {b.results && (
+          <dl className="mt-6 flex flex-wrap gap-3">
+            {b.results.map((res) => (
+              <div key={res.label.es} className="glass rounded-2xl px-5 py-3">
+                <dt className="text-[24px] font-semibold tracking-tight">{t(res.value)}</dt>
+                <dd className="text-[13px] text-fg/60">{t(res.label)}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
+        {/* Every piece shown whole, at its own proportions */}
+        <div className="mt-8 columns-1 gap-4 sm:columns-2 lg:columns-3">
+          {(b.gallery.length ? b.gallery : [b.cover]).map((g, k) => (
+            <img key={g} src={g} alt={`${b.name}: ${k + 1}`} loading="lazy" className="dt-img mb-4 w-full break-inside-avoid rounded-2xl" />
           ))}
         </div>
+        {b.link && (
+          <a href={b.link} target="_blank" rel="noreferrer" className="pill pill-light mt-2">{b.linkLabel || t(COPY.work.visit)} ↗</a>
+        )}
         <p className="mt-6 text-[14px] text-mute">{t(COPY.work.scope)}: {b.scope[lang].join(" · ")}</p>
       </div>
     </div>

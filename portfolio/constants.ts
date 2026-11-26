@@ -6,10 +6,10 @@ type T = Record<Lang, string>;
 type L = Record<Lang, string[]>;
 
 export const NAME = "Alejandro Sanchez";
-export const EMAIL = "tu-correo@ejemplo.com";
+export const EMAIL = "alejandrosanchezcanoh@gmail.com";
 // Número de WhatsApp con código de país, solo dígitos (ej. "5535999998888").
 // Si lo dejas vacío, los botones de WhatsApp abren el correo.
-export const WHATSAPP = "";
+export const WHATSAPP = "56973662392";
 export const PHOTO = "/me/foto.svg";
 
 export const SOCIAL = [
@@ -88,6 +88,8 @@ export const COPY = {
     visit: { es: "Visitar la marca", pt: "Visitar a marca", en: "Visit the brand" } as T,
     scope: { es: "Alcance", pt: "Escopo", en: "Scope" } as T,
     yours: { es: "Tu marca aquí", pt: "A sua marca aqui", en: "Your brand here" } as T,
+    results: { es: "Resultados", pt: "Resultados", en: "Results" } as T,
+    real: { es: "Cliente real", pt: "Cliente real", en: "Real client" } as T,
   },
 
   services: {
@@ -295,28 +297,47 @@ export interface Brand {
   cover: string;
   gallery: string[];
   link?: string;
+  linkLabel?: string;
   accent: "blue" | "green" | "steel";
+  // Resultados reales (opcional): se muestran grandes junto a la marca.
+  results?: { value: T; label: T }[];
 }
 
 export const BRANDS: Brand[] = [
   {
-    name: "Norte Café",
-    example: true,
+    name: "Mimi Café",
+    example: false,
     year: "2025",
-    category: { es: "Cafetería de especialidad", pt: "Cafeteria especial", en: "Specialty coffee shop" },
+    category: { es: "Cafetería · Itajubá, Brasil", pt: "Cafeteria · Itajubá, Brasil", en: "Café · Itajubá, Brazil" },
     summary: {
-      es: "Identidad para una cafetería de barrio: un símbolo de brújula que guía hacia el buen café, paleta sobria y piezas para el local y las redes.",
-      pt: "Identidade para uma cafeteria de bairro: um símbolo de bússola que guia até o bom café, paleta sóbria e peças para a loja e as redes.",
-      en: "Identity for a neighborhood coffee shop: a compass mark that points to good coffee, a calm palette and pieces for the store and social.",
+      es: "Me contactaron para darle personalidad a su negocio. Creé a Mimi, el personaje que es la cara de la marca, y todo su sistema visual. Hoy tienen una clientela consolidada y sigo a cargo de su marketing y estrategia de negocio.",
+      pt: "Me procuraram para dar personalidade ao negócio. Criei a Mimi, a personagem que é o rosto da marca, e todo o sistema visual. Hoje eles têm uma clientela consolidada e eu sigo cuidando do marketing e da estratégia de negócio.",
+      en: "They reached out to give their business a personality. I created Mimi, the character who is the face of the brand, and its whole visual system. Today they have a loyal customer base and I still run their marketing and business strategy.",
     },
     scope: {
-      es: ["Logotipo", "Paleta", "Packaging", "Redes"],
-      pt: ["Logotipo", "Paleta", "Embalagem", "Redes"],
-      en: ["Logo", "Palette", "Packaging", "Social"],
+      es: ["Personaje", "Logotipo", "Piezas para redes", "Marketing", "Estrategia de negocio"],
+      pt: ["Personagem", "Logotipo", "Peças para redes", "Marketing", "Estratégia de negócio"],
+      en: ["Character", "Logo", "Social content", "Marketing", "Business strategy"],
     },
-    cover: "/work/norte/cover.svg",
-    gallery: ["/work/norte/card.svg", "/work/norte/post.svg", "/work/norte/cup.svg"],
-    accent: "green",
+    results: [
+      {
+        value: { es: "7.000", pt: "7.000", en: "7,000" },
+        label: { es: "visitas al perfil cada mes", pt: "visitas ao perfil por mês", en: "profile visits every month" },
+      },
+      {
+        value: { es: "Fidelizados", pt: "Fidelizados", en: "Loyal" },
+        label: { es: "clientes que vuelven", pt: "clientes que voltam", en: "returning customers" },
+      },
+      {
+        value: { es: "Continuo", pt: "Contínuo", en: "Ongoing" },
+        label: { es: "marketing y negocio a mi cargo", pt: "marketing e negócio comigo", en: "marketing and strategy partner" },
+      },
+    ],
+    cover: "/work/mimi/cover.webp",
+    gallery: ["/work/mimi/cappuccino.webp", "/work/mimi/cheesecake-1.webp", "/work/mimi/bubble-waffle.webp", "/work/mimi/logo.webp"],
+    link: "https://www.instagram.com/mimicafe.br/",
+    linkLabel: "@mimicafe.br",
+    accent: "steel",
   },
   {
     name: "Lumen Studio",
@@ -354,6 +375,6 @@ export const BRANDS: Brand[] = [
     },
     cover: "/work/raiz/cover.svg",
     gallery: ["/work/raiz/tag.svg", "/work/raiz/post.svg", "/work/raiz/bag.svg"],
-    accent: "steel",
+    accent: "green",
   },
 ];
