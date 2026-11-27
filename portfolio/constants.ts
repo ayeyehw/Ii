@@ -87,7 +87,8 @@ export const COPY = {
     scope: { es: "Alcance", pt: "Escopo", en: "Scope" } as T,
     yours: { es: "Tu marca aquí", pt: "A sua marca aqui", en: "Your brand here" } as T,
     results: { es: "Resultados", pt: "Resultados", en: "Results" } as T,
-    real: { es: "Cliente real", pt: "Cliente real", en: "Real client" } as T,
+    real: { es: "Proyecto real", pt: "Projeto real", en: "Real project" } as T,
+    month: { es: "/mes", pt: "/mês", en: "/mo" } as T,
   },
 
   services: {
@@ -97,13 +98,13 @@ export const COPY = {
     custom: { es: "Cotización a medida", pt: "Orçamento sob medida", en: "Custom quote" } as T,
     choose: { es: "Quiero este", pt: "Quero este", en: "I want this one" } as T,
     popular: { es: "Más elegido", pt: "Mais escolhido", en: "Most popular" } as T,
-    // price: deja "" para mostrar "Cotización a medida". Ej. "US$ 450".
+    // price: deja "" para mostrar "Cotización a medida". monthly: true agrega "/mes".
     packages: [
       {
         name: { es: "Identidad esencial", pt: "Identidade essencial", en: "Essential identity" } as T,
         for: { es: "Para negocios que están empezando", pt: "Para negócios que estão começando", en: "For businesses just getting started" } as T,
         time: { es: "2 a 3 semanas", pt: "2 a 3 semanas", en: "2 to 3 weeks" } as T,
-        price: "",
+        price: "US$ 250",
         items: {
           es: ["Logotipo y variantes", "Paleta de color y tipografías", "Mini guía de uso", "Perfil y portadas para redes"],
           pt: ["Logotipo e variações", "Paleta de cores e tipografias", "Mini guia de uso", "Perfil e capas para redes"],
@@ -114,7 +115,7 @@ export const COPY = {
         name: { es: "Marca completa", pt: "Marca completa", en: "Full brand" } as T,
         for: { es: "Para lanzar o renovar con todo", pt: "Para lançar ou renovar com tudo", en: "To launch or rebrand all the way" } as T,
         time: { es: "4 a 6 semanas", pt: "4 a 6 semanas", en: "4 to 6 weeks" } as T,
-        price: "",
+        price: "US$ 600",
         featured: true,
         items: {
           es: ["Todo lo de Identidad esencial", "Personaje o ilustración de marca", "Manual de marca", "Menú, packaging o señalética", "10 plantillas para redes"],
@@ -126,7 +127,8 @@ export const COPY = {
         name: { es: "Redes mensual", pt: "Redes mensal", en: "Monthly social" } as T,
         for: { es: "Para marcas que ya tienen identidad", pt: "Para marcas que já têm identidade", en: "For brands that already have an identity" } as T,
         time: { es: "Mes a mes", pt: "Mês a mês", en: "Month to month" } as T,
-        price: "",
+        price: "US$ 250",
+        monthly: true,
         items: {
           es: ["12 piezas al mes", "Promociones y lanzamientos", "Calendario de publicaciones", "Ajustes ilimitados en la semana"],
           pt: ["12 peças por mês", "Promoções e lançamentos", "Calendário de publicações", "Ajustes ilimitados na semana"],
@@ -308,9 +310,9 @@ export const BRANDS: Brand[] = [
     year: "2025",
     category: { es: "Cafetería · Itajubá, Brasil", pt: "Cafeteria · Itajubá, Brasil", en: "Café · Itajubá, Brazil" },
     summary: {
-      es: "Me contactaron para darle personalidad a su negocio. Creé a Mimi, el personaje que es la cara de la marca, y todo su sistema visual. Hoy tienen una clientela consolidada y sigo a cargo de su marketing y estrategia de negocio.",
-      pt: "Me procuraram para dar personalidade ao negócio. Criei a Mimi, a personagem que é o rosto da marca, e todo o sistema visual. Hoje eles têm uma clientela consolidada e eu sigo cuidando do marketing e da estratégia de negócio.",
-      en: "They reached out to give their business a personality. I created Mimi, the character who is the face of the brand, and its whole visual system. Today they have a loyal customer base and I still run their marketing and business strategy.",
+      es: "Mi primer proyecto fue la cafetería de mi familia. Creé a Mimi, el personaje que es la cara de la marca, y todo su sistema visual. Hoy su perfil recibe 7.000 visitas al mes, tiene una clientela consolidada y sigo a cargo de su marketing y estrategia.",
+      pt: "Meu primeiro projeto foi a cafeteria da minha família. Criei a Mimi, a personagem que é o rosto da marca, e todo o sistema visual. Hoje o perfil recebe 7.000 visitas por mês, tem uma clientela consolidada e eu sigo cuidando do marketing e da estratégia.",
+      en: "My first project was my family's café. I created Mimi, the character who is the face of the brand, and its whole visual system. Today its profile gets 7,000 visits a month, it has a loyal customer base, and I still run its marketing and strategy.",
     },
     scope: {
       es: ["Personaje", "Logotipo", "Piezas para redes", "Marketing", "Estrategia de negocio"],

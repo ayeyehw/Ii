@@ -28,6 +28,7 @@ const Services = () => {
                     <p>
                       <span className="block text-[13px] text-fg/50">{t(S.from)}</span>
                       <span className="text-[38px] font-light tracking-tight">{p.price}</span>
+                      {(p as any).monthly && <span className="text-[18px] text-fg/60">{t(COPY.work.month)}</span>}
                     </p>
                   ) : (
                     <p className="text-[24px] font-light tracking-tight">{t(S.custom)}</p>
