@@ -61,3 +61,40 @@ export const COPY = {
 };
 
 export const PHONE = "+56 9 7366 2392";
+
+// Versión TikTok: gancho personal, cortes rápidos, sin precios.
+export const TT = {
+  es: {
+    hook: ["Le hice la marca", "a la cafetería", "de mi mamá"],
+    then: "y pasó esto",
+    statLabel: "visitas al perfil cada mes",
+    stat: "7.000",
+    tags: ["Personaje", "Logo", "Redes"],
+    more: ["Y no fue", "la única"],
+    question: ["¿Tienes una", "cafetería, pastelería", "o hamburguesería?"],
+    cta: "Te hago la tuya",
+    btn: "Escríbeme por WhatsApp",
+  },
+  pt: {
+    hook: ["Fiz a marca", "da cafeteria", "da minha mãe"],
+    then: "e olha o que aconteceu",
+    statLabel: "visitas ao perfil por mês",
+    stat: "7.000",
+    tags: ["Personagem", "Logo", "Redes"],
+    more: ["E não parou", "por aí"],
+    question: ["Tem uma", "cafeteria, confeitaria", "ou hamburgueria?"],
+    cta: "Eu faço a sua",
+    btn: "Me chama no WhatsApp",
+  },
+  en: {
+    hook: ["I branded", "my mom's", "café"],
+    then: "and this happened",
+    statLabel: "profile visits every month",
+    stat: "7,000",
+    tags: ["Character", "Logo", "Social"],
+    more: ["And it didn't", "stop there"],
+    question: ["Own a", "café, bakery", "or burger spot?"],
+    cta: "I'll make yours",
+    btn: "Message me on WhatsApp",
+  },
+};

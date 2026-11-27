@@ -34,7 +34,9 @@
   - Componentes: `components/` (header, hero, library [marcas], services, process, about [+FAQ], footer, background, boot, concept, float-wa).
   - Imágenes: `portfolio/public/work/<marca>/`.
 - `reel/` → video promocional con **Remotion** (vertical 1080×1920, ES/PT/EN). Trata de **lo que hace Alejandro** (Mimi, Akiba, servicios, precios, WhatsApp), **no** del restaurante 3D.
-  - Render: `cd reel && REMOTION_BROWSER=<ruta a chrome-headless-shell> node render.mjs es,pt,en` → `reel/out/`.
+  - Dos composiciones: **`TikTok`** (la principal: gancho "Le hice la marca a la cafetería de mi mamá… y pasó esto", cortes rápidos cada 14 frames, contador 7.000, Akiba, pregunta, CTA WhatsApp; **sin precios**, ~16 s) y `Reel` (presentación más tranquila, ~26 s).
+  - Decisión: **no poner precios en videos** (van solo en el portafolio). Videos sin música: Alejandro agrega audio en tendencia al subirlos.
+  - Render: `cd reel && COMP=TikTok REMOTION_BROWSER=<ruta a chrome-headless-shell> node render.mjs es,pt,en` → `reel/out/tiktok-*.mp4`.
   - En la nube: `ls -d /opt/pw-browsers/chromium_headless_shell-*/*/chrome-headless-shell`.
 
 ## Cómo publicar
