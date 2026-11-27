@@ -3,6 +3,8 @@
 import { bundle } from "@remotion/bundler";
 import { renderMedia, selectComposition } from "@remotion/renderer";
 import path from "node:path";
+import { spawnSync } from "node:child_process";
+import { renameSync } from "node:fs";
 
 const browserExecutable = process.env.REMOTION_BROWSER || undefined;
 const langs = (process.argv[2] || "es,pt,en").split(",");
@@ -25,5 +27,9 @@ for (const lang of langs) {
     chromiumOptions: { gl: "swangle" },
     onProgress: ({ progress }) => process.stdout.write(`\r${lang}: ${Math.round(progress * 100)}%   `),
   });
+  // Loudness for social media (-14 LUFS), video stream untouched
+  const tmp = outputLocation.replace(".mp4", ".tmp.mp4");
+  const r = spawnSync("ffmpeg", ["-v", "error", "-y", "-i", outputLocation, "-c:v", "copy", "-af", "loudnorm=I=-14:TP=-1.5:LRA=9", "-ar", "48000", "-c:a", "aac", "-b:a", "192k", tmp]);
+  if (r.status === 0) renameSync(tmp, outputLocation);
   console.log(`\n✔ ${outputLocation}`);
 }

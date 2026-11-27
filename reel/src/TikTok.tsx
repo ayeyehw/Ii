@@ -2,6 +2,7 @@ import "@fontsource-variable/figtree/wght.css";
 import React, { useEffect, useState } from "react";
 import {
   AbsoluteFill,
+  Audio,
   Easing,
   Img,
   OffthreadVideo,
@@ -16,6 +17,7 @@ import {
   useVideoConfig,
 } from "remotion";
 import { Lang, PHONE, TT } from "./copy";
+import TIMING from "../public/voice/timing.json";
 
 const BG = "#08090A";
 const FG = "#EDEFEA";
@@ -24,18 +26,26 @@ const GREEN = "#3FA37C";
 const WA = "#25D366";
 const FONT = '"Figtree Variable", "Noto Color Emoji", system-ui, sans-serif';
 
-// Beat grid: cuts land every 14 frames (~128 bpm at 30 fps) so music lines up easily.
-const T = {
-  hook: [0, 42],
-  then: [42, 30],
-  cuts: [72, 84],
-  count: [156, 72],
-  logo: [228, 48],
-  more: [276, 62],
-  question: [338, 56],
-  cta: [394, 96],
-} as const;
-export const TIKTOK_FRAMES = 490;
+// Minimum length of each scene (frames, 30 fps). With voice, a scene grows to fit its line.
+const BASE = { hook: 42, then: 30, cuts: 84, count: 72, logo: 48, more: 62, question: 56, cta: 96 } as const;
+type Key = keyof typeof BASE;
+const ORDER: Key[] = ["hook", "then", "cuts", "count", "logo", "more", "question", "cta"];
+const VOICE_LEAD = 3; // frames before the voice starts in each scene
+const VOICE_PAD = 0.3; // seconds of breathing room after each line
+
+export const timeline = (lang: Lang, voice: boolean) => {
+  const secs = (TIMING as Record<string, Record<string, number>>)[lang] || {};
+  const T = {} as Record<Key, readonly [number, number]>;
+  let at = 0;
+  for (const k of ORDER) {
+    const v = voice && secs[k] ? Math.ceil((secs[k] + VOICE_PAD) * 30) + VOICE_LEAD : 0;
+    // "more" shows the words first, then Akiba slams in once the line is said
+    const dur = k === "more" && v ? v + 24 : Math.max(BASE[k], v);
+    T[k] = [at, dur] as const;
+    at += dur;
+  }
+  return { T, total: at, voiceFrames: (k: Key) => (voice && secs[k] ? Math.ceil(secs[k] * 30) : 0) };
+};
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 
@@ -118,8 +128,11 @@ const Glow: React.FC<{ color: string; y?: number }> = ({ color, y = 50 }) => (
   <AbsoluteFill style={{ background: `radial-gradient(70% 45% at 50% ${y}%, ${color}, rgba(8,9,10,0) 70%)` }} />
 );
 
-export const TikTok: React.FC<{ lang: Lang }> = ({ lang }) => {
+export const TikTok: React.FC<{ lang: Lang; voice?: boolean }> = ({ lang, voice = true }) => {
   const c = TT[lang];
+  const { T, voiceFrames } = timeline(lang, voice);
+  const slamAt = Math.max(20, VOICE_LEAD + voiceFrames("more") + 2);
+  const countHit = T.count[0] + 40;
   const [handle] = useState(() => delayRender("font"));
   useEffect(() => {
     document.fonts.load(`800 80px "Figtree Variable"`).then(() => continueRender(handle));
@@ -145,7 +158,7 @@ export const TikTok: React.FC<{ lang: Lang }> = ({ lang }) => {
 
       {/* 3. Rapid cuts of the real pieces */}
       <Seq at={T.cuts}>
-        <Cuts />
+        <Cuts dur={T.cuts[1]} />
       </Seq>
 
       {/* 4. Counter */}
@@ -160,7 +173,7 @@ export const TikTok: React.FC<{ lang: Lang }> = ({ lang }) => {
 
       {/* 6. Akiba slam */}
       <Seq at={T.more}>
-        <More lang={lang} />
+        <More lang={lang} slamAt={slamAt} />
       </Seq>
 
       {/* 7. Question */}
@@ -176,7 +189,38 @@ export const TikTok: React.FC<{ lang: Lang }> = ({ lang }) => {
         <Cta lang={lang} />
       </Seq>
 
-      {[T.cuts[0], T.count[0], T.logo[0], T.more[0] + 20, T.question[0], T.cta[0]].map((at) => (
+      {/* Voice-over, one line per scene */}
+      {voice &&
+        ORDER.filter((k) => voiceFrames(k)).map((k) => (
+          <Sequence key={k} from={T[k][0] + VOICE_LEAD}>
+            <Audio src={staticFile(`voice/${lang}/${k}.mp3`)} volume={1} />
+          </Sequence>
+        ))}
+
+      {/* Sound effects */}
+      {[T.then[0], T.cuts[0], T.logo[0], T.question[0], T.cta[0]].map((at) => (
+        <Sequence key={`w${at}`} from={Math.max(0, at - 4)}>
+          <Audio src={staticFile("sfx/whoosh.mp3")} volume={0.3} />
+        </Sequence>
+      ))}
+      {[0, T.question[0] + 2, T.cta[0] + 2].map((at) => (
+        <Sequence key={`p${at}`} from={at}>
+          <Audio src={staticFile("sfx/pop.mp3")} volume={0.22} />
+        </Sequence>
+      ))}
+      <Sequence from={Math.max(0, countHit - 44)}>
+        <Audio src={staticFile("sfx/riser.mp3")} volume={0.18} />
+      </Sequence>
+      {[countHit, T.more[0] + slamAt].map((at) => (
+        <Sequence key={`i${at}`} from={at}>
+          <Audio src={staticFile("sfx/impact.mp3")} volume={0.28} />
+        </Sequence>
+      ))}
+      <Sequence from={T.cta[0] + 16}>
+        <Audio src={staticFile("sfx/ding.mp3")} volume={0.25} />
+      </Sequence>
+
+      {[T.cuts[0], T.count[0], T.logo[0], T.more[0] + slamAt, T.question[0], T.cta[0]].map((at) => (
         <Flash key={at} at={at} />
       ))}
     </AbsoluteFill>
@@ -206,9 +250,9 @@ const Arrow: React.FC = () => {
 
 const PIECES = ["cookie-brownie", "cappuccino", "bubble-waffle", "suco-laranja", "cheesecake-1", "rolinho"];
 
-const Cuts: React.FC = () => {
+const Cuts: React.FC<{ dur: number }> = ({ dur }) => {
   const f = useCurrentFrame();
-  const per = 14;
+  const per = Math.floor(dur / PIECES.length);
   const i = Math.min(PIECES.length - 1, Math.floor(f / per));
   const local = f - i * per;
   const z = interpolate(local, [0, per], [1.22, 1.06], { ...clamp, easing: Easing.out(Easing.cubic) });
@@ -277,15 +321,15 @@ const LogoScene: React.FC<{ lang: Lang }> = ({ lang }) => {
   );
 };
 
-const More: React.FC<{ lang: Lang }> = ({ lang }) => {
+const More: React.FC<{ lang: Lang; slamAt: number }> = ({ lang, slamAt }) => {
   const c = TT[lang];
   const f = useCurrentFrame();
-  const slam = interpolate(f, [20, 26], [1.6, 1], { ...clamp, easing: Easing.in(Easing.quad) });
-  const o = interpolate(f, [20, 22], [0, 1], clamp);
-  const shake = useShake(26, 30);
+  const slam = interpolate(f, [slamAt, slamAt + 6], [1.6, 1], { ...clamp, easing: Easing.in(Easing.quad) });
+  const o = interpolate(f, [slamAt, slamAt + 2], [0, 1], clamp);
+  const shake = useShake(slamAt + 6, 30);
   return (
     <AbsoluteFill style={{ transform: shake }}>
-      {f < 22 ? (
+      {f < slamAt + 2 ? (
         <AbsoluteFill style={{ justifyContent: "center", padding: "0 70px" }}>
           <PopWords lines={c.more} size={124} highlight={1} gap={3} />
         </AbsoluteFill>
