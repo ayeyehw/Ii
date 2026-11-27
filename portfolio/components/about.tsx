@@ -13,17 +13,24 @@ const About = () => {
   return (
     <>
       <section id="sobre-mi" data-tint="steel" className="py-28 lg:py-40">
-        <div className="wrap grid items-center gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
-          <div data-reveal className="relative mx-auto w-[min(100%,420px)]">
-            <div className="focusable overflow-hidden rounded-[28px]" tabIndex={0}>
-              <img src={PHOTO} alt={NAME} className="aspect-[4/5] w-full object-cover" />
+        <div className="wrap grid items-start gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+          {PHOTO ? (
+            <div data-reveal className="relative mx-auto w-[min(100%,420px)]">
+              <div className="focusable overflow-hidden rounded-[28px]" tabIndex={0}>
+                <img src={PHOTO} alt={NAME} className="aspect-[4/5] w-full object-cover" />
+              </div>
             </div>
-          </div>
+          ) : (
+            <div>
+              <p data-reveal className="kicker">{t(A.kicker)}</p>
+              <h2 data-reveal className="display text-[clamp(2.2rem,5vw,4.4rem)]">{t(A.title)}</h2>
+            </div>
+          )}
           <div>
-            <p data-reveal className="kicker">{t(A.kicker)}</p>
-            <h2 data-reveal className="display text-[clamp(2.2rem,5vw,4.4rem)]">{t(A.title)}</h2>
+            {PHOTO && <p data-reveal className="kicker">{t(A.kicker)}</p>}
+            {PHOTO && <h2 data-reveal className="display text-[clamp(2.2rem,5vw,4.4rem)]">{t(A.title)}</h2>}
             {A.text[lang].map((p, i) => (
-              <p key={i} data-reveal className={`mt-6 max-w-xl leading-relaxed ${i === 0 ? "text-[21px]" : "text-[17px] text-fg/65"}`}>{p}</p>
+              <p key={i} data-reveal className={`${i === 0 && !PHOTO ? "lg:mt-0" : ""} mt-6 max-w-xl leading-relaxed ${i === 0 ? "text-[21px]" : "text-[17px] text-fg/65"}`}>{p}</p>
             ))}
             <dl className="mt-10 grid gap-3 sm:grid-cols-3">
               {A.facts.map((f) => (

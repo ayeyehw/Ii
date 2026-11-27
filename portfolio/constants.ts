@@ -10,13 +10,11 @@ export const EMAIL = "alejandrosanchezcanoh@gmail.com";
 // Número de WhatsApp con código de país, solo dígitos (ej. "5535999998888").
 // Si lo dejas vacío, los botones de WhatsApp abren el correo.
 export const WHATSAPP = "56973662392";
-export const PHOTO = "/me/foto.svg";
+// Ruta de tu foto (ej. "/me/foto.jpg"). Vacío = la sección "Sobre mí" se muestra sin foto.
+export const PHOTO = "";
 
-export const SOCIAL = [
-  { label: "Instagram", href: "https://www.instagram.com/tu-usuario/" },
-  { label: "Behance", href: "https://www.behance.net/tu-usuario" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/tu-usuario/" },
-];
+// Agrega aquí tus redes cuando las tengas, ej. { label: "Instagram", href: "https://www.instagram.com/tu-usuario/" }
+export const SOCIAL: { label: string; href: string }[] = [];
 
 export const COPY = {
   meta: {
@@ -51,7 +49,7 @@ export const COPY = {
   } as T,
 
   hero: {
-    status: { es: "Disponible para proyectos en 2027", pt: "Disponível para projetos em 2027", en: "Booking projects for 2027" } as T,
+    status: { es: "Aceptando nuevos clientes", pt: "Aceitando novos clientes", en: "Taking on new clients" } as T,
     lines: {
       es: ["Diseño marcas", "que se quedan", "en la cabeza."],
       pt: ["Desenho marcas", "que ficam", "na cabeça."],
