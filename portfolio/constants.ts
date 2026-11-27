@@ -371,3 +371,65 @@ export const BRANDS: Brand[] = [
     accent: "blue",
   },
 ];
+
+// ====== "TU MARCA CONMIGO": RESTAURANTE CONCEPTUAL ======
+// Marca de ejemplo para mostrar un sistema completo aplicado. Las piezas son provisionales:
+// cuando tengas tu diseño, pon la imagen en /public/concept/ y escribe la ruta en "image".
+export type PieceId = "logo" | "banner" | "post" | "sign" | "menuBoard" | "placemat" | "tent" | "carta" | "box" | "bag" | "cup";
+
+export const CONCEPT = {
+  name: "BRASA",
+  tagline: "Smash Burgers",
+  colors: { red: "#D9381E", mustard: "#F2A71B", ink: "#161412", cream: "#FFF3DF", kraft: "#C99A5B" },
+  // Rutas opcionales a tus diseños reales (vacío = pieza provisional dibujada automáticamente).
+  images: {
+    logo: "", banner: "", post: "", sign: "", menuBoard: "", placemat: "", tent: "", carta: "", box: "", bag: "", cup: "",
+  } as Record<PieceId, string>,
+  ui: {
+    tile: { es: "Tu marca conmigo", pt: "Sua marca comigo", en: "Your brand with me" } as T,
+    badge: { es: "Marca conceptual · piezas provisionales", pt: "Marca conceitual · peças provisórias", en: "Concept brand · placeholder pieces" } as T,
+    intro: {
+      es: "Así se vería tu marca cuando trabajamos juntos: un sistema completo, del logo a la bolsa para llevar.",
+      pt: "Assim ficaria a sua marca quando trabalhamos juntos: um sistema completo, do logo à sacola para viagem.",
+      en: "This is how your brand looks when we work together: a complete system, from the logo to the takeaway bag.",
+    } as T,
+    steps: {
+      logo: { es: "Logo", pt: "Logo", en: "Logo" } as T,
+      banner: { es: "Banner", pt: "Banner", en: "Banner" } as T,
+      post: { es: "Redes sociales", pt: "Redes sociais", en: "Social media" } as T,
+    },
+    next: { es: "Siguiente", pt: "Próximo", en: "Next" } as T,
+    back: { es: "Atrás", pt: "Voltar", en: "Back" } as T,
+    enter: { es: "Entrar al restaurante", pt: "Entrar no restaurante", en: "Step inside the restaurant" } as T,
+    loading: { es: "Preparando el restaurante…", pt: "Preparando o restaurante…", en: "Setting up the restaurant…" } as T,
+    overview: { es: "Vista general", pt: "Visão geral", en: "Overview" } as T,
+    hint: {
+      es: "Toca un punto para acercarte · arrastra para girar",
+      pt: "Toque num ponto para se aproximar · arraste para girar",
+      en: "Tap a point to zoom in · drag to rotate",
+    } as T,
+    close: { es: "Cerrar", pt: "Fechar", en: "Close" } as T,
+    cta: { es: "Quiero esto para mi negocio", pt: "Quero isso para o meu negócio", en: "I want this for my business" } as T,
+    ctaMsg: {
+      es: "¡Hola Alejandro! Vi el restaurante conceptual de tu portafolio y quiero algo así para mi negocio.",
+      pt: "Oi Alejandro! Vi o restaurante conceitual do seu portfólio e quero algo assim para o meu negócio.",
+      en: "Hi Alejandro! I saw the concept restaurant in your portfolio and I'd like something like it for my business.",
+    } as T,
+    noWebgl: {
+      es: "Tu navegador no puede mostrar el 3D. Estas son las piezas:",
+      pt: "Seu navegador não consegue mostrar o 3D. Estas são as peças:",
+      en: "Your browser can't show the 3D view. Here are the pieces:",
+    } as T,
+  },
+  // Puntos del restaurante 3D (en orden de recorrido)
+  hotspots: [
+    { id: "sign", label: { es: "Letrero exterior", pt: "Letreiro externo", en: "Exterior sign" }, note: { es: "El logo en la fachada, visible desde la calle.", pt: "O logo na fachada, visível da rua.", en: "The logo on the façade, visible from the street." } },
+    { id: "menuBoard", label: { es: "Pantalla de menú", pt: "Tela do cardápio", en: "Menu screen" }, note: { es: "Menú digital detrás del mostrador, fácil de leer de lejos.", pt: "Cardápio digital atrás do balcão, fácil de ler de longe.", en: "Digital menu behind the counter, easy to read from afar." } },
+    { id: "placemat", label: { es: "Individual", pt: "Jogo americano", en: "Placemat" }, note: { es: "Individual de papel con el patrón de la marca.", pt: "Jogo americano de papel com a estampa da marca.", en: "Paper placemat with the brand pattern." } },
+    { id: "tent", label: { es: "Estandarte de mesa", pt: "Display de mesa", en: "Table tent" }, note: { es: "Promoción del combo del día en cada mesa.", pt: "Promoção do combo do dia em cada mesa.", en: "Combo-of-the-day promo on every table." } },
+    { id: "carta", label: { es: "Carta impresa", pt: "Cardápio impresso", en: "Printed menu" }, note: { es: "Carta con la misma tipografía y colores.", pt: "Cardápio com a mesma tipografia e cores.", en: "Menu with the same type and colors." } },
+    { id: "box", label: { es: "Caja de hamburguesa", pt: "Caixa de hambúrguer", en: "Burger box" }, note: { es: "Caja kraft con el logo estampado.", pt: "Caixa kraft com o logo estampado.", en: "Kraft box with the stamped logo." } },
+    { id: "bag", label: { es: "Bolsa para llevar", pt: "Sacola para viagem", en: "Takeaway bag" }, note: { es: "Bolsa de delivery que se reconoce en la calle.", pt: "Sacola de delivery reconhecível na rua.", en: "Delivery bag people recognize on the street." } },
+    { id: "cup", label: { es: "Vaso", pt: "Copo", en: "Cup" }, note: { es: "Vaso con la marca alrededor.", pt: "Copo com a marca ao redor.", en: "Cup wrapped in the brand." } },
+  ] as { id: PieceId; label: T; note: T }[],
+};

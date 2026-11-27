@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { BRANDS, COPY, whatsappHref } from "../constants";
+import { BRANDS, CONCEPT, COPY } from "../constants";
+import Concept from "./concept";
 import { useLang, useT } from "../lib/lang";
 import { gsap, prefersReducedMotion } from "../lib/motion";
 
@@ -15,6 +16,7 @@ const Library = () => {
   const { lang } = useLang();
   const [focus, setFocus] = useState(0);
   const [open, setOpen] = useState<number | null>(null);
+  const [concept, setConcept] = useState(false);
   const section = useRef<HTMLElement>(null);
   const info = useRef<HTMLDivElement>(null);
   const inView = useRef(false);
@@ -101,15 +103,15 @@ const Library = () => {
                 <img src={b.cover} alt={b.name} className="aspect-[4/5] w-full object-cover" />
               </button>
             ))}
-            <a
-              href={whatsappHref(lang)}
-              target="_blank"
-              rel="noreferrer"
-              className="focusable glass flex aspect-[4/5] w-[28%] max-w-[170px] flex-col items-center justify-center gap-2 rounded-2xl p-3 text-center text-[14px] text-fg/80 max-sm:hidden"
+            <button
+              onClick={() => setConcept(true)}
+              className="focusable group relative flex aspect-[4/5] w-[28%] max-w-[170px] flex-col items-center justify-center gap-2 overflow-hidden rounded-2xl p-3 text-center text-[14px] text-fg"
+              style={{ background: "radial-gradient(120% 90% at 50% 0%, rgba(47,107,255,.55), rgba(15,77,58,.45) 55%, rgba(16,18,20,.9) 100%)" }}
             >
-              <span className="text-3xl font-light">+</span>
-              {t(W.yours)}
-            </a>
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-fg/10 text-2xl font-light transition-transform duration-500 group-hover:scale-110">+</span>
+              <span className="font-semibold leading-tight">{t(CONCEPT.ui.tile)}</span>
+              <span className="text-[11px] uppercase tracking-wider text-fg/60">3D</span>
+            </button>
           </div>
           <p className="mt-5 hidden text-[14px] text-mute md:block">{t(W.hint)}</p>
         </div>
@@ -159,6 +161,7 @@ const Library = () => {
       </div>
 
       {open !== null && <Detail i={open} onClose={() => setOpen(null)} />}
+      {concept && <Concept onClose={() => setConcept(false)} />}
     </section>
   );
 };
