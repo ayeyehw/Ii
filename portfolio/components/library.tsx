@@ -65,15 +65,15 @@ const Library = () => {
     <section id="trabajo" ref={section} data-tint={brand.accent} className="relative overflow-hidden py-28 lg:min-h-[100svh] lg:py-0">
       {/* Backdrop art */}
       <div aria-hidden className="absolute inset-0">
-        {BRANDS.map((b, i) => (
-          <img
-            key={b.name}
-            src={b.cover}
-            alt=""
-            className="absolute right-0 top-0 h-full w-full object-cover transition-all duration-[1.2s] ease-out lg:w-[62%]"
-            style={{ opacity: i === focus ? 0.55 : 0, transform: i === focus ? "scale(1)" : "scale(1.06)" }}
-          />
-        ))}
+        {BRANDS.map((b, i) => {
+          const style = { opacity: i === focus ? (b.video ? 0.7 : 0.55) : 0, transform: i === focus ? "scale(1)" : "scale(1.06)" };
+          const cls = "absolute right-0 top-0 h-full w-full object-cover transition-all duration-[1.2s] ease-out lg:w-[62%]";
+          return b.video ? (
+            <BackdropVideo key={b.name} src={b.video} poster={b.poster} active={i === focus} className={cls} style={style} />
+          ) : (
+            <img key={b.name} src={b.cover} alt="" className={cls} style={style} />
+          );
+        })}
         <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, #08090A 0%, rgba(8,9,10,.92) 38%, rgba(8,9,10,.35) 70%, rgba(8,9,10,.6) 100%)" }} />
         <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, #08090A 0%, rgba(8,9,10,0) 45%, rgba(8,9,10,0) 80%, #08090A 100%)" }} />
       </div>
@@ -163,6 +163,23 @@ const Library = () => {
   );
 };
 
+/** Muted looping video that only plays while its brand is selected (and never with reduced motion). */
+const BackdropVideo = ({ src, poster, active, className, style }: { src: string; poster?: string; active: boolean; className: string; style: React.CSSProperties }) => {
+  const ref = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+    if (active && !prefersReducedMotion()) v.play().catch(() => {});
+    else v.pause();
+  }, [active]);
+  return (
+    <video ref={ref} poster={poster} muted loop playsInline preload="metadata" className={className} style={style}>
+      <source src={src.replace(/\.mp4$/, ".webm")} type="video/webm" />
+      <source src={src} type="video/mp4" />
+    </video>
+  );
+};
+
 const Detail = ({ i, onClose }: { i: number; onClose: () => void }) => {
   const t = useT();
   const { lang } = useLang();
@@ -195,7 +212,21 @@ const Detail = ({ i, onClose }: { i: number; onClose: () => void }) => {
           </dl>
         )}
         {/* Every piece shown whole, at its own proportions */}
-        <div className={`mt-8 gap-4 ${b.gallery.length > 1 ? "columns-1 sm:columns-2 lg:columns-3" : "max-w-3xl"}`}>
+        <div className={`mt-8 gap-4 ${b.gallery.length + (b.video ? 1 : 0) > 1 ? "columns-1 sm:columns-2 lg:columns-3" : "max-w-3xl"}`}>
+          {b.video && (
+            <video
+              poster={b.poster}
+              muted
+              loop
+              playsInline
+              autoPlay={!prefersReducedMotion()}
+              controls={prefersReducedMotion()}
+              className="dt-img mb-4 w-full break-inside-avoid rounded-2xl"
+            >
+              <source src={b.video.replace(/\.mp4$/, ".webm")} type="video/webm" />
+              <source src={b.video} type="video/mp4" />
+            </video>
+          )}
           {(b.gallery.length ? b.gallery : [b.cover]).map((g, k) => (
             <img key={g} src={g} alt={`${b.name}: ${k + 1}`} loading="lazy" className="dt-img mb-4 w-full break-inside-avoid rounded-2xl" />
           ))}

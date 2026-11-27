@@ -298,6 +298,9 @@ export interface Brand {
   gallery: string[];
   link?: string;
   linkLabel?: string;
+  // Video opcional (mp4 sin audio): se reproduce de fondo al elegir la marca y en su ventana.
+  video?: string;
+  poster?: string;
   accent: "blue" | "green" | "steel";
   // Resultados reales (opcional): se muestran grandes junto a la marca.
   results?: { value: T; label: T }[];
@@ -334,7 +337,17 @@ export const BRANDS: Brand[] = [
       },
     ],
     cover: "/work/mimi/cover.webp",
-    gallery: ["/work/mimi/cappuccino.webp", "/work/mimi/cheesecake-1.webp", "/work/mimi/bubble-waffle.webp", "/work/mimi/logo.webp"],
+    gallery: [
+      "/work/mimi/cookie-brownie.webp",
+      "/work/mimi/cappuccino.webp",
+      "/work/mimi/rolinho.webp",
+      "/work/mimi/cheesecake-1.webp",
+      "/work/mimi/bubble-waffle.webp",
+      "/work/mimi/suco-laranja.webp",
+      "/work/mimi/logo.webp",
+    ],
+    video: "/work/mimi/rolinho.mp4",
+    poster: "/work/mimi/rolinho-poster.webp",
     link: "https://www.instagram.com/mimicafe.br/",
     linkLabel: "@mimicafe.br",
     accent: "steel",
