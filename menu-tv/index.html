@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mimi Café · Menu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,600;1,9..144,700&family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FEF1E1; --card: #FFF8EF; --ink: #4B2216; --muted: #8C6656; --rose: #C98A82; --rose2: #E5B7AE;
+    --pink: #E0607E; --line: rgba(75,34,22,.14); --gold: #E4A54B;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { height: 100%; background: #2a1810; overflow: hidden; }
+  body { font-family: Nunito, "Segoe UI", system-ui, sans-serif; color: var(--ink); }
+  .serif { font-family: Fraunces, Georgia, serif; font-style: italic; }
+  #stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; transform-origin: 0 0; background: var(--bg); overflow: hidden; }
+  /* soft moving background */
+  #stage::before { content: ""; position: absolute; inset: -20%; background:
+      radial-gradient(40% 40% at 20% 20%, rgba(229,183,174,.45), transparent 70%),
+      radial-gradient(35% 40% at 85% 80%, rgba(228,165,75,.18), transparent 70%);
+    animation: drift 24s ease-in-out infinite alternate; }
+  @keyframes drift { to { transform: translate(4%, -3%) rotate(3deg); } }
+  .hearts { position: absolute; inset: 0; pointer-events: none; }
+  .hearts span { position: absolute; color: var(--rose2); font-size: 34px; animation: float linear infinite; opacity: .55; }
+  @keyframes float { from { transform: translateY(1150px) rotate(0); } to { transform: translateY(-120px) rotate(40deg); } }
+
+  header { position: absolute; left: 70px; right: 70px; top: 34px; height: 110px; display: flex; align-items: center; justify-content: space-between; z-index: 5; }
+  header img { height: 96px; }
+  .clock { text-align: right; font-weight: 800; }
+  .clock b { display: block; font-size: 46px; line-height: 1; font-variant-numeric: tabular-nums; }
+  .clock span { font-size: 20px; color: var(--muted); }
+
+  footer { position: absolute; left: 0; right: 0; bottom: 0; height: 74px; background: linear-gradient(90deg, var(--rose), #D9A39B); color: #fff; display: flex; align-items: center; overflow: hidden; z-index: 5; }
+  .ticker { display: flex; gap: 70px; white-space: nowrap; font-size: 26px; font-weight: 800; animation: tick 40s linear infinite; padding-left: 70px; }
+  .ticker span::before { content: "♥"; margin-right: 22px; opacity: .8; }
+  @keyframes tick { to { transform: translateX(-50%); } }
+  .progress { position: absolute; left: 0; bottom: 74px; height: 6px; background: var(--pink); width: 0; z-index: 6; }
+
+  .screen { position: absolute; left: 0; right: 0; top: 150px; bottom: 74px; padding: 20px 70px 40px; opacity: 0; transition: opacity .9s ease, transform .9s cubic-bezier(.2,.8,.2,1), filter .9s; transform: translateY(40px) scale(.98); filter: blur(10px); }
+  .screen.on { opacity: 1; transform: none; filter: none; }
+  .screen.off { opacity: 0; transform: translateY(-30px) scale(1.01); filter: blur(10px); }
+
+  /* category */
+  .cat { display: grid; grid-template-columns: 640px 1fr; gap: 60px; height: 100%; }
+  .hero { position: relative; display: flex; flex-direction: column; justify-content: center; }
+  .pill-title { display: inline-block; align-self: flex-start; background: linear-gradient(90deg, var(--rose), var(--rose2)); color: #fff; padding: 8px 46px 14px 34px; border-radius: 60px; font-size: 84px; line-height: 1.1; box-shadow: 0 14px 30px -14px rgba(150,80,70,.6); }
+  .hero .sub { font-size: 30px; font-weight: 800; color: var(--muted); margin: 18px 0 0 10px; }
+  .hero .photo { position: relative; flex: 1; display: flex; align-items: center; justify-content: center; }
+  .hero .photo::before { content: ""; position: absolute; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(closest-side, #fff, rgba(255,255,255,0)); }
+  .hero .photo img { position: relative; max-width: 560px; max-height: 560px; object-fit: contain; filter: drop-shadow(0 30px 30px rgba(90,46,26,.25)); animation: bob 5s ease-in-out infinite; }
+  @keyframes bob { 50% { transform: translateY(-14px) rotate(-1.2deg); } }
+  .badge { position: absolute; top: 40px; right: 20px; background: var(--pink); color: #fff; font-weight: 900; font-size: 26px; padding: 14px 26px; border-radius: 40px; transform: rotate(8deg); box-shadow: 0 10px 24px -8px rgba(224,96,126,.6); }
+  .list { display: flex; flex-direction: column; justify-content: center; gap: 22px; }
+  .sec-name { font-size: 40px; color: var(--rose); margin: 6px 0 2px; }
+  .items { display: grid; gap: 4px 50px; }
+  .items.c2 { grid-template-columns: 1fr 1fr; }
+  .item { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 16px; padding: 9px 0; border-bottom: 2px dotted var(--line); opacity: 0; transform: translateX(40px); }
+  .on .item { animation: itemIn .7s cubic-bezier(.2,.8,.2,1) forwards; }
+  @keyframes itemIn { to { opacity: 1; transform: none; } }
+  .item .n { font-size: 34px; font-weight: 900; line-height: 1.15; }
+  .item .d { display: block; font-size: 22px; font-weight: 600; color: var(--muted); line-height: 1.25; margin-top: 2px; }
+  .item .p { font-size: 36px; font-weight: 900; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .item .p small { font-size: 22px; margin-right: 6px; color: var(--muted); }
+  .item.hot .n::after { content: "♥ mais pedido"; font-size: 18px; font-weight: 900; color: #fff; background: var(--pink); padding: 4px 12px; border-radius: 20px; margin-left: 14px; vertical-align: middle; }
+  .item.changed .p { color: var(--pink); animation: flash 1.2s ease 3; }
+  .item .old { font-size: 24px; color: var(--muted); text-decoration: line-through; margin-right: 12px; }
+  @keyframes flash { 50% { transform: scale(1.18); } }
+  .note { font-size: 20px; color: var(--muted); font-weight: 700; line-height: 1.4; }
+
+  /* explode */
+  .xp { display: grid; grid-template-columns: 600px 1fr; gap: 30px; height: 100%; align-items: center; }
+  .xp .kicker { font-size: 28px; font-weight: 900; color: var(--pink); letter-spacing: .06em; text-transform: uppercase; }
+  .xp h2 { font-size: 84px; line-height: 1; margin: 12px 0 14px; }
+  .xp .size { font-size: 30px; font-weight: 800; color: var(--muted); }
+  .bigprice { display: inline-flex; align-items: baseline; gap: 10px; margin: 26px 0 30px; background: var(--ink); color: #fff; padding: 18px 40px; border-radius: 60px; font-size: 64px; font-weight: 900; box-shadow: 0 20px 40px -20px rgba(75,34,22,.7); }
+  .bigprice small { font-size: 32px; opacity: .8; }
+  .xp svg { width: 100%; height: 820px; overflow: visible; }
+  .xp .layer { transition: transform 1.3s cubic-bezier(.3,1.3,.5,1); transition-delay: calc(var(--i) * 110ms); }
+  .xp.open .layer { transform: translateY(var(--dy)); }
+  .xp .lab { opacity: 0; transition: opacity .6s, transform .6s; transition-delay: calc(400ms + var(--i) * 140ms); }
+  .xp.open .lab { opacity: 1; }
+  .xp .lab text { font-family: Nunito, system-ui, sans-serif; font-weight: 900; fill: var(--ink); }
+  .xp .lab rect { fill: #fff; }
+  .ing { list-style: none; padding: 0; }
+  .ing li { display: flex; align-items: center; gap: 16px; font-size: 28px; font-weight: 800; padding: 8px 0; border-bottom: 2px dotted var(--line); opacity: 0; transform: translateX(30px); transition: all .6s cubic-bezier(.2,.8,.2,1); transition-delay: calc(900ms + var(--i) * 160ms); }
+  .ing li::before { content: "✓"; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--rose); color: #fff; font-size: 26px; flex: none; }
+  .xp.open .ing li { opacity: 1; transform: none; }
+  .ing-title { font-size: 36px; color: var(--rose); margin-bottom: 4px; }
+
+  /* favorites chart */
+  .fav { display: grid; grid-template-columns: 560px 1fr; gap: 70px; height: 100%; align-items: center; }
+  .fav h2 { font-size: 96px; line-height: 1.02; }
+  .fav p { font-size: 30px; color: var(--muted); font-weight: 700; margin-top: 20px; }
+  .bars { display: flex; flex-direction: column; gap: 30px; }
+  .bar { display: grid; grid-template-columns: 70px 1fr; align-items: center; gap: 20px; }
+  .bar .rank { font-size: 52px; font-weight: 900; color: var(--rose); }
+  .bar .name { font-size: 32px; font-weight: 900; margin-bottom: 8px; }
+  .bar .track { height: 44px; background: rgba(201,138,130,.18); border-radius: 30px; overflow: hidden; }
+  .bar .fill { height: 100%; width: 0; border-radius: 30px; background: linear-gradient(90deg, var(--rose), var(--pink)); display: flex; justify-content: flex-end; align-items: center; padding-right: 18px; color: #fff; font-weight: 900; font-size: 24px; transition: width 1.6s cubic-bezier(.2,.8,.2,1); }
+
+  /* promo */
+  .promo { display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; height: 100%; gap: 40px; }
+  .promo .tag { display: inline-block; background: var(--pink); color: #fff; font-weight: 900; font-size: 36px; padding: 14px 34px; border-radius: 40px; transform: rotate(-3deg); }
+  .promo h2 { font-size: 120px; line-height: 1; margin: 30px 0 20px; }
+  .promo .d { font-size: 34px; color: var(--muted); font-weight: 700; }
+  .promo .prices { display: flex; align-items: center; gap: 40px; margin-top: 50px; white-space: nowrap; }
+  .promo .from { font-size: 56px; font-weight: 800; color: var(--muted); position: relative; }
+  .promo .from::after { content: ""; position: absolute; left: -6px; right: -6px; top: 52%; height: 6px; background: var(--pink); transform: scaleX(0); transform-origin: left; transition: transform .6s ease .8s; border-radius: 4px; }
+  .on .promo .from::after, .promo.go .from::after { transform: scaleX(1); }
+  .promo .to { font-size: 120px; font-weight: 900; color: var(--ink); transform: scale(.3); opacity: 0; transition: all .8s cubic-bezier(.3,1.6,.5,1) 1.3s; }
+  .promo.go .to { transform: none; opacity: 1; }
+  .promo .photo { display: grid; place-items: center; position: relative; }
+  .promo .photo::before { content: ""; position: absolute; width: 620px; height: 620px; border-radius: 50%; background: var(--rose2); opacity: .5; }
+  .promo .photo img { position: relative; width: 600px; animation: bob 5s ease-in-out infinite; filter: drop-shadow(0 30px 30px rgba(90,46,26,.3)); }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="hearts" id="hearts"></div>
+  <header><img src="assets/logo.webp" alt="Mimi Café"><div class="clock"><b id="time">--:--</b><span id="hours"></span></div></header>
+  <div id="screens"></div>
+  <div class="progress" id="progress"></div>
+  <footer><div class="ticker" id="ticker"></div></footer>
+</div>
+
+<script src="data.js"></script>
+<script src="products.js"></script>
+<script>
+(() => {
+  const $ = (s, el = document) => el.querySelector(s);
+  const stage = $("#stage");
+  const DUR = { cat: 13000, explode: 15000, favorites: 10000, promo: 9000 };
+  let M = window.MENU;
+  let prevPrices = {}; // id/item -> price, to animate changes
+  let changed = new Set();
+
+  // ---- scale the 1920x1080 stage to any screen ----
+  const fit = () => {
+    const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = `scale(${s}) translate(-50%, -50%)`;
+    stage.style.left = "50%"; stage.style.top = "50%";
+    stage.style.transform = `translate(-50%, -50%) scale(${s})`;
+    stage.style.transformOrigin = "center";
+  };
+  addEventListener("resize", fit); fit();
+
+  // ---- ambient hearts ----
+  const hearts = $("#hearts");
+  for (let i = 0; i < 12; i++) {
+    const h = document.createElement("span");
+    h.textContent = "♥";
+    h.style.left = (Math.random() * 100) + "%";
+    h.style.fontSize = (18 + Math.random() * 30) + "px";
+    h.style.animationDuration = (18 + Math.random() * 22) + "s";
+    h.style.animationDelay = (-Math.random() * 30) + "s";
+    hearts.appendChild(h);
+  }
+
+  // ---- clock + ticker ----
+  const tickClock = () => { $("#time").textContent = new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" }); };
+  setInterval(tickClock, 10000); tickClock();
+  const renderBrand = () => {
+    $("#hours").textContent = M.brand.hours;
+    const parts = [M.brand.tagline, M.brand.address, M.brand.hours, "Siga " + M.brand.instagram];
+    $("#ticker").innerHTML = [...parts, ...parts].map((t) => `<span>${esc(t)}</span>`).join("");
+  };
+
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const money = (p) => p == null ? "consulte" : p.toFixed(2).replace(".", ",");
+  const priceHTML = (p, old) =>
+    (old != null && old !== p ? `<span class="old">R$ ${money(old)}</span>` : "") +
+    (p == null ? `<small>—</small>` : `<small>R$</small><span class="num" data-to="${p}">${money(p)}</span>`);
+
+  // count prices up when a screen appears
+  const countUp = (root) => root.querySelectorAll(".num").forEach((el, i) => {
+    const to = +el.dataset.to, t0 = performance.now() + 250 + i * 90, D = 900;
+    const step = (t) => {
+      const k = Math.min(1, Math.max(0, (t - t0) / D)), e = 1 - Math.pow(1 - k, 3);
+      el.textContent = money(Math.round(to * e * 100) / 100);
+      if (k < 1) requestAnimationFrame(step);
+    };
+    el.textContent = money(0); requestAnimationFrame(step);
+  });
+
+  // ---- screen builders ----
+  const buildCat = (s) => {
+    let k = 0;
+    const secs = s.sections.map((sec) => `
+      ${sec.name ? `<div class="sec-name serif">${esc(sec.name)}</div>` : ""}
+      <div class="items ${sec.cols === 2 ? "c2" : ""}">
+        ${sec.items.map((it) => {
+          const key = s.id + "/" + it.n, old = changed.has(key) ? prevPrices[key] : null;
+          return `<div class="item ${it.hot ? "hot" : ""} ${changed.has(key) ? "changed" : ""}" style="animation-delay:${200 + (k++) * 80}ms">
+            <div><span class="n">${esc(it.n)}</span>${it.d ? `<span class="d">${esc(it.d)}</span>` : ""}</div>
+            <div class="p">${priceHTML(it.p, old)}</div></div>`;
+        }).join("")}
+      </div>`).join("");
+    return `<div class="cat">
+      <div class="hero">
+        <div class="pill-title serif">${esc(s.title)}</div>
+        ${s.sub ? `<div class="sub">${esc(s.sub)}</div>` : ""}
+        <div class="photo"><img src="assets/${s.img}.webp" alt="">${s.badge ? `<div class="badge">${esc(s.badge)}</div>` : ""}</div>
+      </div>
+      <div class="list">${secs}${s.note ? `<p class="note">${esc(s.note)}</p>` : ""}</div>
+    </div>`;
+  };
+
+  const buildExplode = (s) => {
+    const P = window.PRODUCTS[s.product];
+    const FS = 44, CW = 23; // label font size and approx char width (svg units)
+    const LX = 70, RX = 530; // label columns, close to the product
+    const layers = P.layers.map((L, i) => `<g class="layer" style="--i:${i};--dy:${L.dy}px">${L.svg}</g>`).join("");
+    let minX = 0, maxX = 600;
+    const labels = P.layers.map((L, i) => {
+      const y = L.y + L.dy, right = L.side === "r";
+      const w = L.label.length * CW + 44;
+      const tx = right ? RX : LX;
+      if (right) maxX = Math.max(maxX, tx + w); else minX = Math.min(minX, tx - w);
+      return `<g class="lab" style="--i:${i}">
+        <line x1="${L.x}" y1="${y}" x2="${tx}" y2="${y}" stroke="#C98A82" stroke-width="4" stroke-dasharray="2 10" stroke-linecap="round"/>
+        <circle cx="${L.x}" cy="${y}" r="9" fill="#E0607E"/>
+        <rect x="${right ? tx : tx - w}" y="${y - 38}" width="${w}" height="62" rx="31" opacity=".95"/>
+        <text x="${right ? tx + 22 : tx - 22}" y="${y + 9}" text-anchor="${right ? "start" : "end"}" font-size="${FS}">${esc(L.label)}</text></g>`;
+    }).join("");
+    const minY = Math.min(...P.layers.map((L) => L.y + L.dy)) - 170, maxY = 975;
+    const vb = `${minX - 20} ${minY} ${maxX - minX + 40} ${maxY - minY}`;
+    return `<div class="xp">
+      <div>
+        <div class="kicker">Veja o que vai dentro</div>
+        <h2 class="serif">${esc(s.name)}</h2>
+        <div class="size">${esc(s.size)}</div>
+        <div class="bigprice"><small>R$</small><span class="num" data-to="${s.p}">${money(s.p)}</span></div>
+        <div class="ing-title serif">Ingredientes</div>
+        <ul class="ing">${P.ingredients.map((t, i) => `<li style="--i:${i}">${esc(t)}</li>`).join("")}</ul>
+      </div>
+      <svg viewBox="${vb}" preserveAspectRatio="xMidYMid meet" aria-label="${esc(s.name)}"><g>${layers}</g>${labels}</svg>
+    </div>`;
+  };
+
+  const buildFav = () => `<div class="fav">
+      <div><h2 class="serif">Os favoritos da semana</h2><p>O que todo mundo está pedindo no Mimi ♥</p></div>
+      <div class="bars">${M.favorites.map((f, i) => `
+        <div class="bar"><div class="rank">${i + 1}º</div>
+          <div><div class="name">${esc(f.name)}</div><div class="track"><div class="fill" data-w="${f.value}"><span>${f.value}%</span></div></div></div></div>`).join("")}
+      </div></div>`;
+
+  const buildPromo = () => {
+    const p = M.promo;
+    return `<div class="promo">
+      <div><span class="tag">${esc(p.title)}</span><h2 class="serif">${esc(p.name)}</h2><div class="d">${esc(p.desc)}</div>
+        <div class="prices"><span class="from">R$ ${money(p.from)}</span><span class="to">R$ ${money(p.to)}</span></div></div>
+      <div class="photo"><img src="assets/${p.img}.webp" alt=""></div></div>`;
+  };
+
+  // ---- playlist ordered by time of day ----
+  const playlist = () => {
+    const morning = new Date().getHours() < (M.brand.morningUntil || 12);
+    const list = M.screens.filter((s) => s.type !== "promo" || M.promo);
+    const score = (s) => (s.when === "sempre" ? 1 : (s.when === "manha") === morning ? 0 : 2);
+    return list.map((s, i) => [s, i]).sort((a, b) => score(a[0]) - score(b[0]) || a[1] - b[1]).map((x) => x[0]);
+  };
+
+  // ---- hot reload of data.js: price changes animate on the next loop ----
+  const snapshot = () => {
+    const out = {};
+    M.screens.forEach((s) => (s.sections || []).forEach((sec) => sec.items.forEach((it) => (out[s.id + "/" + it.n] = it.p))));
+    return out;
+  };
+  const reloadData = () => new Promise((res) => {
+    const before = snapshot();
+    const sc = document.createElement("script");
+    sc.src = "data.js?t=" + Date.now();
+    sc.onload = () => {
+      M = window.MENU;
+      const after = snapshot();
+      changed = new Set(Object.keys(after).filter((k) => k in before && before[k] !== after[k]));
+      prevPrices = before;
+      renderBrand();
+      sc.remove(); res();
+    };
+    sc.onerror = () => { sc.remove(); res(); };
+    document.body.appendChild(sc);
+  });
+
+  // ---- player ----
+  const host = $("#screens"), bar = $("#progress");
+  let queue = [], current = null;
+  const only = new URLSearchParams(location.search).get("screen"); // ?screen=x-shake para probar una sola
+
+  const show = async () => {
+    if (!queue.length) { await reloadData(); queue = playlist(); if (only) queue = queue.filter((s) => s.id === only); }
+    const s = queue.shift();
+    const el = document.createElement("section");
+    el.className = "screen";
+    el.innerHTML = s.type === "cat" ? buildCat(s) : s.type === "explode" ? buildExplode(s) : s.type === "favorites" ? buildFav() : buildPromo();
+    host.appendChild(el);
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      el.classList.add("on");
+      if (current) { const old = current; old.classList.remove("on"); old.classList.add("off"); setTimeout(() => old.remove(), 1000); }
+      current = el;
+      countUp(el);
+      if (s.type === "explode") { const x = $(".xp", el); setTimeout(() => x.classList.add("open"), 1600); setTimeout(() => x.classList.remove("open"), DUR.explode - 2600); }
+      if (s.type === "favorites") setTimeout(() => el.querySelectorAll(".fill").forEach((f) => (f.style.width = f.dataset.w + "%")), 500);
+      if (s.type === "promo") $(".promo", el).classList.add("go");
+    }));
+    const d = DUR[s.type] || 10000;
+    bar.style.transition = "none"; bar.style.width = "0";
+    requestAnimationFrame(() => requestAnimationFrame(() => { bar.style.transition = `width ${d}ms linear`; bar.style.width = "100%"; }));
+    setTimeout(show, d);
+  };
+
+  renderBrand();
+  prevPrices = snapshot();
+  show();
+})();
+</script>
+</body>
+</html>
