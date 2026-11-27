@@ -195,7 +195,7 @@ const MimiScene: React.FC<{ lang: Lang }> = ({ lang }) => {
   const c = COPY[lang];
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const count = Math.round(interpolate(f, [24, 80], [0, 7000], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) }));
+  const count = Math.round(interpolate(f, [24, 80], [0, 7800], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) }));
   const countText = lang === "en" ? count.toLocaleString("en-US") : count.toLocaleString("de-DE");
   const dim = interpolate(f, [100, 130], [0.62, 0.22], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const cards = ["cookie-brownie", "cappuccino", "bubble-waffle"];

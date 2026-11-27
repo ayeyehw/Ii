@@ -278,7 +278,7 @@ const Counter: React.FC<{ lang: Lang }> = ({ lang }) => {
   const c = TT[lang];
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const n = Math.round(interpolate(f, [4, 40], [0, 7000], { ...clamp, easing: Easing.out(Easing.quad) }));
+  const n = Math.round(interpolate(f, [4, 40], [0, 7800], { ...clamp, easing: Easing.out(Easing.quad) }));
   const text = lang === "en" ? n.toLocaleString("en-US") : n.toLocaleString("de-DE");
   const bump = spring({ frame: f - 40, fps, config: { damping: 8, stiffness: 240 } });
   const shake = useShake(40, 26);

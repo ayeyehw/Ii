@@ -313,9 +313,9 @@ export const BRANDS: Brand[] = [
     year: "2025",
     category: { es: "Cafetería · Itajubá, Brasil", pt: "Cafeteria · Itajubá, Brasil", en: "Café · Itajubá, Brazil" },
     summary: {
-      es: "Mi primer proyecto fue la cafetería de mi familia. Creé a Mimi, el personaje que es la cara de la marca, y todo su sistema visual. Hoy su perfil recibe 7.000 visitas al mes, tiene una clientela consolidada y sigo a cargo de su marketing y estrategia.",
-      pt: "Meu primeiro projeto foi a cafeteria da minha família. Criei a Mimi, a personagem que é o rosto da marca, e todo o sistema visual. Hoje o perfil recebe 7.000 visitas por mês, tem uma clientela consolidada e eu sigo cuidando do marketing e da estratégia.",
-      en: "My first project was my family's café. I created Mimi, the character who is the face of the brand, and its whole visual system. Today its profile gets 7,000 visits a month, it has a loyal customer base, and I still run its marketing and strategy.",
+      es: "Mi primer proyecto fue la cafetería de mi familia. Creé a Mimi, el personaje que es la cara de la marca, y todo su sistema visual. Hoy su contenido suma 7.800 visualizaciones al mes, tiene una clientela consolidada y sigo a cargo de su marketing y estrategia.",
+      pt: "Meu primeiro projeto foi a cafeteria da minha família. Criei a Mimi, a personagem que é o rosto da marca, e todo o sistema visual. Hoje o conteúdo soma 7.800 visualizações por mês, tem uma clientela consolidada e eu sigo cuidando do marketing e da estratégia.",
+      en: "My first project was my family's café. I created Mimi, the character who is the face of the brand, and its whole visual system. Today its content gets 7,800 views a month, it has a loyal customer base, and I still run its marketing and strategy.",
     },
     scope: {
       es: ["Personaje", "Logotipo", "Piezas para redes", "Marketing", "Estrategia de negocio"],
@@ -324,8 +324,8 @@ export const BRANDS: Brand[] = [
     },
     results: [
       {
-        value: { es: "7.000", pt: "7.000", en: "7,000" },
-        label: { es: "visitas al perfil cada mes", pt: "visitas ao perfil por mês", en: "profile visits every month" },
+        value: { es: "7.800", pt: "7.800", en: "7,800" },
+        label: { es: "visualizaciones al mes en Instagram", pt: "visualizações por mês no Instagram", en: "Instagram views every month" },
       },
       {
         value: { es: "Fidelizados", pt: "Fidelizados", en: "Loyal" },

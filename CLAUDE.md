@@ -10,7 +10,7 @@
 - Contacto (ya es público en el sitio): ver `EMAIL` y `WHATSAPP` en `portfolio/constants.ts`.
 
 ## Proyectos reales (en el portafolio)
-- **Mimi Café** (Itajubá, Brasil): **es el negocio de su mamá** → contarlo como "mi primer proyecto fue la cafetería de mi familia". No presentarlo como cliente externo. Resultado: **7.000 visitas al perfil/mes**; él lleva su marketing (no cobra). Tiene video de fondo (rolinho de canela).
+- **Mimi Café** (Itajubá, Brasil): **es el negocio de su mamá** → contarlo como "mi primer proyecto fue la cafetería de mi familia". No presentarlo como cliente externo. Resultado: **7.800 visualizaciones/mes en Instagram** (captura del panel: "7,8 mil visualizaciones en los últimos 30 días"; son VISUALIZACIONES, no visitas al perfil); él lleva su marketing (no cobra). Tiene video de fondo (rolinho de canela).
   - NO usar la pieza "cheesecake 2" (personaje feo + error "CABA MORDIDA").
 - **Akiba Cookies**: marca de cookies con gato pastelero. Solo hay 1 imagen (logo). Falta año y más piezas.
 - Pendiente: **Macarons Café** (no se pudo descargar su imagen; pedir que la adjunte en el chat).
@@ -34,7 +34,7 @@
   - Componentes: `components/` (header, hero, library [marcas], services, process, about [+FAQ], footer, background, boot, concept, float-wa).
   - Imágenes: `portfolio/public/work/<marca>/`.
 - `reel/` → video promocional con **Remotion** (vertical 1080×1920, ES/PT/EN). Trata de **lo que hace Alejandro** (Mimi, Akiba, servicios, precios, WhatsApp), **no** del restaurante 3D.
-  - Dos composiciones: **`TikTok`** (la principal: gancho "Le hice la marca a la cafetería de mi mamá… y pasó esto", cortes rápidos cada 14 frames, contador 7.000, Akiba, pregunta, CTA WhatsApp; **sin precios**, ~16 s) y `Reel` (presentación más tranquila, ~26 s).
+  - Dos composiciones: **`TikTok`** (la principal: gancho "Le hice la marca a la cafetería de mi mamá… y pasó esto", cortes rápidos cada 14 frames, contador 7.800, Akiba, pregunta, CTA WhatsApp; **sin precios**, ~16 s) y `Reel` (presentación más tranquila, ~26 s).
   - Decisión: **no poner precios en videos** (van solo en el portafolio). Sin música incorporada: Alejandro agrega audio en tendencia (bajo) al subirlos.
   - **Voz y sonidos (ElevenLabs):** la clave está guardada en el entorno `Ii` (el proxy la inyecta; no está en el repo). Solo tiene permisos de voz y efectos (no de leer voces/cuenta) → usar IDs de voces estándar. Voz actual: "Liam" `TX3LPaxmHKxFdv7VOQHJ`.
     - Guion: `reel/scripts/voice-lines.json` → `bash reel/scripts/gen-voice.sh [voice_id]` (genera `public/voice/<lang>/*.mp3` + `timing.json`; luego normalizar con loudnorm). Efectos: `bash reel/scripts/gen-sfx.sh`.
