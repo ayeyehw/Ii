@@ -25,7 +25,7 @@ export const COPY = {
     lines: ["Desenho marcas", "que ficam", "na cabeça."],
     markets: ["Brasil", "América Latina", "Estados Unidos"],
     langs: "Español · Português · English",
-    marketsTitle: "Trabalho com negócios no",
+    marketsTitle: "Atendo negócios em três mercados",
     real: "Projeto real",
     mimiSub: "Cafeteria · Itajubá, Brasil",
     stat: "7.000",
